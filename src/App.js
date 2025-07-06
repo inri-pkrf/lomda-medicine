@@ -7,6 +7,7 @@ function App() {
         <p>
           לומדת רפואה
         </p>
+        
       </header>
     </div>
   );
