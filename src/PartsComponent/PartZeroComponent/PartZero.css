@@ -1,0 +1,30 @@
+#PartZero {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("/public/Assets/PartZeroImgs/BackgroundIntro.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.ambulance-zero {
+    position: absolute;
+    bottom: 0;
+    right: 50%;
+    transform: translateX(50%);
+    width: 90vw;
+    height: auto;
+}
+
+.divText-Ambulance {
+     position: absolute;
+    left: 43.6vw;
+    top: 30.2vh;
+    width: 44.5vw;
+    height: 35.5vh;
+    background-color: #f2f2f2;
+}

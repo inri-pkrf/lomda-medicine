@@ -1,34 +1,40 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../GenericComponent/styles/IntroLomda.css';
 
 const IntroLomda = () => {
-    const [isVideoEnded, setIsVideoEnded] = useState(false);
-    const [showIntro, setShowIntro] = useState(false);
+    // const [isVideoEnded, setIsVideoEnded] = useState(false);
+    // const [showIntro, setShowIntro] = useState(false);
+        const [isVideoEnded, setIsVideoEnded] = useState(true);
+    const [showIntro, setShowIntro] = useState(true);
     const [showSkipButton, setShowSkipButton] = useState(false);
     const [fadeOutVideo, setFadeOutVideo] = useState(false);
+    const [isExiting, setIsExiting] = useState(false);
+    const navigate = useNavigate();
+
 
     useEffect(() => {
-    const skipButtonTimeout = setTimeout(() => {
-        setShowSkipButton(true);
-    }, 2000);
+        const skipButtonTimeout = setTimeout(() => {
+            setShowSkipButton(true);
+        }, 2000);
 
-    const showIntroTimeout = setTimeout(() => {
-        setShowIntro(true); 
-    }, 8200); 
+        const showIntroTimeout = setTimeout(() => {
+            setShowIntro(true);
+        }, 8200);
 
-    const fadeOutTimeout = setTimeout(() => {
-        setFadeOutVideo(true);
-        setTimeout(() => {
-            setIsVideoEnded(true);
-        }, 300); 
-    }, 8000);
+        const fadeOutTimeout = setTimeout(() => {
+            setFadeOutVideo(true);
+            setTimeout(() => {
+                setIsVideoEnded(true);
+            }, 300);
+        }, 8000);
 
-    return () => {
-        clearTimeout(skipButtonTimeout);
-        clearTimeout(showIntroTimeout);
-        clearTimeout(fadeOutTimeout);
-    };
-}, []);
+        return () => {
+            clearTimeout(skipButtonTimeout);
+            clearTimeout(showIntroTimeout);
+            clearTimeout(fadeOutTimeout);
+        };
+    }, []);
 
     const skipVideo = () => {
         setFadeOutVideo(true);
@@ -36,6 +42,13 @@ const IntroLomda = () => {
             setIsVideoEnded(true);
             setShowIntro(true);
         }, 300);
+    };
+
+    const handleStartBtn = () => {
+        setIsExiting(true);
+        setTimeout(() => {
+            navigate('/part-zero');
+        }, 1000);
     };
 
     return (
@@ -58,9 +71,7 @@ const IntroLomda = () => {
             )}
 
             {showIntro && (
-                <div className="intro-section">
-                    <img src={`${process.env.PUBLIC_URL}/Assets/logos/logo.png`} alt="main-logo" className="main-logo" />
-                    <img src={`${process.env.PUBLIC_URL}/Assets/logos/iLogo.png`} alt="iLogo" className="i-logo" />
+                <div className={`intro-section ${isExiting ? 'exit' : ''}`}>
 
                     <img src={`${process.env.PUBLIC_URL}/Assets/PartZeroImgs/clouds.png`} alt="clouds" className="clouds" />
                     <img src={`${process.env.PUBLIC_URL}/Assets/PartZeroImgs/hospital.png`} alt="hospital" className="hospital" />
@@ -68,7 +79,7 @@ const IntroLomda = () => {
 
                     <div className="intro-text-slide-in text-area">
                         <h1 className="lomda-title">לומדה למכלול רפואה</h1>
-                        <button className="btn-start">התחלה</button>
+                        <button className="btn-start" onClick={handleStartBtn}>התחלה</button>
                     </div>
                 </div>
             )}
