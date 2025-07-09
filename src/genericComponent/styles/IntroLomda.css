@@ -1,0 +1,152 @@
+.video-intro {
+    height: 100%;
+    width: 100%;
+}
+
+.video-section {
+    position: absolute;
+    right: 50%;
+    transform: translateX(50%);
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.4s ease-out;
+    opacity: 1;
+    overflow: hidden;
+}
+
+.video-section.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.skip {
+    position: absolute;
+    top: 6%;
+    left: 2%;
+    background-color: transparent;
+    font-family: 'Assistant', sans-serif;
+    font-size: 1.5rem;
+    color: black;
+    z-index: 9999999;
+    border: none;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+/* ----------------------------------------------------------------- */
+
+.intro-section {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("/public/Assets/PartZeroImgs/BackgroundIntro.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    animation: fade-in 0.7s ease-out forwards;
+    opacity: 0;
+}
+
+.main-logo {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    width: 90px;
+}
+
+.i-logo {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    width: 50px;
+}
+
+.clouds {
+    position: absolute;
+    bottom: 5rem;
+    left: 0;
+    width: 100%;
+    animation: moveClouds 5s ease-in-out infinite alternate;
+}
+
+@keyframes moveClouds {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50px);
+    }
+}
+
+.hospital {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-48%);
+    width: 95%;
+    z-index: 2;
+}
+
+.ambulance {
+    position: absolute;
+    bottom: 0;
+    width: 25%;
+    z-index: 3;
+    animation: driveAmbulance 2.5s ease-out forwards;
+}
+
+@keyframes driveAmbulance {
+    0% {
+        left: 100%;
+    }
+
+    100% {
+        left: 3%;
+    }
+}
+
+.text-area {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 4;
+}
+
+.lomda-title {
+    font-size: 7rem;
+    color: #454545;
+    margin-bottom: 2rem;
+    font-family: 'Karantina', cursive;
+}
+
+.btn-start {
+    font-size: 3.2rem;
+    font-family: 'Karantina', cursive;
+    padding: 0.7rem 4rem;
+    border-radius: 50px;
+    background-color: #cc6650;
+    color: white;
+    border: white 2px solid;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.btn-start:hover {
+    transform: scale(1.05);
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

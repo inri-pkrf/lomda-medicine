@@ -1,16 +1,25 @@
 import './App.css';
+import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+
+import IntroLomda from './GenericComponent/IntroLomda';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          לומדת רפואה
-        </p>
-        
-      </header>
+     <Routes>
+        <Route path="/" element={<IntroLomda />} />
+      </Routes>
     </div>
   );
 }
 
-export default App;
+function AppWrapper() {
+  return (
+    <Router>
+      <App />
+    </Router>
+  );
+}
+
+
+export default AppWrapper;
