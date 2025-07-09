@@ -21,10 +21,30 @@
 }
 
 .divText-Ambulance {
-     position: absolute;
+    position: absolute;
     left: 43.6vw;
     top: 30.2vh;
-    width: 44.5vw;
-    height: 35.5vh;
+    width: 39vw;
+    height: 31.5vh;
     background-color: #f2f2f2;
+    text-align: center;
+    font-family: 'Assistant', sans-serif;
+    color: #454545;
+    padding: 3vh 5vh 0vh 5vh;
+    font-size: 2.5vmin;
+    direction: rtl;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.divText-Ambulance.fade-in {
+    opacity: 1;
+}
+
+.Tomer-zero {
+position: absolute;
+    top: -14vh;
+    width: 13vw;
+    height: auto;
+    left: -34vw;
 }

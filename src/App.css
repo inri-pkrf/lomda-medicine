@@ -11,6 +11,7 @@
   right: 5rem;
   width: 4.5%;
   z-index: 1000;
+  cursor: pointer;
 }
 
 .i-logo {
@@ -19,6 +20,33 @@
   left: 5rem;
   width: 3%;
   z-index: 1000;
+  cursor: pointer;
+}
+
+.info-overlay {
+  background: #ffffffb3;
+  height: 100vh;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 2000;
+}
+
+.info-text {
+  width: 40vw;
+  height: 55vh;
+  border-radius: 7vw;
+  position: absolute;
+  bottom: 21vh;
+  right: 50%;
+  transform: translateX(50%);
+  background-color: #ffdef4;
+  padding-top: 10vh;
+  direction: rtl;
+  font-size: 2.5vmin;
+  font-family: 'Assistant', sans-serif;
+  border: 1px black solid;
 }
 
 .App-header {
