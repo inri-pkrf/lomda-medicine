@@ -3,10 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import '../GenericComponent/styles/IntroLomda.css';
 
 const IntroLomda = () => {
-    const [isVideoEnded, setIsVideoEnded] = useState(false);
-    const [showIntro, setShowIntro] = useState(false);
-    // const [isVideoEnded, setIsVideoEnded] = useState(true);
-    // const [showIntro, setShowIntro] = useState(true);
+    // const [isVideoEnded, setIsVideoEnded] = useState(false);
+    // const [showIntro, setShowIntro] = useState(false);
+    const [isVideoEnded, setIsVideoEnded] = useState(true);
+    const [showIntro, setShowIntro] = useState(true);
     const [showSkipButton, setShowSkipButton] = useState(false);
     const [fadeOutVideo, setFadeOutVideo] = useState(false);
     const [isExiting, setIsExiting] = useState(false);
