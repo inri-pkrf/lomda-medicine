@@ -47,14 +47,12 @@ const PartOne = () => {
     setIsZoomedCorkboard(true);
     setShowNotes(false);
     setShowAboveBox(false);
-    setShowNoteContent(false); // איפוס לפני פתיחה חדשה
+    setShowNoteContent(false); 
 
-    // אחרי שהלוח גדל - להראות את הקופסה הלבנה
     setTimeout(() => {
       setShowAboveBox(true);
     }, 600);
 
-    // דיליי של שניה לפני הצגת תוכן הפתק
     setTimeout(() => {
       setShowNoteContent(true);
     }, 1000);
@@ -82,34 +80,29 @@ const PartOne = () => {
         />
       ) : (
         <>
-          {/* תומר מוצג רק אם אין פתק פתוח */}
           {activeNoteId === null && (
             <img
               src={`${process.env.PUBLIC_URL}/Assets/PartOneImgs/ThomerPointing.png`}
               alt="Tomer"
-              className={`Tomer-one ${notesFadeIn ? 'fade-in' : ''}`}
+              className={`Tomer-one ${notesFadeIn ? 'fade-in-one' : ''}`}
             />
           )}
 
-          {/* הלוח עם אנימציה */}
           <img
             src={`${process.env.PUBLIC_URL}/Assets/PartOneImgs/corkboard.png`}
             alt="corkboard"
             className={`corkboard ${isZoomedCorkboard ? 'zoomed' : ''}`}
           />
 
-          {/* דיב מעל הלוח - רק כשהלוח בגדול והקופסה מופעלת */}
           {isZoomedCorkboard && showAboveBox && (
             <div className="above-corkboard-box">
-              {/* כאן תוכלי להוסיף כותרת או עיצוב */}
             </div>
           )}
 
-          {/* פתקים - מופיעים רק כשהאין פתק פתוח וגם showNotes אמיתי */}
           {activeNoteId === null && showNotes && notes.map(({ id, text }) => (
             <div className='contanier-notes' key={id}>
               <div
-                className={`note-wrapper ${notesFadeIn ? 'fade-in' : ''}`}
+                className={`note-wrapper ${notesFadeIn ? 'fade-in-one' : ''}`}
                 id={`note${id}`}
                 onClick={() => handleNoteClick(id)}
               >
@@ -123,7 +116,6 @@ const PartOne = () => {
             </div>
           ))}
 
-          {/* תוכן הפתק המורחב עם דיליי */}
           {activeNoteId && showNoteContent && (
             <div className="note-expanded">
               <button
@@ -134,7 +126,6 @@ const PartOne = () => {
                   setShowAboveBox(false);
                   setShowNoteContent(false);
 
-                  // מחכה לסיום האנימציה של הקטנת הלוח לפני שמראה פתקים
                   setTimeout(() => {
                     setShowNotes(true);
                   }, 600);

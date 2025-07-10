@@ -13,20 +13,21 @@
 .Tomer-one {
     position: absolute;
     bottom: 0;
-    left: 86vw;
+    left: 78vw;
     width: 20vw;
     height: auto;
     z-index: 3;
     transition: opacity 0.4s ease;
 }
-.fade-in {
-  opacity: 1 !important;
-  transition: opacity 0.5s ease;
+
+.fade-in-one {
+    opacity: 1 !important;
+    transition: opacity 0.5s ease;
 }
 
 .Tomer-one {
-  opacity: 0;
-  transition: opacity 0.5s ease;
+    opacity: 0;
+    transition: opacity 0.5s ease;
 }
 
 
@@ -52,12 +53,6 @@
     transform: translateX(-50%);
 }
 
-.contanier-notes {
-    position: relative;
-    left: 6vw;
-
-}
-
 .note-wrapper {
     position: absolute;
     width: 13vw;
@@ -69,7 +64,7 @@
     right: 5vw;
 }
 
-.note-wrapper.fade-in {
+.note-wrapper.fade-in-one {
     opacity: 1;
 }
 
@@ -136,10 +131,10 @@
     background-color: white;
     z-index: 20;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    animation: fadeIn 0.4s ease-out forwards;
+    animation: fade-in-one 0.4s ease-out forwards;
 }
 
-@keyframes fadeIn {
+@keyframes fade-in-one {
     0% {
         opacity: 0;
         transform: translateX(-50%) scale(0.95);
@@ -151,7 +146,6 @@
     }
 }
 
-/* כפתור סגירה */
 .close-btn {
     position: absolute;
     top: 10rem;

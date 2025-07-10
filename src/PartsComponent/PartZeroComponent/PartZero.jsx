@@ -29,7 +29,7 @@ const PartZero = () => {
             />
 
 
-            <div className={`divText-Ambulance ${showTextDiv ? 'fade-in' : ''}`}>
+            <div className={`divText-Ambulance ${showTextDiv ? 'fade-in-zero' : ''}`}>
                 {/* Step 1 */}
                 {step === 1 && (
                     <div id="text-Ambulance1">
@@ -42,14 +42,14 @@ const PartZero = () => {
                 {/* Step 2 */}
                 {step === 2 && (
                     <>
-                        <div id="text-Ambulance2" className={fadeOut ? 'fade-out' : 'fade-in'}>
+                        <div id="text-Ambulance2" className={fadeOut ? 'fade-out' : 'fade-in-zero'}>
                             <h2>בלומדה ילווה אתכם תומר – קצין רפואה</h2>
                             <p>הסבר הסבר הסבר ...</p>
                         </div>
                         <img
                             src={`${process.env.PUBLIC_URL}/Assets/PartZeroImgs/Tomer.png`}
                             alt="Tomer"
-                            className={`Tomer-zero ${fadeOut ? 'fade-out' : 'fade-in'}`}
+                            className={`Tomer-zero ${fadeOut ? 'fade-out' : 'fade-in-zero'}`}
                         />
                     </>
                 )}
