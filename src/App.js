@@ -2,13 +2,18 @@ import './App.css';
 import { HashRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
+
 import IntroLomda from './GenericComponent/IntroLomda';
 import PartZero from './PartsComponent/PartZeroComponent/PartZero';
+import PartOne from './PartsComponent/PartOneComponent/PartOne';
+
+
 
 function App() {
   const navigate = useNavigate();
   const [showInfo, setShowInfo] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
+
 
   const closeInfo = () => {
     setIsClosing(true);
@@ -17,6 +22,7 @@ function App() {
       setIsClosing(false);
     }, 400); // משך הסגירה = משך האנימציה
   };
+
 
   return (
     <div className="App">
@@ -27,12 +33,14 @@ function App() {
         onClick={() => navigate('/')}
       />
 
+
       <img
         src={`${process.env.PUBLIC_URL}/Assets/logos/iLogo.png`}
         alt="iLogo"
         className="i-logo"
         onClick={() => setShowInfo(true)}
       />
+
 
       {showInfo && (
         <div className='info-part'>
@@ -65,29 +73,37 @@ function App() {
       )}
 
 
-      {/* <div className='btn-text-next'>
-        <div className='img-arrow-next'></div>
-        <div className='text-next'>המשך</div>
+<div style={{ display: "none" }}>
+        <div className="btn-text btn-text-prev">
+          <div className="img-arrow img-arrow-prev" />
+          <div className="text-label"></div>
+        </div>
+
+
+        <div className="btn-text btn-text-next">
+          <div className="img-arrow img-arrow-next" />
+          <div className="text-label"></div>
+        </div>
+
+
+        <div className="btn-text btn-text-end">
+          <div className="img-arrow img-arrow-end" />
+          <div className="text-label"></div>
+        </div>
       </div>
 
-      <div className='btn-text-prev'>
-        <div className='img-arrow-prev'></div>
-        <div className='text-prev'>הקודם</div>
-      </div>
 
-        <div className='btn-text-end'>
-        <div className='img-arrow-end'></div>
-        <div className='text-end'>סיום</div>
-      </div> */}
 
 
       <Routes>
         <Route path="/" element={<IntroLomda />} />
         <Route path="part-zero" element={<PartZero />} />
+        <Route path="part-one" element={<PartOne/>} />
       </Routes>
     </div>
   );
 }
+
 
 function AppWrapper() {
   return (
@@ -97,4 +113,8 @@ function AppWrapper() {
   );
 }
 
+
 export default AppWrapper;
+
+
+

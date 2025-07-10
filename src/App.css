@@ -2,6 +2,8 @@
 @import url(" https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&display=swap");
 
 
+
+
 .main-logo {
   position: absolute;
   top: 3rem;
@@ -11,6 +13,7 @@
   cursor: pointer;
 }
 
+
 .i-logo {
   position: absolute;
   top: 3rem;
@@ -19,6 +22,7 @@
   z-index: 1000;
   cursor: pointer;
 }
+
 
 .info-overlay {
   background: #ffffffb3;
@@ -30,6 +34,7 @@
   z-index: 2000;
 }
 
+
 .xbtn {
   z-index: 3000;
   width: 2vw;
@@ -38,6 +43,7 @@
   right: 64vw;
   cursor: pointer;
 }
+
 
 .info-text {
   width: 40vw;
@@ -56,50 +62,129 @@
   text-align: center;
 }
 
+
 @keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+
+
+  100% {
+    opacity: 1;
+  }
 }
 
+
 @keyframes fadeOut {
-  0% { opacity: 1; }
-  100% { opacity: 0; }
+  0% {
+    opacity: 1;
+  }
+
+
+  100% {
+    opacity: 0;
+  }
 }
+
 
 .fade-in {
   animation: fadeIn 0.4s ease-out forwards;
 }
 
+
 .fade-out {
   animation: fadeOut 0.4s ease-in forwards;
 }
+
 
 @keyframes popIn {
   0% {
     opacity: 0;
     transform: scale(0.85) translateX(50%);
   }
+
+
   100% {
     opacity: 1;
     transform: scale(1) translateX(50%);
   }
 }
+
 
 @keyframes popOut {
   0% {
     opacity: 1;
     transform: scale(1) translateX(50%);
   }
+
+
   100% {
     opacity: 0;
     transform: scale(0.85) translateX(50%);
   }
 }
 
+
 .pop-in {
   animation: popIn 0.4s ease-out forwards;
 }
 
+
 .pop-out {
   animation: popOut 0.4s ease-in forwards;
 }
+
+
+
+
+/* ----------------------------כפתורים------------------------------------ */
+
+
+.btn-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  position: relative;
+  width: 5vw;
+}
+
+
+.btn-text:hover {
+  transform: scale(1.05);
+}
+
+
+.img-arrow {
+  width: 5vmin;
+  height: 5vmin;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  width: 5vw;
+}
+
+
+.btn-text-next .img-arrow {
+  transform: rotate(90deg);
+}
+
+
+.btn-text-prev .img-arrow {
+  transform: rotate(270deg);
+}
+
+
+.btn-text-end .img-arrow {
+  transform: rotate(90deg);
+}
+
+
+.text-label {
+  font-size: 2.2vmin;
+  font-family: 'Assistant', sans-serif;
+  font-weight: bold;
+}
+
