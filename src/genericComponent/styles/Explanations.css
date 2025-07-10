@@ -88,7 +88,7 @@
 
 /*partOne ----------------------------------------------------------*/
 
-.speech-bubble.PartOne {
+.speech-bubblePartOne {
     position: relative;
     margin-top: 25vh;
     max-width: 28vw;
@@ -104,7 +104,7 @@
   }
 /*partTwo ----------------------------------------------------------*/
 
-.speech-bubble.PartTwo {
+.speech-bubblePartTwo {
     position: relative;
     margin-top: 25vh;
     max-width: 28vw;

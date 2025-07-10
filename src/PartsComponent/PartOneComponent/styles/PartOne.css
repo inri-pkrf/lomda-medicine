@@ -1,0 +1,166 @@
+.PartOne {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    overflow: hidden;
+    background-color: #f0dcbc;
+}
+
+
+.Tomer-one {
+    position: absolute;
+    bottom: 0;
+    left: 86vw;
+    width: 20vw;
+    height: auto;
+    z-index: 3;
+    transition: opacity 0.4s ease;
+}
+.fade-in {
+  opacity: 1 !important;
+  transition: opacity 0.5s ease;
+}
+
+.Tomer-one {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+
+.PartOne .corkboard.zoomed~.Tomer-one {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.corkboard {
+    position: absolute;
+    bottom: 0;
+    left: 7vw;
+    width: 70vw;
+    height: auto;
+    z-index: 1;
+    transition: all 0.6s ease-in-out;
+}
+
+.corkboard.zoomed {
+    width: 84vw;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.contanier-notes {
+    position: relative;
+    left: 6vw;
+
+}
+
+.note-wrapper {
+    position: absolute;
+    width: 13vw;
+    height: 12vw;
+    z-index: 2;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    right: 5vw;
+}
+
+.note-wrapper.fade-in {
+    opacity: 1;
+}
+
+.note-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5vmin;
+    color: #595959;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'Assistant', sans-serif;
+}
+
+#note1 {
+    top: 25vh;
+    left: 60vw;
+}
+
+#note2 {
+    top: 26vh;
+    left: 34vw;
+}
+
+#note3 {
+    top: 27vh;
+    right: 75vw;
+}
+
+#note4 {
+    top: 49vh;
+    left: 46vw;
+}
+
+#note5 {
+    top: 71vh;
+    right: 29vw;
+}
+
+#note6 {
+    top: 68vh;
+    left: 32vw;
+}
+
+#note7 {
+    top: 56vh;
+    left: 15vw;
+}
+
+.notes {
+    width: 100%;
+    height: auto;
+    position: absolute;
+}
+
+.above-corkboard-box {
+    position: absolute;
+    top: 9vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 74vw;
+    height: 84vh;
+    background-color: white;
+    z-index: 20;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) scale(0.95);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1);
+    }
+}
+
+/* כפתור סגירה */
+.close-btn {
+    position: absolute;
+    top: 10rem;
+    left: 25rem;
+    z-index: 101;
+    font-size: 1.5rem;
+    background-color: #ccc;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}

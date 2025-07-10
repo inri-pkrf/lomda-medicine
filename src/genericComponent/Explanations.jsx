@@ -34,7 +34,7 @@ const Explanations = ({ position, chapterName, onClose }) => {
         className={`tomer-img tomer${chapterName} ${position === "start" ? "fade-inExplanations" : ""}`}
       />
     )}
-    <div className={`speech-bubble ${chapterName} ${position === "start" ? "fade-inExplanations" : ""}`}>
+    <div className={`speech-bubble speech-bubble${chapterName} ${position === "start" ? "fade-inExplanations" : ""}`}>
       <img
         className='close-btn-bubble'
         onClick={handleClose}

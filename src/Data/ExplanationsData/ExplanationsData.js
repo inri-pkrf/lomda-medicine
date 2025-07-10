@@ -12,7 +12,7 @@ const explanationsData = {
       }
     },
     PartTwo: {
-     TomerImg:`${process.env.PUBLIC_URL}/Assets/PartTwoImgs/Mahoz/ThomerThinkingHalf.png`,
+     TomerImg:`${process.env.PUBLIC_URL}/Assets/PartTwoImgs/ThomerThinkingHalf.png`,
       start: {
         text: <>   <b>"הבנת השטח"</b> 
         הגעתי לחמ"ל לנסות להבין מי נגד מי<br/> אבל משום מה רק 2 מסכים עובדים כדאי שנבדוק את אלו שלא עובדים
@@ -24,7 +24,7 @@ const explanationsData = {
       }
     },
     PartThree: {
-    TomerImg:`${process.env.PUBLIC_URL}/Assets/PartThreeImgs/Mahoz/ThomerShockedHalf.png`,
+    TomerImg:`${process.env.PUBLIC_URL}/Assets/PartThreeImgs/ThomerShockedHalf.png`,
 
       start: {
         text: <><b>"את מי אני מלחץ ? למי אני מדווח?"</b>
@@ -42,7 +42,7 @@ const explanationsData = {
       }
     },
     PartFour: {
-    TomerImg:"${process.env.PUBLIC_URL}/Assets/PartThreeImgs/Mahoz/ThomerShockedHalf.png",
+    TomerImg:"${process.env.PUBLIC_URL}/Assets/PartThreeImgs/ThomerShockedHalf.png",
 
       start: {
         text: <><b>"אני לא לבד"</b>

@@ -1,0 +1,10 @@
+.tapes{
+    z-index: 20;
+    position: absolute;
+    width: 17vw;
+}
+
+.tape1{
+    right: 16vw;
+    top: 4vh;
+}
