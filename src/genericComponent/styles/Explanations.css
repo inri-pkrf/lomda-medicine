@@ -70,7 +70,7 @@
 }
 
 /* קובץ CSS שלך (למשל Explanations.css) */
-@keyframes fadeIn {
+@keyframes fadeInExplanations {
     from {
       opacity: 0.4;
       transform: scale(0.98);
@@ -81,8 +81,8 @@
     }
   }
   
-  .fade-in {
-    animation: fadeIn 2s ease-in-out forwards;
+  .fade-inExplanations {
+    animation: fadeInExplanations 0.2s ease-in-out forwards;
   }
   
 

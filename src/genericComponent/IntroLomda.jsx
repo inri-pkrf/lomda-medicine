@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../GenericComponent/styles/IntroLomda.css';
+import '../genericComponent/styles/IntroLomda.css';
 
 const IntroLomda = () => {
     // const [isVideoEnded, setIsVideoEnded] = useState(false);

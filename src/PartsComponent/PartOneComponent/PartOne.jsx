@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Explanations from '../../GenericComponent/Explanations';
+import Explanations from '../../genericComponent/Explanations';
 
 const PartOne = () => {
   const [showExplanation, setShowExplanation] = useState(true);

@@ -3,10 +3,9 @@ import { HashRouter as Router, Routes, Route, useNavigate } from 'react-router-d
 import { useState } from 'react';
 
 
-import IntroLomda from './GenericComponent/IntroLomda';
+import IntroLomda from './genericComponent/IntroLomda' 
 import PartZero from './PartsComponent/PartZeroComponent/PartZero';
 import PartOne from './PartsComponent/PartOneComponent/PartOne';
-
 
 
 function App() {
