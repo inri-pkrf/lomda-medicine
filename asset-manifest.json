@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/lomda-medicine/static/css/main.db8c0d9d.css",
-    "main.js": "/lomda-medicine/static/js/main.1942514b.js",
+    "main.css": "/lomda-medicine/static/css/main.8cccae2b.css",
+    "main.js": "/lomda-medicine/static/js/main.61878916.js",
     "static/js/453.307e94bc.chunk.js": "/lomda-medicine/static/js/453.307e94bc.chunk.js",
     "static/media/warRoom.png": "/lomda-medicine/static/media/warRoom.87f47bc2dfa64286bc86.png",
     "static/media/BackgroundIntro.png": "/lomda-medicine/static/media/BackgroundIntro.0b7d33eba6f1a03b5ba2.png",
     "static/media/arrowBlack.png": "/lomda-medicine/static/media/arrowBlack.e1bcae3ab66442deab2c.png",
     "index.html": "/lomda-medicine/index.html",
-    "main.db8c0d9d.css.map": "/lomda-medicine/static/css/main.db8c0d9d.css.map",
-    "main.1942514b.js.map": "/lomda-medicine/static/js/main.1942514b.js.map",
+    "main.8cccae2b.css.map": "/lomda-medicine/static/css/main.8cccae2b.css.map",
+    "main.61878916.js.map": "/lomda-medicine/static/js/main.61878916.js.map",
     "453.307e94bc.chunk.js.map": "/lomda-medicine/static/js/453.307e94bc.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.db8c0d9d.css",
-    "static/js/main.1942514b.js"
+    "static/css/main.8cccae2b.css",
+    "static/js/main.61878916.js"
   ]
 }
