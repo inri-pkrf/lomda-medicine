@@ -1,0 +1,30 @@
+#tape4-one {
+    right: 10vw;
+    top: 4.6vh;
+    width: 11.8vw;
+}
+
+#tape4-two {
+    right: 79vw;
+    top: 79.6vh;
+    width: 11.8vw;
+}
+
+.Mivzait {
+    position: absolute;
+    height: auto;
+    width: 65%;
+    right: 50%;
+    transform: translateX(50%);
+    top: 28vh;
+    z-index: 20;
+}
+
+/* כפתור סיום */
+.buttons-bar-note4 {
+    z-index: 20;
+    position: relative;
+    top: 83vh;
+    left: 15vw;
+}
+

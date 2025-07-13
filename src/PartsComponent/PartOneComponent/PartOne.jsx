@@ -14,6 +14,7 @@ const PartOne = () => {
   const [showExplanation, setShowExplanation] = useState(true);
   const [position, setPosition] = useState("start");
   const [activeNoteId, setActiveNoteId] = useState(null);
+  const [viewedNoteIds, setViewedNoteIds] = useState([]);
   const [isZoomedCorkboard, setIsZoomedCorkboard] = useState(false);
   const [showNotes, setShowNotes] = useState(true);
   const [showAboveBox, setShowAboveBox] = useState(false);
@@ -32,14 +33,25 @@ const PartOne = () => {
     { id: 7, text: "המענה המבצעי" },
   ];
 
+  const closeNoteAndReturn = () => {
+    setActiveNoteId(null);
+    setIsZoomedCorkboard(false);
+    setShowAboveBox(false);
+    setShowNoteContent(false);
+
+    setTimeout(() => {
+      setShowNotes(true);
+    }, 600);
+  };
+
   const noteComponents = {
-    1: <Note1 />,
-    2: <Note2 />,
-    3: <Note3 />,
-    4: <Note4 />,
-    5: <Note5 />,
-    6: <Note6 />,
-    7: <Note7 />,
+    1: <Note1 onClose={closeNoteAndReturn} />,
+    2: <Note2 onClose={closeNoteAndReturn} />,
+    3: <Note3 onClose={closeNoteAndReturn} />,
+    4: <Note4 onClose={closeNoteAndReturn} />,
+    5: <Note5 onClose={closeNoteAndReturn} />,
+    6: <Note6 onClose={closeNoteAndReturn} />,
+    7: <Note7 onClose={closeNoteAndReturn} />,
   };
 
   const handleNoteClick = (id) => {
@@ -56,7 +68,25 @@ const PartOne = () => {
     setTimeout(() => {
       setShowNoteContent(true);
     }, 1000);
+
+    // הוספת הפתק לרשימת הנצפים אם לא קיים
+    setViewedNoteIds((prev) => {
+      if (!prev.includes(id)) {
+        const updated = [...prev, id];
+        sessionStorage.setItem('viewedNoteIds', JSON.stringify(updated));
+        return updated;
+      }
+      return prev;
+    });
   };
+
+  // טעינה ראשונית מתוך sessionStorage
+  useEffect(() => {
+    const stored = sessionStorage.getItem('viewedNoteIds');
+    if (stored) {
+      setViewedNoteIds(JSON.parse(stored));
+    }
+  }, []);
 
   useEffect(() => {
     if (showNotes) {
@@ -79,6 +109,7 @@ const PartOne = () => {
           onClose={() => setShowExplanation(false)}
         />
       )}
+
       <>
         {activeNoteId === null && !showExplanation && (
           <img
@@ -95,14 +126,13 @@ const PartOne = () => {
         />
 
         {isZoomedCorkboard && showAboveBox && (
-          <div className="above-corkboard-box">
-          </div>
+          <div className="above-corkboard-box" />
         )}
 
         {activeNoteId === null && showNotes && notes.map(({ id, text }) => (
           <div className='contanier-notes' key={id}>
             <div
-              className={`note-wrapper ${notesFadeIn ? 'fade-in-one' : ''}`}
+              className={`note-wrapper ${notesFadeIn ? 'fade-in-one' : ''} ${viewedNoteIds.includes(id) ? 'grayscale' : ''}`}
               id={`note${id}`}
               onClick={() => handleNoteClick(id)}
             >
@@ -118,40 +148,12 @@ const PartOne = () => {
 
         {activeNoteId && showNoteContent && (
           <div className="note-expanded">
-            <button
-              className="close-btn"
-              onClick={() => {
-                setActiveNoteId(null);
-                setIsZoomedCorkboard(false);
-                setShowAboveBox(false);
-                setShowNoteContent(false);
-
-                setTimeout(() => {
-                  setShowNotes(true);
-                }, 600);
-              }}
-            >
-              חזור
-            </button>
             {noteComponents[activeNoteId]}
           </div>
         )}
       </>
-
     </div>
   );
 };
 
 export default PartOne;
-
-
-
-{/* סיום פרק 1 */ }
-{/* <button
-            onClick={() => {
-              setPosition("end");
-              setShowExplanation(true);
-            }}
-          >
-            סיום פרק
-          </button> */}

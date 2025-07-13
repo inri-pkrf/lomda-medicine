@@ -28,16 +28,16 @@ const PartZero = () => {
         }
     }, [step]);
 
-const handleBack = () => {
-    setShowPrevButton(false);  
-    setFadeOut(true);
-    setFadeInTomer(false);
-    setTimeout(() => {
-        setFadeOut(false);
-        setShowTomer(false);
-        setStep(1);
-    }, 500);
-};
+    const handleBack = () => {
+        setShowPrevButton(false);
+        setFadeOut(true);
+        setFadeInTomer(false);
+        setTimeout(() => {
+            setFadeOut(false);
+            setShowTomer(false);
+            setStep(1);
+        }, 500);
+    };
 
     return (
         <div id="PartZero">
@@ -72,14 +72,14 @@ const handleBack = () => {
                 )}
 
                 <div className="buttons-bar">
-                <div className="btn-text btn-text-prev">
-    {showPrevButton && (
-        <div onClick={handleBack}>
-            <div className="img-arrow img-arrow-prev" />
-            <div className="text-label">הקודם</div>
-        </div>
-    )}
-</div>
+                    <div className="btn-text btn-text-prev">
+                        {showPrevButton && (
+                            <div onClick={handleBack}>
+                                <div className="img-arrow img-arrow-prev" />
+                                <div className="text-label">הקודם</div>
+                            </div>
+                        )}
+                    </div>
                     <div className="btn-text btn-text-next">
                         {step === 1 && (
                             <div onClick={() => setStep(2)}>

@@ -146,6 +146,7 @@
   transition: transform 0.2s ease;
   position: relative;
   width: 5vw;
+  text-align: center;
 }
 
 
@@ -184,4 +185,7 @@
   font-size: 2.2vmin;
   font-family: 'Assistant', sans-serif;
   font-weight: bold;
+  position: relative;
+  right: 50%;
+  transform: translateX(50%);
 }

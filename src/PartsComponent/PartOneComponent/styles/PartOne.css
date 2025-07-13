@@ -77,6 +77,12 @@
     transform: scale(1.05);
 }
 
+.note-wrapper.grayscale img {
+  filter: grayscale(100%);
+  opacity: 0.6;
+  transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
 .note-text {
     position: absolute;
     top: 50%;
