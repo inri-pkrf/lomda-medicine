@@ -97,9 +97,9 @@ function App() {
 
 
       <Routes>
-        {/* <Route path="/" element={<IntroLomda />} /> */}
+        <Route path="/" element={<IntroLomda />} />
         <Route path="part-zero" element={<PartZero />} />
-        <Route path="/" element={<PartOne />} />
+        <Route path="part-one" element={<PartOne />} />
         <Route path="part-two" element={<PartTwo />} />
       </Routes>
     </div>

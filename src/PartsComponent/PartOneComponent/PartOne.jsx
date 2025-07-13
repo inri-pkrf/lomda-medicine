@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Explanations from '../../genericComponent/Explanations';
 import './styles/PartOne.css';
 
@@ -11,15 +11,23 @@ import Note6 from './Notes/Note6';
 import Note7 from './Notes/Note7';
 
 const PartOne = () => {
-  const [showExplanation, setShowExplanation] = useState(true);
+  const [showExplanation, setShowExplanation] = useState(true); // הסבר ראשוני בהתחלה
   const [position, setPosition] = useState("start");
   const [activeNoteId, setActiveNoteId] = useState(null);
-  const [viewedNoteIds, setViewedNoteIds] = useState([]);
+  const [viewedNoteIds, setViewedNoteIds] = useState(() => {
+    const saved = sessionStorage.getItem('viewedNoteIds');
+    return saved ? JSON.parse(saved) : [];
+  });
   const [isZoomedCorkboard, setIsZoomedCorkboard] = useState(false);
   const [showNotes, setShowNotes] = useState(true);
   const [showAboveBox, setShowAboveBox] = useState(false);
   const [notesFadeIn, setNotesFadeIn] = useState(false);
   const [showNoteContent, setShowNoteContent] = useState(false);
+  const [chapterFinished, setChapterFinished] = useState(() => {
+    return sessionStorage.getItem('chapterFinished') === 'true';
+  });
+
+  const timerRef = useRef(null);
 
   const chapterName = "PartOne";
 
@@ -33,6 +41,8 @@ const PartOne = () => {
     { id: 7, text: "המענה המבצעי" },
   ];
 
+  const allNoteIds = notes.map(note => note.id);
+
   const closeNoteAndReturn = () => {
     setActiveNoteId(null);
     setIsZoomedCorkboard(false);
@@ -42,6 +52,20 @@ const PartOne = () => {
     setTimeout(() => {
       setShowNotes(true);
     }, 600);
+
+    // בדיקה אם סגרנו את כל הפתקים
+    const allViewed = allNoteIds.every(id => viewedNoteIds.includes(id));
+
+    // אם סיימנו ולא סימנו סיום קודם
+    if (allViewed && !chapterFinished) {
+      // המתנה של שנייה ואז הצגת הסבר סיום
+      timerRef.current = setTimeout(() => {
+        setPosition("end");
+        setShowExplanation(true);
+        setChapterFinished(true);
+        sessionStorage.setItem('chapterFinished', 'true');
+      }, 1000);
+    }
   };
 
   const noteComponents = {
@@ -69,7 +93,6 @@ const PartOne = () => {
       setShowNoteContent(true);
     }, 1000);
 
-    // הוספת הפתק לרשימת הנצפים אם לא קיים
     setViewedNoteIds((prev) => {
       if (!prev.includes(id)) {
         const updated = [...prev, id];
@@ -80,12 +103,25 @@ const PartOne = () => {
     });
   };
 
-  // טעינה ראשונית מתוך sessionStorage
   useEffect(() => {
-    const stored = sessionStorage.getItem('viewedNoteIds');
-    if (stored) {
-      setViewedNoteIds(JSON.parse(stored));
+    // טען viewedNoteIds וchapterFinished מ-sessionStorage בהתחלה
+    const storedNotes = sessionStorage.getItem('viewedNoteIds');
+    if (storedNotes) {
+      setViewedNoteIds(JSON.parse(storedNotes));
     }
+    const finished = sessionStorage.getItem('chapterFinished') === 'true';
+    if (finished) {
+      setChapterFinished(true);
+      setPosition("end");
+      setShowExplanation(true);
+    }
+  }, []);
+
+  // נקה טיימר אם הקומפוננטה מתפרקת לפני דיליי
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
   }, []);
 
   useEffect(() => {
@@ -106,6 +142,7 @@ const PartOne = () => {
         <Explanations
           chapterName={chapterName}
           position={position}
+          isChapterFinished={chapterFinished}
           onClose={() => setShowExplanation(false)}
         />
       )}
