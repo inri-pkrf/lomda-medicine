@@ -1,14 +1,19 @@
+
+
 import React, { useState } from 'react';
 import Explanations from '../../genericComponent/Explanations';
-import { useNavigate } from 'react-router-dom';
-import '../PartTwoComponent/styles/PartTwo.css'
+import TvMahoz from '../PartTwoComponent/TvMahoz';
+import TvNafa from '../PartTwoComponent/TvNafa';
+import '../PartTwoComponent/styles/PartTwo.css';
 
 
 const PartTwo = () => {
   const [showExplanation, setShowExplanation] = useState(true);
   const [position, setPosition] = useState("start");
+  const [activeComponent, setActiveComponent] = useState("none");
+  const [mahozCompleted, setMahozCompleted] = useState(false); // חדש
+  const [nafaCompleted, setNafaCompleted] = useState(false); // חדש
   const chapterName = "PartTwo";
-  const navigate = useNavigate();
 
 
   return (
@@ -20,28 +25,62 @@ const PartTwo = () => {
           onClose={() => setShowExplanation(false)}
         />
       )}
-      <>
-        {/* כאן שמים את תוכן הפרק */}
-        <img className='tomerThinkingPartTwo' src={`${process.env.PUBLIC_URL}/Assets/PartTwoImgs/TomerThinking.png`} />
-        <div className='nafaTvBtn' onClick={() => navigate('/tv-nafa')} >נפה</div>
-        <div className='mahozTvBtn' onClick={() => navigate('/tv-mahoz')} >מחוז</div>
 
 
-        {/* <button
-            onClick={() => {
-              setPosition("end");
-              setShowExplanation(true);
-            }}
+      {!showExplanation && activeComponent === "none" && (
+       
+          <img
+            className="tomerThinkingPartTwo"
+            src={`${process.env.PUBLIC_URL}/Assets/PartTwoImgs/TomerThinking.png`}
+            alt="טומר חושב"
+          />
+              )}
+          <div className="nafaTvBtn" onClick={() => setActiveComponent("nafa")}>
+            נפה
+          </div>
+          <div
+            className={`mahozTvBtn ${mahozCompleted ? 'completed' : ''}`}
+            onClick={() => setActiveComponent("mahoz")}
           >
-            סיום פרק
-          </button> */}
-      </>
+            מחוז
+          </div>
+   
+
+
+
+
+      {activeComponent === "nafa" && <TvNafa onFinish={() => {
+          setNafaCompleted(true);
+          setActiveComponent("none");
+        }}/>}
+      {activeComponent === "mahoz" && (
+        <TvMahoz onFinish={() => {
+          setMahozCompleted(true);
+          setActiveComponent("none");
+        }} />
+      )}
     </div>
   );
 };
 
 
 export default PartTwo;
+
+
+
+
+
+
+
+
+      //  <button
+      //       onClick={() => {
+      //         setPosition("end");
+      //         setShowExplanation(true);
+      //       }}
+      //     >
+      //       סיום פרק
+      //     </button>
 
 
 

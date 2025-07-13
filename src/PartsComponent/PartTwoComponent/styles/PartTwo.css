@@ -18,7 +18,7 @@
     left: 71vw;
 }
 .nafaTvBtn{
-    margin-top: 11vh;
+    margin-top: 14vh;
     cursor: pointer;
     right: 29vw;
     font-size: 10vmin;
@@ -30,7 +30,7 @@
     color: aliceblue;
 }
 .mahozTvBtn{
-    margin-top: 32vh;
+    margin-top: 34vh;
     cursor: pointer;
     right: 58vw;
     font-size: 10vmin;
@@ -41,4 +41,19 @@
     position: absolute;
     color: aliceblue;
 }
+
+
+.completed{
+    margin-top: 34vh;
+    cursor: pointer;
+    right: 58vw;
+    font-size: 10vmin;
+    width: 18vw;
+    text-align: center;
+    font-family: "karantina";
+    position: absolute;
+    color: rgb(102, 102, 102);
+}
+
+
 

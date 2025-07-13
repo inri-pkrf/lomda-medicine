@@ -9,20 +9,248 @@
     background-position: center;
     background-repeat: no-repeat;
     overflow: hidden;
+
+
 }
-.screen-mahoz{
+.screen-mahoz {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  animation: fadeIn-mahoz 1s ease-out forwards; /* במקום 1.7s */
+}
+
+
+@keyframes fadeIn-mahoz {
+  0% {
+    opacity: 0;
+    transform: translateY(20px); /* מוסיף תחושת תנועה רכה */
+  }
+
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+
+.Tv-img-mahoz {
+  position: absolute;
+  width: 85vw;
+  height: auto;
+  top: 0vh;
+  right: 50%;
+  transform: translate(50%, 0);
+  z-index: 2;
+}
+
+
+
+
+.TvMahoz .buttons-bar {
+      display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px auto;
     position: absolute;
-    top: 50%;
-    right: 50%;
-    transform: translate(50%,-50%);
-    width: 85vw;
-    height: 90vh;
-    background-image: url("/public/Assets/PartTwoImgs/warRoomTv.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    overflow: hidden;
+    width: 79vw;
+    top: 80vh;
+    left: 10vw;
+    direction: rtl;
+    gap: 33vw;
+    z-index: 1000;
 }
+
+
+
+
+.TvMahoz .btn-text {
+    display: block;
+}
+
+
+
+
+.TvMahoz .text-label {
+    color: rgb(255, 255, 255);
+}
+
+
+
+
+.TvMahoz .btn-text-next .img-arrow {
+  background-image: url('/public/Assets/Btns/arrowWhite.png'); /* למשל תמונה אחרת */
+}
+
+
+.TvMahoz .btn-text-prev .img-arrow {
+  background-image: url('/public/Assets/Btns/arrowWhite.png');
+}
+.TvMahoz .btn-text-end  .img-arrow {
+  background-image: url('/public/Assets/Btns/arrowFullWhite.png'); /* תמונה אחרת */
+}
+
+
+.info-mahoz{
+    position: absolute;
+    margin-top: 20vh;
+    z-index: 20000;
+    right:15vw;
+    font-size: 3.5vmin;
+    font-family: "Assistant";
+    color: rgb(255, 255, 255);
+    direction: rtl;
+      height:40vh;
+      width:50vw
+
+
+}
+.info-mahoz.with-image{
+      width: 40vw;
+}
+.info-mahoz.no-image {
+      width: 70vw;
+}
+
+
+.mahoz-title{
+    position: absolute;
+    margin-top: 10vh;
+    z-index: 20000;
+    right:15vw;
+    font-size: 7vmin;
+    font-family: "Assistant";
+    color: rgb(255, 255, 255);
+    direction: rtl;
+      width: 40vw;
+      height:40vh
+}
+
+
+.mahoz-step-image{
+     position: absolute;
+    z-index: 10000;
+    width:70VW;
+    height: auto;
+     top: 10vh;
+  right: 50%;
+  transform: translate(50%, 0);
+}
+.mahoz-step-image.step-4{
+     position: absolute;
+    z-index: 10000;
+    width:60VW;
+    height: auto;
+     top: 15vh;
+  right: 50%;
+  transform: translate(50%, 0);
+}
+.mahoz-step-image.step-5{
+     position: absolute;
+    z-index: 10000;
+    width:35VW;
+    height: auto;
+     top: 25vh;
+  left: -7%;
+ 
+}
+.mahoz-step-image.step-6{
+     position: absolute;
+    z-index: 10000;
+    width:15VW;
+    height: auto;
+     top: 20vh;
+  left: 10%;
+}
+.mahoz-step-image.step-7{
+     position: absolute;
+    z-index: 10000;
+    width:25VW;
+    height: auto;
+     top: 20vh;
+  left: 5%;
+}
+.scrollable-container-mahoz {
+  max-height: 50vh;
+  width: 65vw;
+  overflow-y: auto;
+  padding-right: 10px;
+  background-color: transparent; /* או צבע אם את רוצה */
+  border-radius: 10px;
+z-index: 1000;
+position: relative;
+ top: 25vh;
+   right:-15vw;
+}
+
+
+
+
+/* רשימה */
+.roles-list-mahoz {
+  list-style: disc;
+width:60vw;
+  padding: 0;
+  margin: 0;
+  font-family: "Assistant";
+  font-size: 3.5vmin;
+  color: white;
+  direction: rtl;
+}
+
+
+
+
+/* סקרולבר */
+/* סקרולבר */
+.scrollable-container-mahoz::-webkit-scrollbar {
+  width: 6px; /* המסילה צרה */
+}
+
+
+.scrollable-container-mahoz::-webkit-scrollbar-track {
+  background: #555;
+  border-radius: 10px;
+}
+
+
+.scrollable-container-mahoz::-webkit-scrollbar-thumb {
+  background-color: #aaa;
+  border-radius: 4px;
+  background-clip: content-box;
+  padding: 2px; /* יוצרת מרווח פנימי */
+}
+
+
+.subroles-list-mahoz {
+  list-style: disc;
+  padding: 0;
+  margin: 0;
+  font-family: "Assistant";
+  font-size: 3.3vmin;
+  color: white;
+  direction: rtl;
+  z-index: 1000;
+position: relative;
+ top: 25vh;
+   right:-38vw;
+}
+.subroles-list-mahoz.step-5 {
+width:40vw;
+   right:-42vw;
+}
+.subroles-list-mahoz.step-6 {
+width:50vw;
+   right:-33vw;
+}
+.subroles-list-mahoz.step-7{
+width:40vw;
+   right:-42vw;
+}
+
+
 
 
 
