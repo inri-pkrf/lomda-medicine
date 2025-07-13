@@ -47,7 +47,7 @@ const PartOne = () => {
     setIsZoomedCorkboard(true);
     setShowNotes(false);
     setShowAboveBox(false);
-    setShowNoteContent(false); 
+    setShowNoteContent(false);
 
     setTimeout(() => {
       setShowAboveBox(true);
@@ -72,72 +72,72 @@ const PartOne = () => {
 
   return (
     <div className="PartOne">
-      {showExplanation ? (
+      {showExplanation && (
         <Explanations
           chapterName={chapterName}
           position={position}
           onClose={() => setShowExplanation(false)}
         />
-      ) : (
-        <>
-          {activeNoteId === null && (
-            <img
-              src={`${process.env.PUBLIC_URL}/Assets/PartOneImgs/ThomerPointing.png`}
-              alt="Tomer"
-              className={`Tomer-one ${notesFadeIn ? 'fade-in-one' : ''}`}
-            />
-          )}
-
-          <img
-            src={`${process.env.PUBLIC_URL}/Assets/PartOneImgs/corkboard.png`}
-            alt="corkboard"
-            className={`corkboard ${isZoomedCorkboard ? 'zoomed' : ''}`}
-          />
-
-          {isZoomedCorkboard && showAboveBox && (
-            <div className="above-corkboard-box">
-            </div>
-          )}
-
-          {activeNoteId === null && showNotes && notes.map(({ id, text }) => (
-            <div className='contanier-notes' key={id}>
-              <div
-                className={`note-wrapper ${notesFadeIn ? 'fade-in-one' : ''}`}
-                id={`note${id}`}
-                onClick={() => handleNoteClick(id)}
-              >
-                <img
-                  src={`${process.env.PUBLIC_URL}/Assets/PartOneImgs/Notes/note${id}/note${id}.png`}
-                  alt={`note${id}`}
-                  className="notes"
-                />
-                <div className="note-text">{text}</div>
-              </div>
-            </div>
-          ))}
-
-          {activeNoteId && showNoteContent && (
-            <div className="note-expanded">
-              <button
-                className="close-btn"
-                onClick={() => {
-                  setActiveNoteId(null);
-                  setIsZoomedCorkboard(false);
-                  setShowAboveBox(false);
-                  setShowNoteContent(false);
-
-                  setTimeout(() => {
-                    setShowNotes(true);
-                  }, 600);
-                }}
-              >
-                חזור
-              </button>
-              {noteComponents[activeNoteId]}
-            </div>
-          )}
-        </>
       )}
+      <>
+        {activeNoteId === null && !showExplanation && (
+          <img
+            src={`${process.env.PUBLIC_URL}/Assets/PartOneImgs/ThomerPointing.png`}
+            alt="Tomer"
+            className={`Tomer-one ${notesFadeIn ? 'fade-in-one' : ''}`}
+          />
+        )}
+
+        <img
+          src={`${process.env.PUBLIC_URL}/Assets/PartOneImgs/corkboard.png`}
+          alt="corkboard"
+          className={`corkboard ${isZoomedCorkboard ? 'zoomed' : ''}`}
+        />
+
+        {isZoomedCorkboard && showAboveBox && (
+          <div className="above-corkboard-box">
+          </div>
+        )}
+
+        {activeNoteId === null && showNotes && notes.map(({ id, text }) => (
+          <div className='contanier-notes' key={id}>
+            <div
+              className={`note-wrapper ${notesFadeIn ? 'fade-in-one' : ''}`}
+              id={`note${id}`}
+              onClick={() => handleNoteClick(id)}
+            >
+              <img
+                src={`${process.env.PUBLIC_URL}/Assets/PartOneImgs/Notes/note${id}/note${id}.png`}
+                alt={`note${id}`}
+                className="notes"
+              />
+              <div className="note-text">{text}</div>
+            </div>
+          </div>
+        ))}
+
+        {activeNoteId && showNoteContent && (
+          <div className="note-expanded">
+            <button
+              className="close-btn"
+              onClick={() => {
+                setActiveNoteId(null);
+                setIsZoomedCorkboard(false);
+                setShowAboveBox(false);
+                setShowNoteContent(false);
+
+                setTimeout(() => {
+                  setShowNotes(true);
+                }, 600);
+              }}
+            >
+              חזור
+            </button>
+            {noteComponents[activeNoteId]}
+          </div>
+        )}
+      </>
+
     </div>
   );
 };

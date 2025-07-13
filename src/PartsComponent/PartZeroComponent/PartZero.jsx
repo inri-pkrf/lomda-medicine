@@ -42,14 +42,14 @@ const PartZero = () => {
                 {/* Step 2 */}
                 {step === 2 && (
                     <>
-                        <div id="text-Ambulance2" className={fadeOut ? 'fade-out' : 'fade-in-zero'}>
+                        <div id="text-Ambulance2" className={fadeOut ? 'fade-out-zero' : 'fade-in-zero'}>
                             <h2>בלומדה ילווה אתכם תומר – קצין רפואה</h2>
                             <p>הסבר הסבר הסבר ...</p>
                         </div>
                         <img
                             src={`${process.env.PUBLIC_URL}/Assets/PartZeroImgs/Tomer.png`}
                             alt="Tomer"
-                            className={`Tomer-zero ${fadeOut ? 'fade-out' : 'fade-in-zero'}`}
+                            className={`Tomer-zero ${fadeOut ? 'fade-out-zero' : 'fade-in-zero'}`}
                         />
                     </>
                 )}

@@ -1,17 +1,20 @@
 import './App.css';
-import { HashRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 
 
-import IntroLomda from './genericComponent/IntroLomda' 
+import IntroLomda from './genericComponent/IntroLomda'
 import PartZero from './PartsComponent/PartZeroComponent/PartZero';
 import PartOne from './PartsComponent/PartOneComponent/PartOne';
+import PartTwo from './PartsComponent/PartTwoComponent/PartTwo';
 
 
 function App() {
   const navigate = useNavigate();
   const [showInfo, setShowInfo] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
+  const location = useLocation();
+  const isPartTwo = location.pathname.includes('part-two');
 
 
   const closeInfo = () => {
@@ -34,12 +37,11 @@ function App() {
 
 
       <img
-        src={`${process.env.PUBLIC_URL}/Assets/logos/iLogo.png`}
+        src={`${process.env.PUBLIC_URL}/Assets/logos/${isPartTwo ? 'iLogoWhite' : 'iLogo'}.png`}
         alt="iLogo"
         className="i-logo"
         onClick={() => setShowInfo(true)}
       />
-
 
       {showInfo && (
         <div className='info-part'>
@@ -72,7 +74,7 @@ function App() {
       )}
 
 
-<div style={{ display: "none" }}>
+      <div style={{ display: "none" }}>
         <div className="btn-text btn-text-prev">
           <div className="img-arrow img-arrow-prev" />
           <div className="text-label"></div>
@@ -97,7 +99,8 @@ function App() {
       <Routes>
         <Route path="/" element={<IntroLomda />} />
         <Route path="part-zero" element={<PartZero />} />
-        <Route path="part-one" element={<PartOne/>} />
+        <Route path="part-one" element={<PartOne />} />
+        <Route path="part-two" element={<PartTwo />} />
       </Routes>
     </div>
   );
