@@ -24,9 +24,9 @@
 
 .divText-Ambulance {
     position: absolute;
-    left: 43.6vw;
+    left: 43.7vw;
     top: 30.2vh;
-    width: 39vw;
+    width: 38.9vw;
     height: 31.5vh;
     background-color: #f2f2f2;
     text-align: center;
@@ -40,31 +40,38 @@
 }
 
 
-.divText-Ambulance.fade-in-zero  {
+.divText-Ambulance.fade-in-zero {
     opacity: 1;
 }
 
+@keyframes fadeInTomer {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
 
 .Tomer-zero {
     opacity: 0;
-    transition: opacity 0.5s ease-in;
     position: absolute;
     top: -14vh;
     width: 13vw;
     height: auto;
     left: -34vw;
+    transition: opacity 0.5s ease-in-out;
 }
 
-
-.fade-in-zero  {
-  opacity: 1;
-  transition: opacity 0.5s ease-in;
+.fade-in-zero {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
 }
-
 
 .fade-out-zero {
-  opacity: 0;
-  transition: opacity 0.5s ease-out;
+    opacity: 0 !important;
+    transition: opacity 0.5s ease-in-out;
 }
 
 
@@ -109,4 +116,3 @@
 .btn-text-end .img-arrow {
     background-image: url('/public/Assets/Btns/arrowFullBlack.png');
 }
-

@@ -3,38 +3,38 @@ import { useNavigate } from 'react-router-dom';
 import '../genericComponent/styles/IntroLomda.css';
 
 const IntroLomda = () => {
-    // const [isVideoEnded, setIsVideoEnded] = useState(false);
-    // const [showIntro, setShowIntro] = useState(false);
-    const [isVideoEnded, setIsVideoEnded] = useState(true);
-    const [showIntro, setShowIntro] = useState(true);
+    const [showFullScreenPrompt, setShowFullScreenPrompt] = useState(true);
+    const [isVideoEnded, setIsVideoEnded] = useState(false);
+    const [showIntro, setShowIntro] = useState(false);
     const [showSkipButton, setShowSkipButton] = useState(false);
     const [fadeOutVideo, setFadeOutVideo] = useState(false);
     const [isExiting, setIsExiting] = useState(false);
     const navigate = useNavigate();
 
-
     useEffect(() => {
-        const skipButtonTimeout = setTimeout(() => {
-            setShowSkipButton(true);
-        }, 2000);
+        if (!showFullScreenPrompt) {
+            const skipButtonTimeout = setTimeout(() => setShowSkipButton(true), 2000);
+            const fadeOutTimeout = setTimeout(() => {
+                setFadeOutVideo(true);
+                setTimeout(() => setIsVideoEnded(true), 300);
+            }, 8400);
+            const showIntroTimeout = setTimeout(() => setShowIntro(true), 8800);
 
-        const showIntroTimeout = setTimeout(() => {
-            setShowIntro(true);
-        }, 8200);
+            return () => {
+                clearTimeout(skipButtonTimeout);
+                clearTimeout(fadeOutTimeout);
+                clearTimeout(showIntroTimeout);
+            };
+        }
+    }, [showFullScreenPrompt]);
 
-        const fadeOutTimeout = setTimeout(() => {
-            setFadeOutVideo(true);
-            setTimeout(() => {
-                setIsVideoEnded(true);
-            }, 300);
-        }, 8000);
-
-        return () => {
-            clearTimeout(skipButtonTimeout);
-            clearTimeout(showIntroTimeout);
-            clearTimeout(fadeOutTimeout);
-        };
-    }, []);
+    const handleStartVideo = () => {
+        setShowFullScreenPrompt(false);
+        setIsVideoEnded(false);
+        setShowIntro(false);
+        setShowSkipButton(false);
+        setFadeOutVideo(false);
+    };
 
     const skipVideo = () => {
         setFadeOutVideo(true);
@@ -53,7 +53,18 @@ const IntroLomda = () => {
 
     return (
         <div id="IntroLomda">
-            {!isVideoEnded && (
+            {/* שלב ראשון – הודעת F11 */}
+            {showFullScreenPrompt && (
+                <div className="fullscreen-prompt">
+                    <div className="prompt-text">
+                        <p>להצגת הלומדה בצורה מיטבית לחצ/י על <strong>F11</strong></p>
+                        <button className="btn-go" onClick={handleStartVideo}>צאו לדרך!</button>
+                    </div>
+                </div>
+            )}
+
+            {/* שלב שני – סרטון פתיחה */}
+            {!showFullScreenPrompt && !isVideoEnded && (
                 <div className={`video-section ${fadeOutVideo ? 'fade-out' : ''}`}>
                     {showSkipButton && (
                         <button className="skip" onClick={skipVideo}>
@@ -70,9 +81,9 @@ const IntroLomda = () => {
                 </div>
             )}
 
+            {/* שלב שלישי – מסך התחלה עם כפתור */}
             {showIntro && (
                 <div className={`intro-section ${isExiting ? 'exit' : ''}`}>
-
                     <img src={`${process.env.PUBLIC_URL}/Assets/PartZeroImgs/clouds.png`} alt="clouds" className="clouds" />
                     <img src={`${process.env.PUBLIC_URL}/Assets/PartZeroImgs/hospital.png`} alt="hospital" className="hospital" />
                     <img src={`${process.env.PUBLIC_URL}/Assets/PartZeroImgs/Ambulance.png`} alt="Ambulance" className="ambulance" />

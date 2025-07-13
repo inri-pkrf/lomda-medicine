@@ -2,12 +2,10 @@
 @import url(" https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&display=swap");
 
 
-
-
 .main-logo {
   position: absolute;
-    top: 1rem;
-  right: 4rem;
+  top: 2vh;
+  right: 2vw;
   width: 4.5%;
   z-index: 1000;
   cursor: pointer;
@@ -16,8 +14,8 @@
 
 .i-logo {
   position: absolute;
-    top: 1rem;
-    left: 4rem;
+  top: 2vh;
+  left: 2vw;
   width: 3%;
   z-index: 1000;
   cursor: pointer;
@@ -187,4 +185,3 @@
   font-family: 'Assistant', sans-serif;
   font-weight: bold;
 }
-

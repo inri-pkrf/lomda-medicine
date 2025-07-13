@@ -1,3 +1,50 @@
+.fullscreen-prompt {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #f2f2f2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    font-family: 'Assistant', sans-serif;
+    text-align: center;
+}
+
+.prompt-text {
+    direction: rtl;
+    background: white;
+    padding: 4vh 5vw;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    font-size: 3.5vmin;
+    color: #333;
+}
+
+.btn-go {
+    margin-top: 3vh;
+    padding: 1vh 2vw;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+      font-size: 3.5vmin;
+    font-family: 'Assistant', sans-serif;
+    border-radius: 50vh;
+    background-color: #cc6650;
+    cursor: pointer;
+}
+
+.btn-go:hover {
+    background-color: #aa4d39;
+}
+
+
+/* ------------------------------------------------------------------------- */
+
 .video-intro {
     height: 100%;
     width: 100%;
@@ -108,7 +155,7 @@
 .lomda-title {
     font-size: 10vmin;
     color: #454545;
-    margin-bottom: 2rem;
+    margin-bottom: 3vh;
     font-family: 'Karantina', cursive;
 }
 

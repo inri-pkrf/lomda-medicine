@@ -1,24 +1,43 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../PartZeroComponent/PartZero.css'
+import '../PartZeroComponent/PartZero.css';
 
 const PartZero = () => {
     const [step, setStep] = useState(1);
     const [showTextDiv, setShowTextDiv] = useState(false);
+    const [showTomer, setShowTomer] = useState(false);
     const [fadeOut, setFadeOut] = useState(false);
+    const [fadeInTomer, setFadeInTomer] = useState(false);
+    const [showPrevButton, setShowPrevButton] = useState(false);
     const navigate = useNavigate();
-
-
 
     useEffect(() => {
         const timer = setTimeout(() => {
             setShowTextDiv(true);
         }, 100);
-
-
         return () => clearTimeout(timer);
     }, []);
 
+    useEffect(() => {
+        if (step === 2) {
+            setShowTomer(true);
+            setShowPrevButton(true);
+            setTimeout(() => {
+                setFadeInTomer(true);
+            }, 50);
+        }
+    }, [step]);
+
+const handleBack = () => {
+    setShowPrevButton(false);  
+    setFadeOut(true);
+    setFadeInTomer(false);
+    setTimeout(() => {
+        setFadeOut(false);
+        setShowTomer(false);
+        setStep(1);
+    }, 500);
+};
 
     return (
         <div id="PartZero">
@@ -28,9 +47,7 @@ const PartZero = () => {
                 className="ambulance-zero"
             />
 
-
             <div className={`divText-Ambulance ${showTextDiv ? 'fade-in-zero' : ''}`}>
-                {/* Step 1 */}
                 {step === 1 && (
                     <div id="text-Ambulance1">
                         <h2>ברוכים הבאים ללומדת מכלול רפואה!</h2>
@@ -38,42 +55,31 @@ const PartZero = () => {
                     </div>
                 )}
 
-
-                {/* Step 2 */}
                 {step === 2 && (
                     <>
                         <div id="text-Ambulance2" className={fadeOut ? 'fade-out-zero' : 'fade-in-zero'}>
                             <h2>בלומדה ילווה אתכם תומר – קצין רפואה</h2>
                             <p>הסבר הסבר הסבר ...</p>
                         </div>
-                        <img
-                            src={`${process.env.PUBLIC_URL}/Assets/PartZeroImgs/Tomer.png`}
-                            alt="Tomer"
-                            className={`Tomer-zero ${fadeOut ? 'fade-out-zero' : 'fade-in-zero'}`}
-                        />
+                        {showTomer && (
+                            <img
+                                src={`${process.env.PUBLIC_URL}/Assets/PartZeroImgs/Tomer.png`}
+                                alt="Tomer"
+                                className={`Tomer-zero ${fadeOut ? 'fade-out-zero' : fadeInTomer ? 'fade-in-zero' : ''}`}
+                            />
+                        )}
                     </>
                 )}
 
-
                 <div className="buttons-bar">
-                    {/* צד ימין – הקודם */}
-                    <div className="btn-text btn-text-prev">
-                        {step === 2 && (
-                            <div onClick={() => {
-                                setFadeOut(true);
-                                setTimeout(() => {
-                                    setStep(1);
-                                    setFadeOut(false);
-                                }, 400);
-                            }}>
-                                <div className="img-arrow img-arrow-prev" />
-                                <div className="text-label">הקודם</div>
-                            </div>
-                        )}
-                    </div>
-
-
-                    {/* צד שמאל – המשך או סיום */}
+                <div className="btn-text btn-text-prev">
+    {showPrevButton && (
+        <div onClick={handleBack}>
+            <div className="img-arrow img-arrow-prev" />
+            <div className="text-label">הקודם</div>
+        </div>
+    )}
+</div>
                     <div className="btn-text btn-text-next">
                         {step === 1 && (
                             <div onClick={() => setStep(2)}>
@@ -89,17 +95,9 @@ const PartZero = () => {
                         )}
                     </div>
                 </div>
-
-
             </div>
         </div>
     );
 };
 
-
-
-
 export default PartZero;
-
-
-
