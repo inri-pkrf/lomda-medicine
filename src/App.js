@@ -7,6 +7,7 @@ import IntroLomda from './genericComponent/IntroLomda'
 import PartZero from './PartsComponent/PartZeroComponent/PartZero';
 import PartOne from './PartsComponent/PartOneComponent/PartOne';
 import PartTwo from './PartsComponent/PartTwoComponent/PartTwo';
+import PartThree from './PartsComponent/PartThreeComponent/PartThree';
 
 
 function App() {
@@ -59,7 +60,7 @@ function App() {
               <br /><br />
               <u>גרפיקאיות:</u><br />
               עלמה יובל <br />
-              אביטל גמבורג 
+              אביטל גמבורג
               {/* <br />אגם אונגר */}
               <br /><br />
               <u>מומחה תוכן:</u><br />
@@ -101,6 +102,7 @@ function App() {
         <Route path="part-zero" element={<PartZero />} />
         <Route path="part-one" element={<PartOne />} />
         <Route path="part-two" element={<PartTwo />} />
+        <Route path="part-three" element={<PartThree />} />
       </Routes>
     </div>
   );
