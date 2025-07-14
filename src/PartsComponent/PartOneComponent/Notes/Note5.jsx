@@ -4,7 +4,7 @@ import '../styles/Note5.css';
 const mahozData = {
   north: {
     name: 'מחוז צפון',
-    icon: 'icon-north.svg',
+    icon: 'icon-north.png',
     backgroundColor: '#d9f5d3',
     rasuyot: 67,
     population: '981,113',
@@ -12,7 +12,7 @@ const mahozData = {
   },
   hifa: {
     name: 'מחוז חיפה',
-    icon: 'icon-haifa.svg',
+    icon: 'icon-haifa.png',
     backgroundColor: '#e0e0e0',
     rasuyot: 57,
     population: '1,620,008',
@@ -20,7 +20,7 @@ const mahozData = {
   },
   dan: {
     name: 'מחוז דן',
-    icon: 'icon-dan.svg',
+    icon: 'icon-dan.png',
     backgroundColor: '#fff6cd',
     rasuyot: 37,
     population: '2,501,647',
@@ -28,7 +28,7 @@ const mahozData = {
   },
   merkaz: {
     name: 'מחוז י-ם והמרכז',
-    icon: 'icon-center.svg',
+    icon: 'icon-merkaz.png',
     backgroundColor: '#dce7ff',
     rasuyot: 33,
     population: '2,602,926',
@@ -36,7 +36,7 @@ const mahozData = {
   },
   south: {
     name: 'מחוז דרום',
-    icon: 'icon-south.svg',
+    icon: 'icon-south.png',
     backgroundColor: '#ffe2d3',
     rasuyot: 38,
     population: '1,272,302',
@@ -98,48 +98,26 @@ const Note5 = ({ onClose }) => {
       />
 
       {/* אינטראקטיביים על המפה */}
-      <div
-        className='divMap-mahozot'
-        id='mahoz-north1'
-        onMouseEnter={() => handleHoverMahoz('north')}
-        onMouseLeave={handleLeaveMahoz}
-      />
-      <div
-        className='divMap-mahozot'
-        id='mahoz-north2'
-        onMouseEnter={() => handleHoverMahoz('north')}
-        onMouseLeave={handleLeaveMahoz}
-      />
-      <div
-        className='divMap-mahozot'
-        id='mahoz-hifa'
-        onMouseEnter={() => handleHoverMahoz('hifa')}
-        onMouseLeave={handleLeaveMahoz}
-      />
-      <div
-        className='divMap-mahozot'
-        id='mahoz-dan'
-        onMouseEnter={() => handleHoverMahoz('dan')}
-        onMouseLeave={handleLeaveMahoz}
-      />
-      <div
-        className='divMap-mahozot'
-        id='mahoz-merkaz1'
-        onMouseEnter={() => handleHoverMahoz('merkaz')}
-        onMouseLeave={handleLeaveMahoz}
-      />
-      <div
-        className='divMap-mahozot'
-        id='mahoz-merkaz2'
-        onMouseEnter={() => handleHoverMahoz('merkaz')}
-        onMouseLeave={handleLeaveMahoz}
-      />
-      <div
-        className='divMap-mahozot'
-        id='mahoz-south'
-        onMouseEnter={() => handleHoverMahoz('south')}
-        onMouseLeave={handleLeaveMahoz}
-      />
+      <div className='divMap-mahozot' id='mahoz-north1' onMouseEnter={() => handleHoverMahoz('north')} onMouseLeave={handleLeaveMahoz} />
+      <div className='divMap-mahozot' id='mahoz-north2' onMouseEnter={() => handleHoverMahoz('north')} onMouseLeave={handleLeaveMahoz} />
+      <div className='divMap-mahozot' id='mahoz-hifa' onMouseEnter={() => handleHoverMahoz('hifa')} onMouseLeave={handleLeaveMahoz} />
+      <div className='divMap-mahozot' id='mahoz-dan' onMouseEnter={() => handleHoverMahoz('dan')} onMouseLeave={handleLeaveMahoz} />
+      <div className='divMap-mahozot' id='mahoz-merkaz1' onMouseEnter={() => handleHoverMahoz('merkaz')} onMouseLeave={handleLeaveMahoz} />
+      <div className='divMap-mahozot' id='mahoz-merkaz2' onMouseEnter={() => handleHoverMahoz('merkaz')} onMouseLeave={handleLeaveMahoz} />
+      <div className='divMap-mahozot' id='mahoz-south' onMouseEnter={() => handleHoverMahoz('south')} onMouseLeave={handleLeaveMahoz} />
+
+      {hoveredMahoz && (
+        <div className="hoveredMahoz-card" style={{ backgroundColor: mahozData[hoveredMahoz].backgroundColor }}>
+          <div className="iconMahoz-title-hover">{mahozData[hoveredMahoz].name}</div>
+          <img
+            src={`${process.env.PUBLIC_URL}/Assets/PartOneImgs/Notes/note5/icons/${mahozData[hoveredMahoz].icon}`}
+            alt={mahozData[hoveredMahoz].name}
+            className="iconMahoz-img-hover"
+          />
+          <div className="iconMahoz-text-hover">רשויות: {mahozData[hoveredMahoz].rasuyot}</div>
+          <div className="iconMahoz-text-hover">תושבים: {mahozData[hoveredMahoz].population}</div>
+        </div>
+      )}
 
       {/* אייקונים מוצגים */}
       <div className='iconMahoz-container'>

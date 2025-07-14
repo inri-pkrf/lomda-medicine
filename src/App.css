@@ -10,6 +10,9 @@
   z-index: 1000;
   cursor: pointer;
 }
+.main-logo:hover {
+  transform: scale(1.05);
+}
 
 
 .i-logo {
@@ -19,6 +22,10 @@
   width: 3%;
   z-index: 1000;
   cursor: pointer;
+}
+
+.i-logo:hover {
+  transform: scale(1.05);
 }
 
 

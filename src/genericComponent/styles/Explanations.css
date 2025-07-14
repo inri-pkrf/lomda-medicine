@@ -23,6 +23,10 @@
     cursor: pointer;
 }
 
+.close-btn-bubble:hover {
+  transform: scale(1.05);
+}
+
 
 
 .speech-bubble{

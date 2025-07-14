@@ -24,7 +24,7 @@
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    margin-top: 35vh;
+    margin-top: 30vh;
     gap: 1vw;
     direction: rtl;
     z-index: 20;
@@ -42,7 +42,7 @@
 }
 
 .hat-title {
-    font-size: 2.5vmin;
+    font-size: 3.5vmin;
     font-weight: bold;
     transform: rotate(-10deg);
     margin-bottom: 3vh;
@@ -71,18 +71,18 @@
 .hat-subText {
     margin-top: 1vh;
     text-align: center;
-    font-size: 2vmin;
+    font-size: 3vmin;
     color: #000;
     line-height: 1.5;
     font-family: 'Assistant', sans-serif;
 }
 
 .orange-subText {
-    width: 15vw;
+    width: 25vw;
 }
 
 .blue-subText {
-    width: 10vw;
+    width: 15vw;
 }
 
 .green-subText {

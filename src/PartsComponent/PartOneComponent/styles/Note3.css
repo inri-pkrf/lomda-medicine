@@ -5,8 +5,8 @@
 }
 
 
-.subText-notes{
-     position: absolute;
+.subText-notes {
+    position: absolute;
     top: 25vh;
     right: 17vw;
     font-family: 'Assistant', sans-serif;
@@ -83,8 +83,7 @@
 
 /* כותרת עליונה */
 .note3-title {
-    font-size: 2vmin;
-    font-weight: bold;
+    font-size: 3vmin;
     margin-bottom: 8px;
     color: #222;
     font-family: 'Assistant', sans-serif;
@@ -101,14 +100,15 @@
 
 /* גב */
 .note3-desc-title {
-    font-weight: bold;
-    font-size: 2vmin;
-    margin-bottom: 10px;
+    margin-top: 2vh;
+    font-size: 3vmin;
+    margin-bottom: 1vh;
     font-family: 'Assistant', sans-serif;
 }
 
 .note3-desc {
-    font-size: 14px;
+    margin-top: -1vh;
+    font-size: 2.5vmin;
     color: #333;
     line-height: 1.4;
 }

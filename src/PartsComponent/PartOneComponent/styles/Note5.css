@@ -123,12 +123,12 @@
     font-weight: bold;
     font-family: 'Assistant', sans-serif;
     position: relative;
-    right: 3vw;
-    bottom: -2vh;
+    right: 3.5vw;
+    bottom: -3vh;
 }
 
 .iconMahoz-img {
-    width: 45px;
+    width: 55px;
     height: auto;
     position: relative;
     right: 0vw;
@@ -136,11 +136,55 @@
 }
 
 .iconMahoz-text {
-    font-size: 2vmin;
+    font-size: 1.8vmin;
     font-family: 'Assistant', sans-serif;
     position: relative;
-    right: 3vw;
-    bottom: 3vh;
+    right: 3.5vw;
+    bottom: 4vh;
+}
+
+/* הקלף שמופיע זמנית ליד המפה בזמן hover */
+.hoveredMahoz-card {
+    position: absolute;
+    top: 36vh;
+    right: 15vw;
+    z-index: 40;
+    width: 38.5vw;
+    height: 35vh;
+    padding: 16px;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    direction: rtl;
+    text-align: right;
+    transition: all 0.2s ease;
+}
+
+.iconMahoz-title-hover {
+    font-size: 5vmin;
+    font-weight: bold;
+    font-family: 'Assistant', sans-serif;
+    position: relative;
+    right: 18vw;
+    bottom: -6vh;
+}
+
+.iconMahoz-img-hover {
+    width: 18vh;
+    height: auto;
+    position: relative;
+    right: 4vw;
+    bottom: -1vh;
+}
+
+.iconMahoz-text-hover {
+    font-size: 4vmin;
+    font-family: 'Assistant', sans-serif;
+    position: relative;
+    right: 18vw;
+    bottom: 14vh;
 }
 
 /* כפתור סיום */
@@ -150,4 +194,3 @@
     top: 83vh;
     left: 13.5vw;
 }
-
