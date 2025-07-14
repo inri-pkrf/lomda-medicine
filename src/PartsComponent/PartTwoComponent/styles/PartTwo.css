@@ -43,7 +43,19 @@
 }
 
 
-.completed{
+.completed-nafa{
+     cursor: pointer;
+    right: 29vw;
+    font-size: 10vmin;
+    width: 21vw;
+    text-align: center;
+    font-family: "karantina";
+    height: 15vh;
+    position: absolute;
+    color: rgb(102, 102, 102);
+}
+
+.completed-mahoz{
     margin-top: 34vh;
     cursor: pointer;
     right: 58vw;

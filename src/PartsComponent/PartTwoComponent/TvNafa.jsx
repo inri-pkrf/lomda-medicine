@@ -1,94 +1,102 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../PartTwoComponent/styles/TvNafa.css';
 import NafaData from '../../Data/TvData/NafaData';
 import PopUp from '../../genericComponent/PopUp';
 
-
 const TvNafa = ({ onFinish }) => {
+  const nafaStep0Buttons = ['1', '2', '3', '4', '5', '6'];
+  const nafaStep3Buttons = ['1', '2', '3', '4', '5', '6', '7'];
+
   const [step, setStep] = useState(0);
   const [popupVisible, setPopupVisible] = useState(false);
   const [popupContent, setPopupContent] = useState({ title: '', content: '', color: '' });
-  const [refuaImgShown, setRefuaImgShown] = useState(() => {
-    const stored = JSON.parse(sessionStorage.getItem('nafaClickedButtons') || '[]');
-    const required = [1, 3, 4, 5, 6, 7];
-    return required.every(id => stored.includes(id));
-  });
 
-
-  const [clickedButtons, setClickedButtons] = useState(() => {
-    const stored = JSON.parse(sessionStorage.getItem('nafaClickedButtons') || '[]');
+  // מערכים של לחיצות לכל שלב בנפרד
+  const [step0ClickedButtons, setStep0ClickedButtons] = useState(() => {
+    const stored = JSON.parse(sessionStorage.getItem('nafaStep0ClickedButtons') || '[]');
     return new Set(stored);
   });
 
-
-  const [button2Clicked, setButton2Clicked] = useState(() => {
-    return sessionStorage.getItem('nafaClickedButton2') === 'true';
-  });
-
-
-
+const [step3ClickedButtons, setStep3ClickedButtons] = useState(() => {
+  const stored = JSON.parse(sessionStorage.getItem('nafaStep3ClickedButtons') || '[]');
+  return new Set(stored);
+});
 
   const navigate = useNavigate();
-const handlePressed = (id) => {
-  console.log("נלחץ כפתור", id);
 
+  // מצב להצגת תמונת הרפואה בשלב 0
+  const [refuaImgShown, setRefuaImgShown] = useState(() => {
+    return nafaStep0Buttons.every(id => step0ClickedButtons.has(id));
+  });
 
-  if (step === 0) {
-    if (id === 2) {
-      setButton2Clicked(true);
-      sessionStorage.setItem('nafaClickedButton2', 'true');
-      setStep(1); // כפתור 2 מעביר לשלב הבא
-    } else {
-      setClickedButtons(prev => {
+  // האם להראות את כפתור ההמשך (שלב 0)
+  const [showContinue, setShowContinue] = useState(() => {
+    return nafaStep0Buttons.every(id => step0ClickedButtons.has(id));
+  });
+
+  // האם אפשר לסיים (שלב 3)
+  const [canFinish, setCanFinish] = useState(() => {
+    const has1to5 = ['1', '2', '3', '4', '5'].every(id => step3ClickedButtons.has(id));
+    const has6or7 = step3ClickedButtons.has('6') || step3ClickedButtons.has('7');
+    return has1to5 && has6or7;
+  });
+
+  // עדכון סטייטים על סמך לחיצות בכל פעם שהן משתנות או שהשלב משתנה
+  useEffect(() => {
+    if (step === 0) {
+      const allStep0Clicked = nafaStep0Buttons.every(id => step0ClickedButtons.has(id));
+      setRefuaImgShown(allStep0Clicked);
+      setShowContinue(allStep0Clicked);
+    }
+
+    if (step === 3) {
+      const has1to5 = ['1', '2', '3', '4', '5'].every(id => step3ClickedButtons.has(id));
+      const has6or7 = step3ClickedButtons.has('6') || step3ClickedButtons.has('7');
+      setCanFinish(has1to5 && has6or7);
+    }
+  }, [step0ClickedButtons, step3ClickedButtons, step]);
+
+  // פונקציה לטיפול בלחיצה, מעדכנת את מערך הלחיצות המתאים לפי שלב
+  const handlePressed = (id) => {
+    const idStr = String(id);
+    console.log("כפתור נלחץ:", idStr);
+
+    if (step === 0) {
+      setStep0ClickedButtons(prev => {
+        if (prev.has(idStr)) return prev;
         const newSet = new Set(prev);
-        if (!newSet.has(id)) {
-          newSet.add(id);
-          sessionStorage.setItem('nafaClickedButtons', JSON.stringify([...newSet]));
-
-
-          const requiredButtons = [1, 3, 4, 5, 6, 7];
-          if (requiredButtons.every(num => newSet.has(num))) {
-            setRefuaImgShown(true);
-          }
+        newSet.add(idStr);
+        sessionStorage.setItem('nafaStep0ClickedButtons', JSON.stringify([...newSet]));
+        return newSet;
+      });
+    } else if (step === 3) {
+      setStep3ClickedButtons(prev => {
+        if (prev.has(idStr)) return prev;
+        const newSet = new Set(prev);
+        newSet.add(idStr);
+        // אם לחצו על 6 או 7, נוסיף את שניהם
+        if (idStr === '6' || idStr === '7') {
+          newSet.add('6');
+          newSet.add('7');
         }
+        sessionStorage.setItem('nafaStep3ClickedButtons', JSON.stringify([...newSet]));
         return newSet;
       });
     }
-  } else {
-    // עבור שלבים אחרים
-    setClickedButtons(prev => {
-      const newSet = new Set(prev);
-      if (!newSet.has(id)) {
-        newSet.add(id);
-        sessionStorage.setItem('nafaClickedButtons', JSON.stringify([...newSet]));
 
-
-        const requiredButtons = [1, 2,3, 4, 5, 6, 7];
-        if (requiredButtons.every(num => newSet.has(num))) {
-          setRefuaImgShown(true);
-        }
-      }
-      return newSet;
-    });
-  }
-
-
-  // הצגת הפופאפ לפי הנתונים ב-NafaData
-  const stepData = NafaData[step];
-  if (stepData?.rolesBtn?.[id]) {
-    const role = stepData.rolesBtn[id];
-    setPopupContent({
-      title: role.title || 'פריט מידע',
-      content: role.content || '',
-      color: role.color || '',
-    });
-    setPopupVisible(true);
-  }
-};
-
-
-
+    // הצגת הפופאפ לפי הנתונים של השלב והכפתור
+    const stepData = NafaData[step];
+    if (stepData?.rolesBtn?.[idStr]) {
+      const role = stepData.rolesBtn[idStr];
+      setPopupContent({
+        title: role.title || 'פריט מידע',
+        content: role.content || '',
+        color: role.color || '',
+      });
+      setPopupVisible(true);
+    }
+  };
 
   const handleFinish = () => {
     const completedParts = JSON.parse(sessionStorage.getItem('completedParts') || '[]');
@@ -99,14 +107,8 @@ const handlePressed = (id) => {
     onFinish();
   };
 
-
   const totalSteps = Object.keys(NafaData).length - 1;
   const currentStep = NafaData[step];
-
-
-  // פונקציה להצגת קבוצת הכפתורים עם מיקום משתנה
- 
-
 
   return (
     <div className="TvNafa">
@@ -116,59 +118,44 @@ const handlePressed = (id) => {
         alt="corkboard"
       />
 
-
-      {(step === 0) && (
+      {/* שלב 0 */}
+      {step === 0 && (
         <div className="intro-step-container screen-nafa">
           <img
             className="Tv-img-nafa-0"
-            src={
-              refuaImgShown
-                ? `${process.env.PUBLIC_URL}/Assets/PartTwoImgs/Nafa/mivneNafa2.png`
-                : `${process.env.PUBLIC_URL}/Assets/PartTwoImgs/Nafa/mivneNafa1.png`
-            }
-            alt="corkboard"
+            src={`${process.env.PUBLIC_URL}/Assets/PartTwoImgs/Nafa/mivneNafa1.png`}
+               
+            
+            alt="mivneNafa"
           />
-          <h2 className="nafa-title"> נפה </h2>
-
+          <h2 className="nafa-title">נפה</h2>
 
           {currentStep && (
             <div className={`info-nafa ${currentStep?.srcImg ? 'with-image' : 'no-image'}`}>
               {currentStep.text}
             </div>
           )}
-          <div
-              className={`intro-buttons-group-nafa ${
-                (step === 0) ? 'position-step-zero' : 'position-other-steps'
-              }`}
-            >
-              {[1, 2, 3, 4, 5, 6, 7].map((id) => (
-                <button
-                  key={id}
-                  id={`btn-${id}-nafa`}
-                  className={`intro-button-nafa ${
-                    (id === 2 && button2Clicked) || (id !== 2 && clickedButtons.has(id))
-                      ? 'completed-nafa-btn'
-                      : ''
-                  }`}
-                  onClick={() => handlePressed(id)}
-                  disabled={id === 2 && !refuaImgShown}
-                >
-                </button>
-              ))}
-            </div>
+
+          <div className="intro-buttons-group-nafa position-step-zero">
+            {nafaStep0Buttons.map((id) => (
+              <button
+                key={id}
+                id={`btn-${id}-nafa`}
+                className={`intro-button-nafa ${step0ClickedButtons.has(id) ? 'completed-nafa-btn' : ''}`}
+                onClick={() => handlePressed(id)}
+              />
+            ))}
+          </div>
         </div>
       )}
-      {(step === 3) && (
-        <div className="intro-step-container screen-nafa">
-           {currentStep?.srcImg && (
-              <img
-                className={`nafa-step-image step-${step}`}
-                src={currentStep.srcImg}
-                alt="מחוז"
-              />
-            )}
-          <h2 className="nafa-title"> נפה </h2>
 
+      {/* 3 */}
+      {step === 3 && (
+        <div className="intro-step-container screen-nafa">
+          {currentStep?.srcImg && (
+            <img className={`nafa-step-image step-${step}`} src={currentStep.srcImg} alt="מחוז" />
+          )}
+          <h2 className="nafa-title">נפה</h2>
 
           {currentStep && (
             <div className={`info-nafa ${currentStep?.srcImg ? 'with-image' : 'no-image'}`}>
@@ -176,35 +163,27 @@ const handlePressed = (id) => {
             </div>
           )}
 
-
-    <div
-              className={`intro-buttons-group-nafa-3 ${
-                (step === 0) ? 'position-step-3' : 'position-other-steps'
-              }`}
-            >
-              {[1, 2, 3, 4, 5, 6, 7].map((id) => (
-                <button
-                  key={id}
-                  id={`btn-${id}-nafa-3`}
-                  className={`intro-button-nafa-3 ${
-                    (id === 2 && button2Clicked) || (id !== 2 && clickedButtons.has(id))
-                      ? 'completed-nafa-btn'
-                      : ''
-                  }`}
-                  onClick={() => handlePressed(id)}
-                  disabled={id === 2 && !refuaImgShown}
-                >
-                </button>
-              ))}
-            </div>
-        </div>        
+          <div className="intro-buttons-group-nafa-3 position-other-steps">
+            {nafaStep3Buttons.map((id) => (
+              <button
+                key={id}
+                id={`btn-step3-${id}`}
+                className={`intro-button-nafa-3 ${
+                  (id === '6' || id === '7') 
+                    ? (step3ClickedButtons.has('6') || step3ClickedButtons.has('7') ? 'completed-nafa-btn-3' : '') 
+                    : (step3ClickedButtons.has(id) ? 'completed-nafa-btn-3' : '')
+                }`}
+                onClick={() => handlePressed(id)}
+              />
+            ))}
+          </div>
+        </div>
       )}
 
-
+      {/* שאר השלבים */}
       {step !== 0 && step !== 3 && (
         <div className="screen-nafa">
           <h2 className="nafa-title">נפה</h2>
-
 
           <div className="step-content">
             {currentStep && (
@@ -213,78 +192,52 @@ const handlePressed = (id) => {
               </div>
             )}
 
-
             {currentStep?.srcImg && (
-              <img
-                className={`nafa-step-image step-${step}`}
-                src={currentStep.srcImg}
-                alt="מחוז"
-              />
+              <img className={`nafa-step-image step-${step}`} src={currentStep.srcImg} alt="מחוז" />
             )}
-
 
             {currentStep?.roles && (
-              <div className="scrollable-container-nafa">
-                <ul className="roles-list-nafa">
-                  {currentStep.roles.map((role, idx) => (
-                    <li key={idx}>{role}</li>
-                  ))}
-                </ul>
+              <div className={`scrollable-container-nafa`}>
+                <p className='text-nafa-scroll'> {currentStep.roles}</p>
               </div>
-            )}
-
-
-            {currentStep?.subroles && (
-              <ul className={`subroles-list-nafa step-${step}`}>
-                {currentStep.subroles.map((role, idx) => (
-                  <li key={idx}>{role}</li>
-                ))}
-              </ul>
             )}
           </div>
         </div>
       )}
 
+      {/* כפתורי ניווט + סיום */}
+      {(step > 0 || showContinue) && (
+        <div className="buttons-bar">
+          <div
+            className="btn-text btn-text-prev"
+            style={{ visibility: step > 0 ? 'visible' : 'hidden' }}
+            onClick={() => setStep(prev => Math.max(prev - 1, 0))}
+          >
+            <div className="img-arrow" />
+            <div className="text-label">הקודם</div>
+          </div>
 
-      {step > 0 && (
-  <div className="buttons-bar">
-    <div
-      className="btn-text btn-text-prev"
-      style={{ visibility: step > 1 ? 'visible' : 'hidden' }}
-      onClick={() => setStep(prev => Math.max(prev - 1, 1))}
-    >
-      <div className="img-arrow" />
-      <div className="text-label">הקודם</div>
-    </div>
-
-
-    {step < totalSteps ? (
-      <div
-        className="btn-text btn-text-next"
-        onClick={() => setStep(prev => Math.min(prev + 1, totalSteps))}
-      >
-        <div className="img-arrow" />
-        <div className="text-label">המשך</div>
-      </div>
-    ) : (
-      <div
-        className="btn-text btn-text-end"
-        onClick={() => {
-          const requiredButtons = [1, 2, 3, 4, 5, 6];
-          if (requiredButtons.every(id => clickedButtons.has(id))) {
-            handleFinish();
-          } else {
-            console.log('נא ללחוץ על כל הכפתורים לפני סיום');
-          }
-        }}
-      >
-        <div className="img-arrow" />
-        <div className="text-label">סיום</div>
-      </div>
-    )}
-  </div>
-)}
-
+          {step < totalSteps ? (
+            <div
+              className="btn-text btn-text-next"
+              onClick={() => setStep((prev) => Math.min(prev + 1, totalSteps))}
+            >
+              <div className="img-arrow" />
+              <div className="text-label">המשך</div>
+            </div>
+          ) : (
+            <div
+              className={`btn-text btn-text-end ${canFinish ? '' : 'disabled'}`}
+              onClick={() => canFinish && handleFinish()}
+              title={canFinish ? '' : 'יש להשלים את כל הכפתורים לפני סיום'}
+              style={{ opacity: canFinish ? 1 : 0.5, cursor: canFinish ? 'pointer' : 'not-allowed' }}
+            >
+              <div className="img-arrow" />
+              <div className="text-label">סיום</div>
+            </div>
+          )}
+        </div>
+      )}
 
       <PopUp
         isVisible={popupVisible}
@@ -297,10 +250,4 @@ const handlePressed = (id) => {
   );
 };
 
-
 export default TvNafa;
-
-
-
-
-

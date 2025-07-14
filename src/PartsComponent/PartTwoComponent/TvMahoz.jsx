@@ -55,15 +55,12 @@ const stepKey = step;
           />
         )}
        
-    {currentStep.roles && (
-  <div className={`scrollable-container-mahoz no-image`}>
-    <ul className={`roles-list-mahoz no-image`}>
-      {currentStep.roles.map((role, idx) => (
-        <li key={idx}>{role}</li>
-      ))}
-    </ul>
-  </div>
-)}
+ 
+          {currentStep?.roles && (
+            <div className={`scrollable-container-mahoz`}>
+              <p className='text-mahoz-scroll'> {currentStep.roles}</p>
+            </div>
+          )}
     {currentStep.subroles && (
     <ul className={`subroles-list-mahoz step-${step} `}>
       {currentStep.subroles.map((role, idx) => (

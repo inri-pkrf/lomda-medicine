@@ -14,7 +14,7 @@ const explanationsData = {
     PartTwo: {
      TomerImg:`${process.env.PUBLIC_URL}/Assets/PartTwoImgs/ThomerThinkingHalf.png`,
       start: {
-        text: <>   <b>"הבנת השטח"</b> 
+        text: <>   <b>"הבנת השטח"</b> <br/>
         הגעתי לחמ"ל לנסות להבין מי נגד מי<br/> אבל משום מה רק 2 מסכים עובדים כדאי שנבדוק את אלו שלא עובדים
  </>
       },
@@ -27,7 +27,7 @@ const explanationsData = {
     TomerImg:`${process.env.PUBLIC_URL}/Assets/PartThreeImgs/ThomerShockedHalf.png`,
 
       start: {
-        text: <><b>"את מי אני מלחץ ? למי אני מדווח?"</b>
+        text: <><b>"את מי אני מלחץ ? למי אני מדווח?"</b><br/>
         ד"ר תומר מקבל מידע מהשטח וצריך להעביר אותו הלאה.<br/>
          הלומדה מציגה לו את הפלר"ג, שיטת הרפואה ושיטת הידווח בצורה אינרקטיבית.<br/>
         מצא את החפצים הקבורים בהריסות-<br/>
@@ -45,7 +45,7 @@ const explanationsData = {
     TomerImg:"${process.env.PUBLIC_URL}/Assets/PartThreeImgs/ThomerShockedHalf.png",
 
       start: {
-        text: <><b>"אני לא לבד"</b>
+        text: <><b>"אני לא לבד"</b><br/>
         האירוע מתפתח, ולפתע יש בעיה בלוגיסטיקה או צורך בתחבורה. ד"ר תומר צריך לפנות למכלול אחר.
          החניכים צריכים לבחור למי פונים ומה המכלול נותן לרפואה ומה הרפואה נותנת למכלול.
          מתקבל משוב על הבחירה (“פנייה ישירה למכלול תחבורה לא מקובלת – צריך לעבור דרך מכלול תיאום”).

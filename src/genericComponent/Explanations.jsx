@@ -31,10 +31,10 @@ const Explanations = ({ position, chapterName, onClose }) => {
       <img
         src={tomerImg}
         alt="תומר"
-        className={`tomer-img tomer${chapterName} ${position === "start" ? "fade-inExplanations" : ""}`}
+    className={`tomer-img tomer${chapterName} tomer-${chapterName}-${position} ${position === "start" ? "fade-inExplanations" : ""}`}
       />
     )}
-    <div className={`speech-bubble speech-bubble${chapterName} ${position === "start" ? "fade-inExplanations" : ""}`}>
+    <div className={`speech-bubble speech-bubble${chapterName} speech-bubble-${chapterName}-${position} ${position === "start" ? "fade-inExplanations" : ""}`}>
       <img
         className='close-btn-bubble'
         onClick={handleClose}
