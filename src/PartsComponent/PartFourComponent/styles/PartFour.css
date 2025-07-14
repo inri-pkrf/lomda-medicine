@@ -1,0 +1,56 @@
+.tomer-back {
+    position: absolute;
+    bottom: 0vh;
+    width: 17vw;
+    right: 50%;
+    transform: translateX(50%);
+}
+
+.people-area {
+    position: absolute;
+    background-color: transparent;
+    z-index: 30;
+    cursor: pointer;
+    width: 3.5vw;
+    height: 15vh;
+}
+
+.mada-area {
+    right: 62.5vw;
+    top: 48vh;
+}
+
+.malka-area {
+   right: 73vw;
+    top: 59vh;
+}
+
+.mivzaim-area {
+    right: 66vw;
+    top: 51vh;
+}
+
+.shoolhan-area {
+ right: 69.5vw;
+    top: 54vh;
+}
+
+.uxluxsia-area {
+    left: 66vw;
+    top: 51vh;
+}
+
+.modain-area {
+    left: 73vw;
+    top: 59vh;
+}
+
+.tikshuv-area {
+    left: 69.5vw;
+    top: 54vh;
+}
+
+.lashcab-area {
+    left: 62.5vw;
+    top: 47vh;
+}

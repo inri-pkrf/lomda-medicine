@@ -42,7 +42,7 @@ const explanationsData = {
       }
     },
     PartFour: {
-    TomerImg:"${process.env.PUBLIC_URL}/Assets/PartThreeImgs/ThomerShockedHalf.png",
+    TomerImg:`${process.env.PUBLIC_URL}/Assets/PartFourImgs/ThomerPhoneHalf.png`,
 
       start: {
         text: <><b>"אני לא לבד"</b><br/>

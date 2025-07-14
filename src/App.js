@@ -8,6 +8,7 @@ import PartZero from './PartsComponent/PartZeroComponent/PartZero';
 import PartOne from './PartsComponent/PartOneComponent/PartOne';
 import PartTwo from './PartsComponent/PartTwoComponent/PartTwo';
 import PartThree from './PartsComponent/PartThreeComponent/PartThree';
+import PartFour from './PartsComponent/PartFourComponent/PartFour';
 
 
 function App() {
@@ -23,7 +24,7 @@ function App() {
     setTimeout(() => {
       setShowInfo(false);
       setIsClosing(false);
-    }, 400); // משך הסגירה = משך האנימציה
+    }, 400);
   };
 
 
@@ -103,6 +104,7 @@ function App() {
         <Route path="part-one" element={<PartOne />} />
         <Route path="part-two" element={<PartTwo />} />
         <Route path="part-three" element={<PartThree />} />
+        <Route path="part-four" element={<PartFour />} />
       </Routes>
     </div>
   );

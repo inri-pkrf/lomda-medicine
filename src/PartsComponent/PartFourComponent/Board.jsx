@@ -1,0 +1,46 @@
+import React from 'react';
+import './styles/Board.css';
+
+const Board = ({ relation, onClose }) => {
+    if (!relation) return null;
+
+    return (
+        <div className="board">
+
+              <img
+                src={`${process.env.PUBLIC_URL}/Assets/PartFourImgs/board.png`}
+                alt="board"
+                className="board-img"
+            />
+
+            <h2 className="board-title">{relation.name}</h2>
+
+            <div className="board-section">
+                <h3 className="board-subtitle">נותן:</h3>
+                <ul className="board-list">
+                    {relation.give.map((item, index) => (
+                        <li key={index}>{item}</li>
+                    ))}
+                </ul>
+            </div>
+
+            <div className="board-section">
+                <h3 className="board-subtitle">מקבל:</h3>
+                <ul className="board-list">
+                    {relation.take.map((item, index) => (
+                        <li key={index}>{item}</li>
+                    ))}
+                </ul>
+            </div>
+
+             <div className="buttons-bar-board">
+                <div className="btn-text btn-text-end" onClick={onClose}>
+                    <div className="img-arrow img-arrow-end" />
+                    <div className="text-label">סיום</div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default Board;
