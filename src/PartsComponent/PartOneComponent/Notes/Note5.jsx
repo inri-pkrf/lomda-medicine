@@ -106,6 +106,13 @@ const Note5 = ({ onClose }) => {
       <div className='divMap-mahozot' id='mahoz-merkaz2' onMouseEnter={() => handleHoverMahoz('merkaz')} onMouseLeave={handleLeaveMahoz} />
       <div className='divMap-mahozot' id='mahoz-south' onMouseEnter={() => handleHoverMahoz('south')} onMouseLeave={handleLeaveMahoz} />
 
+      {/* <img
+        src={`${process.env.PUBLIC_URL}/Assets/PartOneImgs/Notes/note5/מחוז דן.png`}
+        id='mahoz-dan'
+        onMouseEnter={() => handleHoverMahoz('dan')} onMouseLeave={handleLeaveMahoz}
+      /> */}
+
+
       {hoveredMahoz && (
         <div className="hoveredMahoz-card" style={{ backgroundColor: mahozData[hoveredMahoz].backgroundColor }}>
           <div className="iconMahoz-title-hover">{mahozData[hoveredMahoz].name}</div>

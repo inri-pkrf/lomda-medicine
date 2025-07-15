@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../styles/Note3.css';
+
 
 const note3Data = [
   {
@@ -39,6 +40,23 @@ const note3Data = [
 ];
 
 const Note3 = ({ onClose }) => {
+  const [viewedCards, setViewedCards] = useState(() => {
+    const saved = sessionStorage.getItem('viewedNote3');
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  useEffect(() => {
+    sessionStorage.setItem('viewedNote3', JSON.stringify(viewedCards));
+  }, [viewedCards]);
+
+  const handleHover = (index) => {
+    if (!viewedCards.includes(index)) {
+      setViewedCards(prev => [...prev, index]);
+    }
+  };
+
+  const allCardsViewed = viewedCards.length === note3Data.length;
+
   return (
     <div className="Note3">
       <img
@@ -56,32 +74,41 @@ const Note3 = ({ onClose }) => {
       </div>
 
       <div className="note3-grid">
-        {note3Data.map(({ title, image, description }, index) => (
-          <div className="flip-card" key={index}>
-            <div className="flip-card-inner">
-              <div className="flip-card-front">
-                <div className='note3-title'>{title}</div>
-                <img
-                  src={`${process.env.PUBLIC_URL}/Assets/PartOneImgs/Notes/note3/${image}`}
-                  alt={title}
-                  className="note3-img"
-                />
-              </div>
-              <div className="flip-card-back">
-                <div className="note3-desc-title">{title}</div>
-                <p className="note3-desc">{description}</p>
+        {note3Data.map(({ title, image, description }, index) => {
+          const viewed = viewedCards.includes(index);
+          return (
+            <div
+              className={`flip-card ${viewed ? 'viewed' : ''}`}
+              key={index}
+              onMouseEnter={() => handleHover(index)}
+            >
+              <div className="flip-card-inner">
+                <div className="flip-card-front">
+                  <div className='note3-title'>{title}</div>
+                  <img
+                    src={`${process.env.PUBLIC_URL}/Assets/PartOneImgs/Notes/note3/${image}`}
+                    alt={title}
+                    className="note3-img"
+                  />
+                </div>
+                <div className="flip-card-back">
+                  <div className="note3-desc-title">{title}</div>
+                  <p className="note3-desc">{description}</p>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
-      <div className="buttons-bar-note3">
-        <div className="btn-text btn-text-end" onClick={onClose}>
-          <div className="img-arrow img-arrow-end" />
-          <div className="text-label">סיום</div>
+      {allCardsViewed && (
+        <div className="buttons-bar-note3">
+          <div className="btn-text btn-text-end" onClick={onClose}>
+            <div className="img-arrow img-arrow-end" />
+            <div className="text-label">סיום</div>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

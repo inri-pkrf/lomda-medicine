@@ -13,20 +13,8 @@ import PartFour from './PartsComponent/PartFourComponent/PartFour';
 
 function App() {
   const navigate = useNavigate();
-  const [showInfo, setShowInfo] = useState(false);
-  const [isClosing, setIsClosing] = useState(false);
   const location = useLocation();
   const isPartTwo = location.pathname.includes('part-two');
-
-
-  const closeInfo = () => {
-    setIsClosing(true);
-    setTimeout(() => {
-      setShowInfo(false);
-      setIsClosing(false);
-    }, 400);
-  };
-
 
   return (
     <div className="App">
@@ -36,44 +24,6 @@ function App() {
         className="main-logo"
         onClick={() => navigate('/')}
       />
-
-
-      <img
-        src={`${process.env.PUBLIC_URL}/Assets/logos/${isPartTwo ? 'iLogoWhite' : 'iLogo'}.png`}
-        alt="iLogo"
-        className="i-logo"
-        onClick={() => setShowInfo(true)}
-      />
-
-      {showInfo && (
-        <div className='info-part'>
-          <div className={`info-overlay ${isClosing ? 'fade-out' : 'fade-in'}`}>
-            <img
-              src={`${process.env.PUBLIC_URL}/Assets/Btns/closeBlack.png`}
-              alt="xbtn"
-              className="xbtn"
-              onClick={closeInfo}
-            />
-            <div className={`info-text ${isClosing ? 'pop-out' : 'pop-in'}`}>
-              <u>מפתחות:</u><br />
-              עלמה יובל  <br />
-              אביטל גמבורג
-              <br /><br />
-              <u>גרפיקאיות:</u><br />
-              עלמה יובל <br />
-              אביטל גמבורג
-              {/* <br />אגם אונגר */}
-              <br /><br />
-              <u>מומחה תוכן:</u><br />
-              שליו אלפסי <br />
-              איריס
-              <br /><br />
-              <u>מנהלת מחלקה:</u><br />
-              תמר בוסתן
-            </div>
-          </div>
-        </div>
-      )}
 
 
       <div style={{ display: "none" }}>

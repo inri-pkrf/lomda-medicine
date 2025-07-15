@@ -18,6 +18,8 @@
     z-index: 20;
     left: 19vw;
     top: 14vh;
+    z-index: 20;
+
 }
 
 .divMap-mahozot {
@@ -25,6 +27,7 @@
     z-index: 20;
     cursor: pointer;
     background-color: transparent;
+    z-index: 30;
 }
 
 #mahoz-north1 {
@@ -65,14 +68,15 @@
     top: 47vh;
     left: 29.6vw;
     /* background-color: rgb(79, 110, 194); */
+    z-index: 30;
 }
 
 #mahoz-merkaz2 {
     width: 3vw;
-    height: 3vh;
-    top: 52vh;
+    height: 9vh;
+    top: 47vh;
     left: 31vw;
-    /* background-color: rgb(79, 110, 194); */
+    /* background-color: rgb(79 84 99); */
 }
 
 #mahoz-south {
@@ -80,6 +84,7 @@
     height: 26vh;
     top: 57vh;
     left: 27.6vw;
+    z-index: 30;
     /* background-color: rgb(194, 140, 79); */
 }
 
@@ -99,8 +104,8 @@
 }
 
 .iconMahoz-box {
-    width: 11vw;
-    height: 120px;
+    width: 15vw;
+    height: 138px;
     padding: 14px;
     border-radius: 12px;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
@@ -119,16 +124,16 @@
 }
 
 .iconMahoz-title {
-    font-size: 2vmin;
+    font-size: 2.5vmin;
     font-weight: bold;
     font-family: 'Assistant', sans-serif;
     position: relative;
-    right: 3.5vw;
+    right: 4vw;
     bottom: -3vh;
 }
 
 .iconMahoz-img {
-    width: 55px;
+    width: 60px;
     height: auto;
     position: relative;
     right: 0vw;
@@ -136,21 +141,21 @@
 }
 
 .iconMahoz-text {
-    font-size: 1.8vmin;
+    font-size: 2.3vmin;
     font-family: 'Assistant', sans-serif;
     position: relative;
-    right: 3.5vw;
+    right: 4vw;
     bottom: 4vh;
 }
 
 /* הקלף שמופיע זמנית ליד המפה בזמן hover */
 .hoveredMahoz-card {
     position: absolute;
-    top: 36vh;
+    top: 34vh;
     right: 15vw;
     z-index: 40;
     width: 38.5vw;
-    height: 35vh;
+    height: 50vh;
     padding: 16px;
     border-radius: 14px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);

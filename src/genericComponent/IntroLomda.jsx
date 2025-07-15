@@ -4,12 +4,23 @@ import '../genericComponent/styles/IntroLomda.css';
 
 const IntroLomda = () => {
     const [showFullScreenPrompt, setShowFullScreenPrompt] = useState(true);
+    const [showInfo, setShowInfo] = useState(false);
+    const [isClosing, setIsClosing] = useState(false);
     const [isVideoEnded, setIsVideoEnded] = useState(false);
     const [showIntro, setShowIntro] = useState(false);
     const [showSkipButton, setShowSkipButton] = useState(false);
     const [fadeOutVideo, setFadeOutVideo] = useState(false);
     const [isExiting, setIsExiting] = useState(false);
     const navigate = useNavigate();
+
+    const closeInfo = () => {
+        setIsClosing(true);
+        setTimeout(() => {
+            setShowInfo(false);
+            setIsClosing(false);
+        }, 400);
+    };
+
 
     useEffect(() => {
         if (!showFullScreenPrompt) {
@@ -55,12 +66,53 @@ const IntroLomda = () => {
         <div id="IntroLomda">
             {/* שלב ראשון – הודעת F11 */}
             {showFullScreenPrompt && (
-                <div className="fullscreen-prompt">
-                    <div className="prompt-text">
-                        <p>להצגת הלומדה בצורה מיטבית לחצ/י על <strong>F11</strong></p>
-                        <button className="btn-go" onClick={handleStartVideo}>צאו לדרך!</button>
+                <>
+                    <div className="fullscreen-prompt">
+                        <div className="prompt-text">
+                            <p>
+                                ברוכים הבאים והבאות ללומדת מכלול רפואה  !<br/><br/>
+                                להצגת הלומדה בצורה מיטבית לחצ/י על <strong>F11</strong>
+                            </p>
+                            <button className="btn-go" onClick={handleStartVideo}>צאו לדרך!</button>
+                        </div>
                     </div>
-                </div>
+
+                    <img
+                        src={`${process.env.PUBLIC_URL}/Assets/logos/iLogo.png`}
+                        alt="iLogo"
+                        className="i-logo"
+                        onClick={() => setShowInfo(true)}
+                    />
+
+                    {showInfo && (
+                        <div className='info-part'>
+                            <div className={`info-overlay ${isClosing ? 'fade-out' : 'fade-in'}`}>
+                                <img
+                                    src={`${process.env.PUBLIC_URL}/Assets/Btns/closeBlack.png`}
+                                    alt="xbtn"
+                                    className="xbtn"
+                                    onClick={closeInfo}
+                                />
+                                <div className={`info-text ${isClosing ? 'pop-out' : 'pop-in'}`}>
+                                    <u>מפתחות:</u><br />
+                                    עלמה יובל  <br />
+                                    אביטל גמבורג
+                                    <br /><br />
+                                    <u>גרפיקאיות:</u><br />
+                                    עלמה יובל <br />
+                                    אביטל גמבורג
+                                    <br /><br />
+                                    <u>מומחה תוכן:</u><br />
+                                    שליו אלפסי <br />
+                                    איריס
+                                    <br /><br />
+                                    <u>מנהלת מחלקה:</u><br />
+                                    תמר בוסתן
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </>
             )}
 
             {/* שלב שני – סרטון פתיחה */}
