@@ -114,7 +114,7 @@ const [step3ClickedButtons, setStep3ClickedButtons] = useState(() => {
     <div className="TvNafa">
       <img
         className="Tv-img-nafa"
-        src={`${process.env.PUBLIC_URL}/Assets/PartTwoImgs/WarRoomTv.png`}
+        src={`${process.env.PUBLIC_URL}/Assets/PartTwoImgs/warRoomTv.png`}
         alt="corkboard"
       />
 

@@ -31,7 +31,7 @@ const stepKey = step;
       <div className="screen-mahoz">
         <img
           className="Tv-img-mahoz"
-          src={`${process.env.PUBLIC_URL}/Assets/PartTwoImgs/WarRoomTv.png`}
+          src={`${process.env.PUBLIC_URL}/Assets/PartTwoImgs/warRoomTv.png`}
           alt="corkboard"
         />
         <h2 className='mahoz-title'>מחוז</h2>
