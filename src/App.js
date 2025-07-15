@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 
 import IntroLomda from './genericComponent/IntroLomda'
+import Questions from './genericComponent/Questions'
 import PartZero from './PartsComponent/PartZeroComponent/PartZero';
 import PartOne from './PartsComponent/PartOneComponent/PartOne';
 import PartTwo from './PartsComponent/PartTwoComponent/PartTwo';
@@ -55,6 +56,8 @@ function App() {
         <Route path="part-two" element={<PartTwo />} />
         <Route path="part-three" element={<PartThree />} />
         <Route path="part-four" element={<PartFour />} />
+        <Route path="/questions/:chapter" element={<Questions />} />
+
       </Routes>
     </div>
   );

@@ -1,28 +1,31 @@
 const questionsDataFour =[
    {
     id: 1,
-    type: "sun_map",
+    // type: "sun_map",
+     type: "open",
     question: "מנה את יחסי הגומלין הרוחביים",
-    answer: null
+    correct_answer: null
   },
   {
     id: 2,
-    type: "column_completion",
+    // type: "column_completion",
     question: "מנה את יחסי הגומלין האורכיים",
-    answer: null
+    correct_answer: null
   },
   {
     id: 3,
-    type: "column_completion",
+    // type: "column_completion",
+     type: "open",
     question: "מנה את הקשר עם המרחב האזרחי ומול מי תיצור אותו",
-    answer: null
+    correct_answer: null
   },
   {
     id: 4,
-    type: "multiple_choice",
+    // type: "multiple_choice",
+     type: "open",
     question: "מד\"א מבקשים כתובת מדויקת לאירוע נפילה שקרה, מול איזה מכלול תיצור קשר לקבלת כתובת מדויקת?",
     answers: ["היקל\"ר", "מכלול אוכלוסייה", "מכלול מבצעים", "מכלול מודיעין"],
-    correctAnswer: "מכלול מודיעין"
+    correct_answer: "מכלול מודיעין"
   },
   {
     id: 5,
@@ -34,13 +37,13 @@ const questionsDataFour =[
     id: 6,
     type: "open",
     question: "עקב האירועים האחרונים השתנה תרחיש הייחוס – מול מי תקבל את האיום המעודכן?",
-    answer: "מכלול מבצעים / מכלול מודיעין"
+    correct_answer: "מכלול מבצעים / מכלול מודיעין"
   },
   {
     id: 7,
     type: "open",
     question: "את מי תעדכן על תמ\"צ יחידות רפואה?",
-    answer: "מכלול מבצעים נפתי ומרכז רפואה מחוזי"
+    correct_answer: "מכלול מבצעים נפתי ומרכז רפואה מחוזי"
   },
   {
     id: 8,
@@ -52,62 +55,62 @@ const questionsDataFour =[
     id: 9,
     type: "open",
     question: "הפלר\"ג נמצא במחסור בכוח אדם ולא מצליח לעמוד בכמות אתרי ההרס – למי תפנה לקבלת סד\"כ ותגבור?",
-    answer: "מרכז רפואה מחוזי"
+    correct_answer: "מרכז רפואה מחוזי"
   },
   {
     id: 10,
     type: "open",
     question: "למי תפנה על מנת להשלים את פערי הכ\"א הרפואי שקיימים לך בפלר\"ג?",
-    answer: "מרכז רפואה מחוזי, תא כוח אדם רפואה במחוז"
+    correct_answer: "מרכז רפואה מחוזי, תא כוח אדם רפואה במחוז"
   },
   {
     id: 11,
     type: "open",
     question: "קיימת עבודת מטה במפקדה על צמצום נפגעים מנפילה בדרך אל הממ\"ד – מי המכלול שתבצע איתו את ניתוח הגורמים והטיפול בהם?",
-    answer: "מכלול אוכלוסייה"
+    correct_answer: "מכלול אוכלוסייה"
   },
   {
     id: 12,
     type: "multiple_choice",
     question: "לחובשים בפלר\"ג קיים חוסר בווסט חובש (טקסטיל בלבד) – למי תפנה?",
     answers: ["כל התשובות נכונות", "מלכ\"א", "רפואה מחוז"],
-    correctAnswer: "כל התשובות נכונות"
+    correct_answer: "כל התשובות נכונות"
   },
   {
     id: 13,
     type: "open",
     question: "מד\"א מעוניין לדעת את תמ\"צ הצירים בגזרה על מנת לפנות פצועים אל בתי החולים – למי תפנה לקבל תמ\"צ זה?",
-    answer: "מד\"א יפנה למחוז"
+    correct_answer: "מד\"א יפנה למחוז"
   },
   {
     id: 14,
     type: "open",
     question: "אתה מעוניין לצאת בהסברה על מרפאות אחודות – למי תפנה?",
-    answer: "מכלול אוכלוסייה"
+    correct_answer: "מכלול אוכלוסייה"
   },
   {
     id: 15,
     type: "open",
     question: "אתה מעוניין לקבל תמ\"צ של פתיחת מרפאות – למי תפנה?",
-    answer: "רפואה מחוז, לשכ\"ב"
+    correct_answer: "רפואה מחוז, לשכ\"ב"
   },
   {
     id: 16,
     type: "open",
     question: "הרשויות מעוניינות לקבל מידע על מונשמי/מרותקי בית ומטופלי דיאליזה בהפסקות החשמל – איזה מכלול יפנה אלייך לקבלת המידע?",
-    answer: "מכלול אוכלוסייה"
+    correct_answer: "מכלול אוכלוסייה"
   },
   {
     id: 17,
     type: "open",
     question: "קיימים חוסרים בגנרטורים ואמצעים נוספים לחצר\"מים בקהילה – למי תעלה דרישה לקבלה?",
-    answer: "ללשכ\"ב באמצעות רפואה מחוז"
+    correct_answer: "ללשכ\"ב באמצעות רפואה מחוז"
   },
   {
     id: 18,
     type: "open",
     question: "למי תפנה על מנת לקבל סטטוס על פתיחת מרפאות?",
-    answer: "רפואה מחוז"
+    correct_answer: "רפואה מחוז"
   },
   {
     id: 19,
@@ -119,7 +122,7 @@ const questionsDataFour =[
     id: 20,
     type: "open",
     question: "כיצד מתקיים מתן מענה רפואי למתפנים לגזרה?",
-    answer: "קופות החולים"
+    correct_answer: "קופות החולים"
   },
   {
     id: 21,
@@ -131,14 +134,14 @@ const questionsDataFour =[
     id: 22,
     type: "open",
     question: "בעת פינוי מוסד מיוחד – עם מי תקיים שיח?",
-    answer: "רפואה מחוז ואוכלוסייה"
+    correct_answer: "רפואה מחוז ואוכלוסייה"
   },
   {
     id: 23,
     type: "multiple_choice",
     question: "ממי תקבל מידע על נפילות וכתובות אירועים?",
     answers: ["רפואה מחוז", "מד\"א", "מד\"א"],
-    correctAnswer: "מד\"א"
+    correct_answer: "מד\"א"
   }
 
 

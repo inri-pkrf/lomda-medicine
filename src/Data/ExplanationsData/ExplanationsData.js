@@ -20,7 +20,7 @@ const explanationsData = {
       },
       end: {
          text: <> הגענו לסיום הפרק</>,
-        nextPart:"/part-Three"
+        nextPart:"TWO"
       }
     },
     PartThree: {
@@ -38,7 +38,7 @@ const explanationsData = {
       },
       end: {
          text: <> הגענו לסיום הפרק</>,
-        nextPart:"/part-Four"
+        nextPart:"THREE"
       }
     },
     PartFour: {
@@ -53,7 +53,7 @@ const explanationsData = {
       },
       end: {
          text: <> הגענו לסיום הפרק</>,
-        nextPart:"/simulation"
+        nextPart:"/Four"
       }
     }
   };

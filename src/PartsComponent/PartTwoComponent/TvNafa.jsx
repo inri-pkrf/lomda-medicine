@@ -217,25 +217,24 @@ const [step3ClickedButtons, setStep3ClickedButtons] = useState(() => {
             <div className="text-label">הקודם</div>
           </div>
 
-          {step < totalSteps ? (
-            <div
-              className="btn-text btn-text-next"
-              onClick={() => setStep((prev) => Math.min(prev + 1, totalSteps))}
-            >
-              <div className="img-arrow" />
-              <div className="text-label">המשך</div>
-            </div>
-          ) : (
-            <div
-              className={`btn-text btn-text-end ${canFinish ? '' : 'disabled'}`}
-              onClick={() => canFinish && handleFinish()}
-              title={canFinish ? '' : 'יש להשלים את כל הכפתורים לפני סיום'}
-              style={{ opacity: canFinish ? 1 : 0.5, cursor: canFinish ? 'pointer' : 'not-allowed' }}
-            >
-              <div className="img-arrow" />
-              <div className="text-label">סיום</div>
-            </div>
-          )}
+         {step < totalSteps ? (
+          <div
+            className="btn-text btn-text-next"
+            onClick={() => setStep((prev) => Math.min(prev + 1, totalSteps))}
+          >
+            <div className="img-arrow" />
+            <div className="text-label">המשך</div>
+          </div>
+        ) : canFinish && (
+          <div
+            className="btn-text btn-text-end"
+            onClick={handleFinish}
+          >
+            <div className="img-arrow" />
+            <div className="text-label">סיום</div>
+          </div>
+        )}
+
         </div>
       )}
 

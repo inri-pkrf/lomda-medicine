@@ -16,7 +16,12 @@ const Explanations = ({ position, chapterName, onClose }) => {
     } else if (position === 'end') {
       onClose(); // סגירה
       if (nextPart) {
-        navigate(nextPart); // נווט לפרק הבא
+        if (chapterName === "PartOne") {
+          navigate(nextPart); 
+        } else {
+          navigate(`/questions/${nextPart}`);
+
+        }
       }
     }
   };
@@ -24,29 +29,26 @@ const Explanations = ({ position, chapterName, onClose }) => {
   if (!content) return null;
 
   return (
-    <div
-    id="Explanations"
-  >
-    {tomerImg && (
-      <img
-        src={tomerImg}
-        alt="תומר"
-    className={`tomer-img tomer${chapterName} tomer-${chapterName}-${position} ${position === "start" ? "fade-inExplanations" : ""}`}
-      />
-    )}
-    <div className={`speech-bubble speech-bubble${chapterName} speech-bubble-${chapterName}-${position} ${position === "start" ? "fade-inExplanations" : ""}`}>
-      <img
-        className='close-btn-bubble'
-        onClick={handleClose}
-        src={`${process.env.PUBLIC_URL}/Assets/Btns/closeBlack.png`}
-      />
-      <p style={{ paddingTop: '20px' }}>
-        {content.text}
-      </p>
+    <div id="Explanations">
+      {tomerImg && (
+        <img
+          src={tomerImg}
+          alt="תומר"
+          className={`tomer-img tomer${chapterName} tomer-${chapterName}-${position} ${position === "start" ? "fade-inExplanations" : ""}`}
+        />
+      )}
+      <div className={`speech-bubble speech-bubble${chapterName} speech-bubble-${chapterName}-${position} ${position === "start" ? "fade-inExplanations" : ""}`}>
+        <img
+          className='close-btn-bubble'
+          onClick={handleClose}
+          src={`${process.env.PUBLIC_URL}/Assets/Btns/closeBlack.png`}
+        />
+        <p style={{ paddingTop: '20px' }}>
+          {content.text}
+        </p>
+      </div>
     </div>
-  </div>
-  
   );
-};
+}
 
 export default Explanations;
