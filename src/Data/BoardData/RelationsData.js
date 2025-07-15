@@ -12,87 +12,127 @@ const relationsData = [
             ` התרעות מדיניות `,
             `פילוחי תש''ן`
         ],
-        ImgSrc: `${process.env.PUBLIC_URL}/Assets/PartFourImgs/meetinRoomModin.png`,
+        ImgSrc: `${process.env.PUBLIC_URL}/Assets/PartFourImgs/meetingRoomModin.png`,
+        colorRelation: "#7aaa88"
     },
     {
         id: 'relations2',
         name: "ק. קישוק ללשכ''ב",
         give: [
-            "מקבל1",
-            "מקבל2"
+            "סטטוס פתיחת מרפאות",
+            'תמ"צ נפגעי חרדה שנקלטו במרפאות ברה"ן',
+            'פערי רציפות תפקודית במוסדות',
+            'מתן מענה רפואי למתפנים לגזרה',
+            'נתונים על מרותקי בית (כתובות) בעת הפסקת חשמל',
+            'סטטוס מכוני דיאליזה בגזרה',
+            'שיח בנוגע לפינוי מוסד מיוחד (ע"פ פקודה)',
         ],
 
         take: [
-            "נותן1",
-            "נותן2"
+            "דרישות סיוע אזרח שעולות מהרשות",
+            "סטטוס פינוי מוסד מיוחד"
         ],
         ImgSrc: `${process.env.PUBLIC_URL}/Assets/PartFourImgs/meetingRoomLashcab.png`,
+        colorRelation: "#d57283"
     },
     {
         id: 'relations3',
         name: "ק. קישור מד''א",
         give: [
-            "מקבל1",
-            "מקבל2"
+            'תמונת מצב מד"א',
+            'דרישות סד"כ לרפואה נוסף',
+            'מידע על אירועים',
+            "יצירת תמ''צ מפונים באירוע",
+            'כשירות מד"א'
         ],
 
         take: [
-            "נותן1",
-            "נותן2"
+            "יעדי פינוי במרחב הנפה",
+            "העברת מידע לגבי צירים חסומים",
+            "תמונת מצב אג''מית ולוגיסטית",
+            "מידע כל כתובות אירועים",
+            'תמונת מצב אג"מית ולוגיסטית'
         ],
         ImgSrc: `${process.env.PUBLIC_URL}/Assets/PartFourImgs/meetingRoomMada.png`,
+        colorRelation: "rgb(185 117 87)"
     }, {
         id: 'relations4',
         name: "מלכ''א",
         give: [
-            "מקבל1",
-            "מקבל2"
+            "הספקת אמצעים לוגיסטיים",
+            "עדכון תמ''צ לוגיסטית ",
+            'מידע על תגבור בכ"א חר"פ',
+            "מידע על צירים חסומים"
         ],
 
         take: [
-            "נותן1",
-            "נותן2"
+            'נציג בפורום סד"כ ואמצעים',
+            "דרישות צר''פ לטובת הספקה",
+            "העברת צורך באמצעים לסיוע בטיפול באירוע",
+            "דרישות לוגיסטיות מיחידות הרפואה (לא צר''פ)",
+            "דרישות אמצעים לטובת רציפות תפקודית בתחום הרפואה בקהילה",
+            'דרישה להשלמת כ"א רפואי (חובשים)',
+            'נציג רפואה בהע"מ מלכ"א'
         ],
         ImgSrc: `${process.env.PUBLIC_URL}/Assets/PartFourImgs/meetingRoomMalka.png`,
+        colorRelation: "rgb(33 76 67)"
     }, {
         id: 'relations5',
         name: "מכלול מבצעים",
         give: [
-            "מקבל1",
-            "מקבל2"
+            "דיווחים על אירועים בגזרה ",
+            "דגשי מפקד/ מנל''ח",
+            'קביעת סדרי עדיפויות',
+            "תוכנית אג''מית ואיום הייחוס עדכניים",
+            'קביעת סדרי עדיפויות'
         ],
 
         take: [
-            "נותן1",
-            "נותן2"
+            "תמ''צ  יחידות רפואה",
+            "נציגות בקבוצת תכנון",
+            "עדכון ביצוע הנחיות",
+            "עדכון על מיקומי נפילות",
+            "עדכוני רפואה מאירועים",
+            'דרישות סד"כ ותגבור',
+            'השפעת אזורי סיכון על מוסדות רפואיים'
         ],
         ImgSrc: `${process.env.PUBLIC_URL}/Assets/PartFourImgs/meetingRoomMivzaim.png`,
+        colorRelation: "#7c8ed7"
     }, {
         id: 'relations6',
         name: "שולחן מרכזי",
         give: [
-            "מקבל1",
-            "מקבל2"
+            "מיקום נפילה מדויק מהתצפיות",
+            "התרעות מודיעניות",
+            "פילוחי תש''ן"
         ],
 
         take: [
-            "נותן1",
-            "נותן2"
+            'מידע ממד"א לגבי כתובת האירוע',
+            "מידע לגבי פצועים והרוגים"
         ],
-        ImgSrc: `${process.env.PUBLIC_URL}/Assets/PartFourImgs/meetingRoomShoolhan.png`,
+        ImgSrc: `${process.env.PUBLIC_URL}/Assets/PartFourImgs/meetungRoomShoolhan.png`,
+        colorRelation: "#9d71cd"
     }, {
         id: 'relations7',
         name: "מכלול אוכלוסיה",
         give: [
-            "מקבל1",
-            "מקבל2"
+            "תמ''צ פתיחות מרפאות",
+            "סיוע בפינוי מוסד מיוחד",
+            'עדכון דרישות "סיוע אזרחי" בתחום הרפואה',
+            "הפצת הסברה לציבור בתחום הרפואה",
+            "מידע לגבי מיקום ועיתויי הפסקות החשמל בגזרה",
+            "תחקירי אירועים מהשטח (פילוח סיבות פגיעה)",
+            'סיוע בפתיחת מב"טים והודעה לציבר על פתיחתם'
         ],
 
         take: [
-            "נותן1",
-            "נותן2"
+            'דרישות כ"א רווחה ומרכז מידע למב"טים מהרשויות',
+            "עבודה משותפת למניעת נפגעים על ידי הסברה ומיגון",
+            'העברת מידע על מונשמי/מרותקי בית ומטופלי דיאליזה בהפסקת חשמל'
         ],
         ImgSrc: `${process.env.PUBLIC_URL}/Assets/PartFourImgs/meetingRoomUxlusia.png`,
+        colorRelation: "#769caf"
     }, {
         id: 'relations8',
         name: "מכלול תקשוב",
@@ -105,7 +145,8 @@ const relationsData = [
             "נותן1",
             "נותן2"
         ],
-        ImgSrc: `${process.env.PUBLIC_URL}/Assets/PartFourImgs/metingRoomTikshuv.png`,
+        ImgSrc: `${process.env.PUBLIC_URL}/Assets/PartFourImgs/meetingRoomTikshuv.png`,
+        colorRelation: "#534e88"
     },
 
 ]

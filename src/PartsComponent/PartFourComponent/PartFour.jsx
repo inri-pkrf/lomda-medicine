@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './styles/PartFour.css';
 import relationsData from '../../Data/BoardData/RelationsData';
 import Explanations from '../../genericComponent/Explanations';
-import Board from './Board'; // נניח שהקומפוננטה שלך נמצאת כאן
+import Board from './Board';
 
 const PartFour = () => {
     const [showExplanation, setShowExplanation] = useState(true);
@@ -10,35 +10,49 @@ const PartFour = () => {
     const [chapterFinished, setChapterFinished] = useState(() => {
         return sessionStorage.getItem('chapterFinishedPartThree') === 'true';
     });
-    const [backgroundImage, setBackgroundImage] = useState(`${process.env.PUBLIC_URL}/Assets/PartFourImgs/meetingRoom.png`);
+    const [backgroundImage, setBackgroundImage] = useState(`${process.env.PUBLIC_URL}/Assets/PartFourImgs/meetingRoomNew.png`);
     const [selectedRelation, setSelectedRelation] = useState(null);
+    const [hoveredRelationId, setHoveredRelationId] = useState(null);
+    const [visitedRelations, setVisitedRelations] = useState(() => {
+        const saved = sessionStorage.getItem('visitedRelationsPartFour');
+        return saved ? JSON.parse(saved) : [];
+    });
 
     const chapterName = "PartFour";
+
+    useEffect(() => {
+        sessionStorage.setItem('visitedRelationsPartFour', JSON.stringify(visitedRelations));
+    }, [visitedRelations]);
 
     const handleHover = (id) => {
         const found = relationsData.find(item => item.id === id);
         if (found) {
             setBackgroundImage(found.ImgSrc);
+            setHoveredRelationId(id);
         }
     };
 
     const resetBackground = () => {
         if (!selectedRelation) {
-            setBackgroundImage(`${process.env.PUBLIC_URL}/Assets/PartFourImgs/meetingRoom.png`);
+            setBackgroundImage(`${process.env.PUBLIC_URL}/Assets/PartFourImgs/meetingRoomNew.png`);
         }
+        setHoveredRelationId(null);
     };
 
     const handleClick = (id) => {
         const found = relationsData.find(item => item.id === id);
         if (found) {
             setSelectedRelation(found);
-            setBackgroundImage(found.ImgSrc); // נשאר גם לאחר hover
+            setBackgroundImage(found.ImgSrc);
         }
     };
 
     const closeBoard = () => {
+        if (selectedRelation && !visitedRelations.includes(selectedRelation.id)) {
+            setVisitedRelations(prev => [...prev, selectedRelation.id]);
+        }
         setSelectedRelation(null);
-        setBackgroundImage(`${process.env.PUBLIC_URL}/Assets/PartFourImgs/meetingRoom.png`);
+        setBackgroundImage(`${process.env.PUBLIC_URL}/Assets/PartFourImgs/meetingRoomNew.png`);
     };
 
     return (
@@ -55,8 +69,32 @@ const PartFour = () => {
             <img
                 src={backgroundImage}
                 alt="background"
-                className="background-part3"
+                className="background-part4"
             />
+
+            {relationsData.map((relation) => {
+                const isHovered = hoveredRelationId === relation.id;
+                const isSelected = selectedRelation?.id === relation.id;
+                const isVisited = visitedRelations.includes(relation.id);
+                const shouldHighlight = isHovered || isSelected || isVisited;
+
+                return (
+                    <div
+                        key={relation.id}
+                        className={`relation-label ${relation.id}-label`}
+                        style={{
+                            border: `3px solid ${relation.colorRelation}`,
+                            color: shouldHighlight ? 'white' : relation.colorRelation,
+                            backgroundColor: shouldHighlight ? relation.colorRelation : 'transparent',
+                            transition: '0.3s ease',
+                            transform: isHovered ? 'scale(1.05)' : 'scale(0.95)',
+                            
+                        }}
+                    >
+                        {relation.name}
+                    </div>
+                );
+            })}
 
             <img
                 src={`${process.env.PUBLIC_URL}/Assets/PartFourImgs/TomerBack.png`}
