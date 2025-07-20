@@ -1,14 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './styles/PartFour.css';
 import relationsData from '../../Data/BoardData/RelationsData';
 import Explanations from '../../genericComponent/Explanations';
 import Board from './Board';
+import { useNavigate } from 'react-router-dom';
 
 const PartFour = () => {
+    const navigate = useNavigate();
+    const timerRef = useRef(null);
+
     const [showExplanation, setShowExplanation] = useState(true);
     const [position, setPosition] = useState("start");
     const [chapterFinished, setChapterFinished] = useState(() => {
-        return sessionStorage.getItem('chapterFinishedPartThree') === 'true';
+        return sessionStorage.getItem('chapterFinishedPartFour') === 'true';
     });
     const [backgroundImage, setBackgroundImage] = useState(`${process.env.PUBLIC_URL}/Assets/PartFourImgs/meetingRoomNew.png`);
     const [selectedRelation, setSelectedRelation] = useState(null);
@@ -20,9 +24,39 @@ const PartFour = () => {
 
     const chapterName = "PartFour";
 
+    // אתחול מהסשן
     useEffect(() => {
-        sessionStorage.setItem('visitedRelationsPartFour', JSON.stringify(visitedRelations));
-    }, [visitedRelations]);
+        const savedVisited = sessionStorage.getItem('visitedRelationsPartFour');
+        if (savedVisited) {
+            setVisitedRelations(JSON.parse(savedVisited));
+        }
+        const finished = sessionStorage.getItem('chapterFinishedPartFour') === 'true';
+        if (finished) {
+            setChapterFinished(true);
+            setPosition("end");
+            setShowExplanation(true);
+        }
+    }, []);
+
+    useEffect(() => {
+        const allVisited = relationsData.every(rel => visitedRelations.includes(rel.id));
+        if (allVisited && !chapterFinished) {
+            timerRef.current = setTimeout(() => {
+                setPosition("end");
+                setShowExplanation(true);
+                setChapterFinished(true);
+                sessionStorage.setItem('chapterFinishedPartFour', 'true');
+            }, 1200);
+        }
+
+        return () => {
+            if (timerRef.current) clearTimeout(timerRef.current);
+        };
+    }, [visitedRelations, chapterFinished]);
+
+    const handleCloseExplanation = () => {
+        setShowExplanation(false);
+    };
 
     const handleHover = (id) => {
         const found = relationsData.find(item => item.id === id);
@@ -49,7 +83,9 @@ const PartFour = () => {
 
     const closeBoard = () => {
         if (selectedRelation && !visitedRelations.includes(selectedRelation.id)) {
-            setVisitedRelations(prev => [...prev, selectedRelation.id]);
+            const updated = [...visitedRelations, selectedRelation.id];
+            setVisitedRelations(updated);
+            sessionStorage.setItem('visitedRelationsPartFour', JSON.stringify(updated));
         }
         setSelectedRelation(null);
         setBackgroundImage(`${process.env.PUBLIC_URL}/Assets/PartFourImgs/meetingRoomNew.png`);
@@ -62,7 +98,7 @@ const PartFour = () => {
                     chapterName={chapterName}
                     position={position}
                     isChapterFinished={chapterFinished}
-                    onClose={() => setShowExplanation(false)}
+                    onClose={handleCloseExplanation}
                 />
             )}
 
@@ -88,7 +124,6 @@ const PartFour = () => {
                             backgroundColor: shouldHighlight ? relation.colorRelation : 'transparent',
                             transition: '0.3s ease',
                             transform: isHovered ? 'scale(1.05)' : 'scale(0.95)',
-                            
                         }}
                     >
                         {relation.name}

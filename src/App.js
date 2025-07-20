@@ -1,21 +1,30 @@
 import './App.css';
 import { HashRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
-import { useState } from 'react';
-
+import React from 'react';
 
 import IntroLomda from './genericComponent/IntroLomda'
+import NavBar from './genericComponent/NavBar'
 import Questions from './genericComponent/Questions'
 import PartZero from './PartsComponent/PartZeroComponent/PartZero';
 import PartOne from './PartsComponent/PartOneComponent/PartOne';
 import PartTwo from './PartsComponent/PartTwoComponent/PartTwo';
 import PartThree from './PartsComponent/PartThreeComponent/PartThree';
 import PartFour from './PartsComponent/PartFourComponent/PartFour';
+import Simulation from './PartsComponent/SimulationComponent/Simulation';
 
+const SimulationWrapper = () => {
+  const navigate = useNavigate();
+
+  const handleFinishSimulation = () => {
+    navigate('/', { state: { fromSimulation: true } });
+  };
+
+  return <Simulation onFinishSimulation={handleFinishSimulation} />;
+};
 
 function App() {
   const navigate = useNavigate();
   const location = useLocation();
-  const isPartTwo = location.pathname.includes('part-two');
 
   return (
     <div className="App">
@@ -26,19 +35,16 @@ function App() {
         onClick={() => navigate('/')}
       />
 
-
       <div style={{ display: "none" }}>
         <div className="btn-text btn-text-prev">
           <div className="img-arrow img-arrow-prev" />
           <div className="text-label"></div>
         </div>
 
-
         <div className="btn-text btn-text-next">
           <div className="img-arrow img-arrow-next" />
           <div className="text-label"></div>
         </div>
-
 
         <div className="btn-text btn-text-end">
           <div className="img-arrow img-arrow-end" />
@@ -46,8 +52,7 @@ function App() {
         </div>
       </div>
 
-
-
+      {location.pathname !== '/' && <NavBar />}
 
       <Routes>
         <Route path="/" element={<IntroLomda />} />
@@ -56,13 +61,12 @@ function App() {
         <Route path="part-two" element={<PartTwo />} />
         <Route path="part-three" element={<PartThree />} />
         <Route path="part-four" element={<PartFour />} />
+        <Route path="simulation" element={<SimulationWrapper />} />
         <Route path="/questions/:chapter" element={<Questions />} />
-
       </Routes>
     </div>
   );
 }
-
 
 function AppWrapper() {
   return (
@@ -72,8 +76,4 @@ function AppWrapper() {
   );
 }
 
-
 export default AppWrapper;
-
-
-

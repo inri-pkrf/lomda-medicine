@@ -1,28 +1,29 @@
-const questionsDataFour =[
-   {
+const questionsDataFour = [
+  {
     id: 1,
     // type: "sun_map",
-     type: "open",
+    type: "open",
     question: "מנה את יחסי הגומלין הרוחביים",
-    correct_answer: null
+    correct_answer: "בלה"
   },
   {
     id: 2,
     // type: "column_completion",
+    type: "open",
     question: "מנה את יחסי הגומלין האורכיים",
-    correct_answer: null
+    correct_answer: "בלה"
   },
   {
     id: 3,
     // type: "column_completion",
-     type: "open",
+    type: "open",
     question: "מנה את הקשר עם המרחב האזרחי ומול מי תיצור אותו",
     correct_answer: null
   },
   {
     id: 4,
     // type: "multiple_choice",
-     type: "open",
+    type: "open",
     question: "מד\"א מבקשים כתובת מדויקת לאירוע נפילה שקרה, מול איזה מכלול תיצור קשר לקבלת כתובת מדויקת?",
     answers: ["היקל\"ר", "מכלול אוכלוסייה", "מכלול מבצעים", "מכלול מודיעין"],
     correct_answer: "מכלול מודיעין"
@@ -146,5 +147,5 @@ const questionsDataFour =[
 
 
 ];
-export default  questionsDataFour;
+export default questionsDataFour;
 

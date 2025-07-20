@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import '../genericComponent/styles/IntroLomda.css';
 
 const IntroLomda = () => {
-    const [showFullScreenPrompt, setShowFullScreenPrompt] = useState(true);
     const [showInfo, setShowInfo] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
     const [isVideoEnded, setIsVideoEnded] = useState(false);
-    const [showIntro, setShowIntro] = useState(false);
     const [showSkipButton, setShowSkipButton] = useState(false);
     const [fadeOutVideo, setFadeOutVideo] = useState(false);
     const [isExiting, setIsExiting] = useState(false);
     const navigate = useNavigate();
+    const location = useLocation();
+    const cameFromSimulation = location.state?.fromSimulation === true;
+    const [showFullScreenPrompt, setShowFullScreenPrompt] = useState(!cameFromSimulation);
+    const [showIntro, setShowIntro] = useState(cameFromSimulation);
+    const [isRestartMode, setIsRestartMode] = useState(false);
 
     const closeInfo = () => {
         setIsClosing(true);
@@ -39,13 +42,23 @@ const IntroLomda = () => {
         }
     }, [showFullScreenPrompt]);
 
-    const handleStartVideo = () => {
-        setShowFullScreenPrompt(false);
-        setIsVideoEnded(false);
-        setShowIntro(false);
-        setShowSkipButton(false);
-        setFadeOutVideo(false);
+    useEffect(() => {
+        if (cameFromSimulation) {
+            setShowFullScreenPrompt(false);
+            setShowIntro(true);
+            setIsRestartMode(true);
+            navigate(location.pathname, { replace: true, state: {} });
+        }
+    }, [cameFromSimulation, navigate, location.pathname]);
+
+    const handleRestart = () => {
+     sessionStorage.clear();
+    setIsRestartMode(false);
+    setShowIntro(false);
+    setShowFullScreenPrompt(false); 
+    navigate('/part-zero');
     };
+
 
     const skipVideo = () => {
         setFadeOutVideo(true);
@@ -62,6 +75,14 @@ const IntroLomda = () => {
         }, 1000);
     };
 
+    const handleStartVideo = () => {
+        setShowFullScreenPrompt(false);
+        setIsVideoEnded(false);
+        setShowIntro(false);
+        setShowSkipButton(false);
+        setFadeOutVideo(false);
+    };
+
     return (
         <div id="IntroLomda">
             {/* שלב ראשון – הודעת F11 */}
@@ -70,7 +91,7 @@ const IntroLomda = () => {
                     <div className="fullscreen-prompt">
                         <div className="prompt-text">
                             <p>
-                                ברוכים הבאים והבאות ללומדת מכלול רפואה  !<br/><br/>
+                                ברוכים הבאים והבאות ללומדת מכלול רפואה  !<br /><br />
                                 להצגת הלומדה בצורה מיטבית לחצ/י על <strong>F11</strong>
                             </p>
                             <button className="btn-go" onClick={handleStartVideo}>צאו לדרך!</button>
@@ -116,7 +137,7 @@ const IntroLomda = () => {
             )}
 
             {/* שלב שני – סרטון פתיחה */}
-            {!showFullScreenPrompt && !isVideoEnded && (
+            {!showFullScreenPrompt && !isVideoEnded && !cameFromSimulation && !isRestartMode && (
                 <div className={`video-section ${fadeOutVideo ? 'fade-out' : ''}`}>
                     {showSkipButton && (
                         <button className="skip" onClick={skipVideo}>
@@ -142,7 +163,15 @@ const IntroLomda = () => {
 
                     <div className="intro-text-slide-in text-area">
                         <h1 className="lomda-title">לומדה למכלול רפואה</h1>
-                        <button className="btn-start" onClick={handleStartBtn}>התחלה</button>
+
+                        {/* כפתור שונה לפי מצב */}
+                        {!isRestartMode && (
+                            <button className="btn-start" onClick={handleStartBtn}>התחלה</button>
+                        )}
+
+                        {isRestartMode && (
+                            <button className="btn-start" onClick={handleRestart}>התחלה מחדש</button>
+                        )}
                     </div>
                 </div>
             )}

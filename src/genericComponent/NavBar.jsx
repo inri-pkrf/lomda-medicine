@@ -18,7 +18,7 @@ const NavBar = () => {
     return (
         <div className="NavBar">
             <div className="timeline">
-                <div className="background-line"></div> {/* קו אחורי */}
+                <div className="background-line"></div>
                 {steps.map((step, index) => (
                     <div className="step" key={index}>
                         <div className={`circle ${step.isActive ? 'active' : ''}`}>

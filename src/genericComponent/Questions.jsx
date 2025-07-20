@@ -110,7 +110,7 @@ const Questions = () => {
       case 'THREE':
         return '/part-four';
       case 'FOUR':
-        return '/test';
+        return '/simulation';
       default:
         return '/';
     }

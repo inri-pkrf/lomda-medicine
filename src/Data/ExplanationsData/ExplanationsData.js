@@ -53,7 +53,7 @@ const explanationsData = {
       },
       end: {
          text: <> הגענו לסיום הפרק</>,
-        nextPart:"/Four"
+        nextPart:"FOUR"
       }
     }
   };
