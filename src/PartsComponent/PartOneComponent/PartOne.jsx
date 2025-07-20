@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Explanations from '../../genericComponent/Explanations';
+import { useLocation } from 'react-router-dom';
 import './styles/PartOne.css';
 
 import Note1 from './Notes/Note1';
@@ -11,7 +12,12 @@ import Note6 from './Notes/Note6';
 import Note7 from './Notes/Note7';
 
 const PartOne = () => {
-  const [showExplanation, setShowExplanation] = useState(true); // הסבר ראשוני בהתחלה
+  const location = useLocation();
+  const reviewMode = location.state?.reviewMode || false;
+
+  // showExplanation בברירת מחדל: false אם reviewMode, אחרת true
+  const [showExplanation, setShowExplanation] = useState(!reviewMode);
+
   const [position, setPosition] = useState("start");
   const [activeNoteId, setActiveNoteId] = useState(null);
   const [viewedNoteIds, setViewedNoteIds] = useState(() => {
@@ -103,7 +109,7 @@ const PartOne = () => {
     });
   };
 
-  useEffect(() => {
+   useEffect(() => {
     // טען viewedNoteIds וchapterFinished מ-sessionStorage בהתחלה
     const storedNotes = sessionStorage.getItem('viewedNoteIds');
     if (storedNotes) {
@@ -113,7 +119,11 @@ const PartOne = () => {
     if (finished) {
       setChapterFinished(true);
       setPosition("end");
-      setShowExplanation(true);
+
+      // אם אנחנו לא במצב review - נראה הסבר סיום
+      if (!reviewMode) {
+        setShowExplanation(true);
+      }
     }
   }, []);
 
@@ -138,9 +148,9 @@ const PartOne = () => {
 
   return (
     <div className="PartOne">
-      {showExplanation && (
+       {showExplanation && (
         <Explanations
-          chapterName={chapterName}
+          chapterName={"PartOne"}
           position={position}
           isChapterFinished={chapterFinished}
           onClose={() => setShowExplanation(false)}

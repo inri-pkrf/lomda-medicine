@@ -4,12 +4,17 @@ import relationsData from '../../Data/BoardData/RelationsData';
 import Explanations from '../../genericComponent/Explanations';
 import Board from './Board';
 import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+
 
 const PartFour = () => {
     const navigate = useNavigate();
     const timerRef = useRef(null);
+      const location = useLocation();
+  const reviewMode = location.state?.reviewMode || false;
 
-    const [showExplanation, setShowExplanation] = useState(true);
+  const [showExplanation, setShowExplanation] = useState(!reviewMode);
+
     const [position, setPosition] = useState("start");
     const [chapterFinished, setChapterFinished] = useState(() => {
         return sessionStorage.getItem('chapterFinishedPartFour') === 'true';
@@ -24,35 +29,39 @@ const PartFour = () => {
 
     const chapterName = "PartFour";
 
-    // אתחול מהסשן
-    useEffect(() => {
-        const savedVisited = sessionStorage.getItem('visitedRelationsPartFour');
-        if (savedVisited) {
-            setVisitedRelations(JSON.parse(savedVisited));
-        }
-        const finished = sessionStorage.getItem('chapterFinishedPartFour') === 'true';
-        if (finished) {
-            setChapterFinished(true);
-            setPosition("end");
-            setShowExplanation(true);
-        }
-    }, []);
+  // לאחר טעינה – בדוק אם הפרק כבר הושלם
+  useEffect(() => {
+    const storedVisited = sessionStorage.getItem('visitedRelationsPartFour');
+    if (storedVisited) {
+      setVisitedRelations(JSON.parse(storedVisited));
+    }
 
-    useEffect(() => {
-        const allVisited = relationsData.every(rel => visitedRelations.includes(rel.id));
-        if (allVisited && !chapterFinished) {
-            timerRef.current = setTimeout(() => {
-                setPosition("end");
-                setShowExplanation(true);
-                setChapterFinished(true);
-                sessionStorage.setItem('chapterFinishedPartFour', 'true');
-            }, 1200);
-        }
+    const finished = sessionStorage.getItem('chapterFinishedPartFour') === 'true';
+    if (finished) {
+      setChapterFinished(true);
+      setPosition("end");
+      if (!reviewMode) setShowExplanation(true);
+    }
+  }, [reviewMode]);
 
-        return () => {
-            if (timerRef.current) clearTimeout(timerRef.current);
-        };
-    }, [visitedRelations, chapterFinished]);
+  // בדיקה אם כל הפריטים נבחרו
+  useEffect(() => {
+    const allVisited = relationsData.every(rel => visitedRelations.includes(rel.id));
+    if (allVisited && !chapterFinished) {
+      timerRef.current = setTimeout(() => {
+        setPosition("end");
+        if (!reviewMode) {
+          setShowExplanation(true);
+        }
+        setChapterFinished(true);
+        sessionStorage.setItem('chapterFinishedPartFour', 'true');
+      }, 1200);
+    }
+
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, [visitedRelations, chapterFinished, reviewMode]);
 
     const handleCloseExplanation = () => {
         setShowExplanation(false);
@@ -94,13 +103,13 @@ const PartFour = () => {
     return (
         <div className="PartFour">
             {showExplanation && (
-                <Explanations
-                    chapterName={chapterName}
-                    position={position}
-                    isChapterFinished={chapterFinished}
-                    onClose={handleCloseExplanation}
-                />
-            )}
+        <Explanations
+          chapterName={chapterName}
+          position={position}
+          isChapterFinished={chapterFinished}
+          onClose={handleCloseExplanation}
+        />
+      )}
 
             <img
                 src={backgroundImage}

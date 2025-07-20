@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import Explanations from '../../genericComponent/Explanations';
+import { useLocation } from 'react-router-dom';
 import TvMahoz from '../PartTwoComponent/TvMahoz';
 import TvNafa from '../PartTwoComponent/TvNafa';
 import '../PartTwoComponent/styles/PartTwo.css';
 
 const PartTwo = () => {
-  // טוענים מה-sessionStorage בעת התחלת הקומפוננטה
-  const [showExplanation, setShowExplanation] = useState(true);
+  const location = useLocation();
+  const reviewMode = location.state?.reviewMode || false;
+
+  // showExplanation בברירת מחדל: false אם reviewMode, אחרת true
+  const [showExplanation, setShowExplanation] = useState(!reviewMode);
   const [position, setPosition] = useState("start");
   const [activeComponent, setActiveComponent] = useState("none");
   const [mahozCompleted, setMahozCompleted] = useState(() => {
@@ -29,13 +33,15 @@ const PartTwo = () => {
   useEffect(() => {
     if (mahozCompleted && nafaCompleted) {
       setPosition("end");
-      setShowExplanation(true);
+      if (!reviewMode) {
+        setShowExplanation(true);
+      }
     }
-  }, [mahozCompleted, nafaCompleted]);
+  }, [mahozCompleted, nafaCompleted, reviewMode]);
 
   return (
     <div className="PartTwo">
-      {showExplanation && (
+       {showExplanation && (
         <Explanations
           chapterName={chapterName}
           position={position}

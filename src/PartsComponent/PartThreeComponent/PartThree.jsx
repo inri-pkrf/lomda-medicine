@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import './styles/PartThree.css';
 
 import CardMedicine from './Cards/CardMedicine';
@@ -7,6 +8,11 @@ import CardParlag from './Cards/CardParlag';
 import Explanations from '../../genericComponent/Explanations';
 
 const PartThree = () => {
+    const location = useLocation();
+    const reviewMode = location.state?.reviewMode || false;
+
+    const [showExplanation, setShowExplanation] = useState(!reviewMode);
+
     const [hoveredItem, setHoveredItem] = useState(null);
     const [activeCard, setActiveCard] = useState(null);
     const [completedItems, setCompletedItems] = useState(() => {
@@ -14,7 +20,6 @@ const PartThree = () => {
         return saved ? JSON.parse(saved) : [];
     });
 
-    const [showExplanation, setShowExplanation] = useState(true);
     const [position, setPosition] = useState("start");
     const [chapterFinished, setChapterFinished] = useState(() => {
         return sessionStorage.getItem('chapterFinishedPartThree') === 'true';
@@ -43,12 +48,14 @@ const PartThree = () => {
         if (allCompleted && !chapterFinished) {
             timerRef.current = setTimeout(() => {
                 setPosition("end");
-                setShowExplanation(true);
+                if (!reviewMode) { // ✅ רק אם לא במצב review
+                    setShowExplanation(true);
+                }
                 setChapterFinished(true);
                 sessionStorage.setItem('chapterFinishedPartThree', 'true');
-            }, 1500);
+            }, 1200);
         }
-    }, [completedItems, chapterFinished]);
+    }, [completedItems, chapterFinished, reviewMode]);
 
     useEffect(() => {
         const storedCompleted = sessionStorage.getItem('completedItemsPartThree');
@@ -59,9 +66,11 @@ const PartThree = () => {
         if (finished) {
             setChapterFinished(true);
             setPosition("end");
-            setShowExplanation(true);
+            if (!reviewMode) {
+                setShowExplanation(true); // ✅ הצג הסבר רק אם לא review
+            }
         }
-    }, []);
+    }, [reviewMode]);
 
     useEffect(() => {
         return () => {
@@ -71,14 +80,14 @@ const PartThree = () => {
 
     return (
         <div className="PartThree">
-            {showExplanation && (
-                <Explanations
-                    chapterName={chapterName}
-                    position={position}
-                    isChapterFinished={chapterFinished}
-                    onClose={() => setShowExplanation(false)}
-                />
-            )}
+         {showExplanation && (
+        <Explanations
+          chapterName={chapterName}
+          position={position}
+          isChapterFinished={chapterFinished}
+          onClose={() => setShowExplanation(false)}
+        />
+      )}
 
             <img
                 src={backgroundSrc}
