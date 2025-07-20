@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate,useParams  } from 'react-router-dom'; 
+import { useNavigate, useParams } from 'react-router-dom';
 import questionsDataTwo from '../Data/QuestionsData/QuestionsDataTwo';
 import questionsDataThree from '../Data/QuestionsData/QuestionsDataThree';
 import questionsDataFour from '../Data/QuestionsData/QuestionsDataFour';
@@ -16,7 +16,7 @@ const getRandomItems = (arr, count) => {
 const pastelColors = ['#fce5cd', '#cce0d6', '#f4cccc', 'rgb(223 204 239)'];
 
 const Questions = () => {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const { chapter } = useParams();
 
   const [selectedQuestions, setSelectedQuestions] = useState([]);
@@ -25,12 +25,20 @@ const Questions = () => {
   const [answersMap, setAnswersMap] = useState({});
   const [showCorrectAnswerMap, setShowCorrectAnswerMap] = useState({});
 
+  // מאחסן את כל הנתונים לכל הפרקים - object שבו כל key הוא פרק
+  const [allChaptersData, setAllChaptersData] = useState({});
+
   useEffect(() => {
+    // טוען את כל המידע מה-sessionStorage
     const savedDataJSON = sessionStorage.getItem(STORAGE_KEY);
     if (savedDataJSON) {
       try {
-        const savedData = JSON.parse(savedDataJSON);
-        if (savedData.chapter === chapter) {
+        const savedDataAll = JSON.parse(savedDataJSON);
+        setAllChaptersData(savedDataAll);
+
+        // אם יש נתונים לשלב הנוכחי
+        if (savedDataAll[chapter]) {
+          const savedData = savedDataAll[chapter];
           setSelectedQuestions(savedData.selectedQuestions || []);
           setAnswersCorrectMap(savedData.answersCorrectMap || {});
           setAnswersMap(savedData.answersMap || {});
@@ -43,6 +51,7 @@ const Questions = () => {
       }
     }
 
+    // אם אין נתונים לפרק הנוכחי - טען שאלות חדשות
     let data = [];
     if (chapter?.toUpperCase() === 'TWO') {
       questionsDataTwo.forEach((category) => {
@@ -61,19 +70,26 @@ const Questions = () => {
     setShowCorrectAnswerMap({});
   }, [chapter]);
 
+  // שמירת כל הנתונים לכל הפרקים
   useEffect(() => {
     if (selectedQuestions.length === 0) return;
-    const dataToSave = {
-      chapter,
-      selectedQuestions,
-      currentIndex,
-      answersCorrectMap,
-      answersMap,
-      showCorrectAnswerMap,
+
+    const updatedAllData = {
+      ...allChaptersData,
+      [chapter]: {
+        selectedQuestions,
+        currentIndex,
+        answersCorrectMap,
+        answersMap,
+        showCorrectAnswerMap,
+      },
     };
-    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(dataToSave));
+
+    setAllChaptersData(updatedAllData);
+    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(updatedAllData));
   }, [chapter, selectedQuestions, currentIndex, answersCorrectMap, answersMap, showCorrectAnswerMap]);
 
+  // המשך פונקציות handle כמו שהיו
   const handleNext = () => {
     setCurrentIndex((prev) => (prev < selectedQuestions.length - 1 ? prev + 1 : prev));
   };
@@ -88,7 +104,19 @@ const Questions = () => {
       [currentIndex]: answer,
     }));
 
-    const isCorrect = answer === selectedQuestions[currentIndex].correct_answer;
+    // בדיקה חכמה - אם התשובה נכונה, גם עבור מערכים (רשימות)
+    const correctAnswer = selectedQuestions[currentIndex].correct_answer;
+    let isCorrect = false;
+    if (Array.isArray(correctAnswer)) {
+      // השווה מערכים - כאן בדיקה פשוטה של התאמה מלאה (אפשר לשפר לפי צורך)
+      isCorrect =
+        Array.isArray(answer) &&
+        answer.length === correctAnswer.length &&
+        answer.every((ans, i) => ans === correctAnswer[i]);
+    } else {
+      isCorrect = answer === correctAnswer;
+    }
+
     setAnswersCorrectMap((prev) => ({
       ...prev,
       [currentIndex]: isCorrect,
@@ -102,7 +130,6 @@ const Questions = () => {
     }));
   };
 
-  // ✅ מחזיר את הנתיב הבא לפי הפרק
   const getNextPath = () => {
     switch (chapter?.toUpperCase()) {
       case 'TWO':

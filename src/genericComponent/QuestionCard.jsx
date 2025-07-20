@@ -10,20 +10,18 @@ const QuestionCard = ({
   totalQuestions,
   selectedAnswer: selectedAnswerProp = null,
   onAnswerSelect,
-  showCorrectAnswerProp = false,      // מקבל את מצב הצגת התשובה הנכונה מהאב
-  onShowCorrectAnswer,                // callback לשינוי המצב אצל האב
+  showCorrectAnswer = false,      // כבר ערך שמגיע מהאב, מציין אם להציג תשובה נכונה
+  onShowCorrectAnswer,            // callback לשינוי המצב אצל האב
 }) => {
   const [selectedAnswer, setSelectedAnswer] = useState(selectedAnswerProp);
   const [showResult, setShowResult] = useState(false);
-  const [showCorrectAnswer, setShowCorrectAnswer] = useState(showCorrectAnswerProp);
   const [isLocked, setIsLocked] = useState(false);
 
   useEffect(() => {
     setSelectedAnswer(selectedAnswerProp);
     setShowResult(!!selectedAnswerProp);
-    setShowCorrectAnswer(showCorrectAnswerProp);
     setIsLocked(selectedAnswerProp === question.correct_answer);
-  }, [question, selectedAnswerProp, showCorrectAnswerProp]);
+  }, [question, selectedAnswerProp]);
 
   const handleAnswerClick = (answer) => {
     if (isLocked) return;
@@ -39,7 +37,6 @@ const QuestionCard = ({
   };
 
   const handleShowCorrectAnswerClick = () => {
-    setShowCorrectAnswer(true);
     if (onShowCorrectAnswer) onShowCorrectAnswer(true); // מעדכן אצל האב את מצב הצגת התשובה הנכונה
     if (onAnswerSelect) onAnswerSelect(question.correct_answer);
   };
@@ -76,28 +73,18 @@ const QuestionCard = ({
             ))}
           </div>
 
-          {showResult && (
-            <div className="result-message">
-              {selectedAnswer === question.correct_answer ? (
-                <span className="correct-text">כל הכבוד!</span>
-              ) : (
-                <span className="incorrect-text">לא נורא, נסו שוב</span>
-              )}
-            </div>
-          )}
+
         </>
       )}
 
       {question.type === 'open' && (
         <>
-          {!showCorrectAnswer && (
-            <button className="show-right-btn" onClick={handleShowCorrectAnswerClick}>
-              הצגת תשובה נכונה
-            </button>
-          )}
+          {!showCorrectAnswer &&(<button className="show-right-btn" onClick={handleShowCorrectAnswerClick}>
+            הצגת תשובה נכונה
+          </button>)}
           {showCorrectAnswer && (
             <div className="correct-answer">
-              תשובה נכונה:<br /> {question.correct_answer}
+              <span className="correct-text">התשובה הנכונה היא: {question.correct_answer}</span>
             </div>
           )}
         </>
