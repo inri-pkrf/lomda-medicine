@@ -7,7 +7,7 @@ import CardReport from './Cards/CardReport';
 import CardParlag from './Cards/CardParlag';
 import Explanations from '../../genericComponent/Explanations';
 
-const PartThree = () => {
+const PartThree = ({ setHideNavBar }) => { // הוספת setHideNavBar בפרופס
     const location = useLocation();
     const reviewMode = location.state?.reviewMode || false;
 
@@ -78,16 +78,26 @@ const PartThree = () => {
         };
     }, []);
 
+    // הוספת הסתרת נאבר כשהכרטיס פתוח, ללא שינוי בלוגיקה
+    useEffect(() => {
+        if (!setHideNavBar) return;
+        if (activeCard !== null) {
+            setHideNavBar(true);
+        } else {
+            setHideNavBar(false);
+        }
+    }, [activeCard, setHideNavBar]);
+
     return (
         <div className="PartThree">
-         {showExplanation && (
-        <Explanations
-          chapterName={chapterName}
-          position={position}
-          isChapterFinished={chapterFinished}
-          onClose={() => setShowExplanation(false)}
-        />
-      )}
+            {showExplanation && (
+                <Explanations
+                    chapterName={chapterName}
+                    position={position}
+                    isChapterFinished={chapterFinished}
+                    onClose={() => setShowExplanation(false)}
+                />
+            )}
 
             <img
                 src={backgroundSrc}

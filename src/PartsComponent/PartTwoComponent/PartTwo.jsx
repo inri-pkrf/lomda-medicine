@@ -5,7 +5,7 @@ import TvMahoz from '../PartTwoComponent/TvMahoz';
 import TvNafa from '../PartTwoComponent/TvNafa';
 import '../PartTwoComponent/styles/PartTwo.css';
 
-const PartTwo = () => {
+const PartTwo = ({ setHideNavBar }) => {  // מקבלים את setHideNavBar בפרופס
   const location = useLocation();
   const reviewMode = location.state?.reviewMode || false;
 
@@ -30,14 +30,30 @@ const PartTwo = () => {
     sessionStorage.setItem("nafaCompleted", nafaCompleted);
   }, [nafaCompleted]);
 
-  useEffect(() => {
-    if (mahozCompleted && nafaCompleted) {
-      setPosition("end");
-      if (!reviewMode) {
+useEffect(() => {
+  if (mahozCompleted && nafaCompleted) {
+    setPosition("end");
+
+    if (!reviewMode) {
+      const timer = setTimeout(() => {
         setShowExplanation(true);
-      }
+      }, 1200); // דיליי של 1.2 שניות
+
+      return () => clearTimeout(timer); 
     }
-  }, [mahozCompleted, nafaCompleted, reviewMode]);
+  }
+}, [mahozCompleted, nafaCompleted, reviewMode]);
+
+  // הוספה להסתרת הניווט כשהטלוויזיות פתוחות
+  useEffect(() => {
+    if (!setHideNavBar) return;
+
+    if (activeComponent === "mahoz" || activeComponent === "nafa") {
+      setHideNavBar(true);
+    } else {
+      setHideNavBar(false);
+    }
+  }, [activeComponent, setHideNavBar]);
 
   return (
     <div className="PartTwo">

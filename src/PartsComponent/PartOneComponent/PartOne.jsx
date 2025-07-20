@@ -11,7 +11,7 @@ import Note5 from './Notes/Note5';
 import Note6 from './Notes/Note6';
 import Note7 from './Notes/Note7';
 
-const PartOne = () => {
+const PartOne = ({ setHideNavBar }) => {
   const location = useLocation();
   const reviewMode = location.state?.reviewMode || false;
 
@@ -108,6 +108,16 @@ const PartOne = () => {
       return prev;
     });
   };
+
+useEffect(() => {
+  if (!setHideNavBar) return;
+
+  if (activeNoteId !== null) {
+    setHideNavBar(true);  // בתוך פתקים - הסתיר נאבר
+  } else {
+    setHideNavBar(false); // מחוץ לפתקים - הראה נאבר
+  }
+}, [activeNoteId, setHideNavBar]);
 
    useEffect(() => {
     // טען viewedNoteIds וchapterFinished מ-sessionStorage בהתחלה

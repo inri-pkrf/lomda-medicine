@@ -2,97 +2,145 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(240, 240, 240, 0.801);
+    background: rgba(255, 255, 255, 0.7);
     border-radius: 0 0 60vw 60vw;
     padding: 10px 22px;
     width: fit-content;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: saturate(150%) blur(8px);
+    -webkit-backdrop-filter: saturate(150%) blur(8px);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(200, 200, 200, 0.3);
     position: absolute;
-    z-index: 1000;
+    z-index: 4000;
     top: 0;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, 0);
     direction: rtl;
+    font-family: "Assistant", sans-serif;
+    user-select: none;
+    color: #444;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    opacity: 1;
+    pointer-events: auto;
 }
 
+.NavBar.hidden {
+    transform: translate(-50%, -100%);
+    opacity: 0;
+    pointer-events: none;
+}
 .timeline {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 30px;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    position: relative;
 }
 
 .background-line {
-  position: absolute;
-  top: 50%;
-  left: 5%;
-  right: 5%;
-  height: 4px;
-  background: #ddd;
-  z-index: 0;
-  transform: translateY(-50%);
-  border-radius: 2px;
+    position: absolute;
+    top: 15px;
+    height: 2px;
+    background: linear-gradient(90deg, #999999 0%, #a0a0a0 50%, #999999 100%);
+    border-radius: 2px;
+    z-index: 0;
+    left: 82px;
+    right: 82px;
+    filter: none;
 }
 
 .step {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    margin: 0 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.step.locked .circle {
+    background: #e0e0e0;
+    /* אפור בהיר */
+    box-shadow:
+        inset 0 0 8px rgba(120, 120, 120, 0.25),
+        0 2px 4px rgba(120, 120, 120, 0.15);
+    /* צל עדין אפור */
+    border-color: #b0b0b0;
+    color: #888888;
+    filter: grayscale(20%);
 }
 
 .step.locked {
-  opacity: 0.5;
+    cursor: not-allowed;
+    opacity: 0.45;
+    /* קצת יותר בולט */
+    pointer-events: none;
+    filter: none;
+    /* אין גרייסקייל חזק */
+    transform: none !important;
+}
+
+.step:hover:not(.locked) {
+    transform: scale(1.1);
 }
 
 .circle {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  border: 2px solid #888;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
-  font-weight: bold;
-  color: #888;
-  transition: all 0.3s ease;
+    width: 28px;
+    height: 28px;
+    background: linear-gradient(145deg, #fafafa, #f0f0f0);
+    /* לבן-אפור רך */
+    border-radius: 50%;
+    font-weight: 600;
+    font-size: 16px;
+    color: #666;
+    /* אפור בינוני */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
+    transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+    border: 1.8px solid transparent;
 }
 
 .circle.question {
-  font-size: 20px;
-  font-weight: bold;
-  color: #666;
-  border-style: dashed;
+    font-size: 22px;
+    font-weight: 700;
+    color: #999;
+    border-style: dashed;
+    border-color: #ccc;
+    background-color: transparent;
+    box-shadow: none;
 }
 
 .step.active .circle {
-  background-color: #1976d2;
-  border-color: #1976d2;
-  color: white;
+    background: #f8e1c3;
+    color: #444;
+    border-color: #707070;
+    box-shadow: 0 0 8px #d6c1aa inset 0 0 5px #e7dac3;
 }
 
 .step.current .circle {
-  background-color: #004ba0;
-  border-color: #004ba0;
-  color: white;
-  box-shadow: 0 0 10px #004ba0;
+    background: #f8e1c3;
+    color: #222;
+    border-color: #bf9f7a;
+    box-shadow: 0 0 12px #bf9b7a, inset 0 0 12px #ffbf6b;
 }
 
 .label {
-  margin-top: 5px;
-  font-size: 14px;
-  color: #444;
-  white-space: nowrap;
+    margin-top: 5px;
+    font-size: 18px;
+    width: 115px;
+    height: 18px;
+    text-align: center;
+    user-select: none;
+    color: #555;
+    font-weight: 500;
+    font-family: "Assistant", sans-serif;
+    letter-spacing: 0.02em;
+    text-shadow: none;
 }
 
 .label.empty {
-  height: 18px; /* גובה שווה כדי לשמור על ריווח */
+    visibility: hidden;
 }
-
-

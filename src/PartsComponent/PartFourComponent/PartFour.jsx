@@ -7,13 +7,13 @@ import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
 
-const PartFour = () => {
+const PartFour = ({ setHideNavBar }) => { // הוספת setHideNavBar בפרופס
     const navigate = useNavigate();
     const timerRef = useRef(null);
-      const location = useLocation();
-  const reviewMode = location.state?.reviewMode || false;
+    const location = useLocation();
+    const reviewMode = location.state?.reviewMode || false;
 
-  const [showExplanation, setShowExplanation] = useState(!reviewMode);
+    const [showExplanation, setShowExplanation] = useState(!reviewMode);
 
     const [position, setPosition] = useState("start");
     const [chapterFinished, setChapterFinished] = useState(() => {
@@ -29,39 +29,50 @@ const PartFour = () => {
 
     const chapterName = "PartFour";
 
-  // לאחר טעינה – בדוק אם הפרק כבר הושלם
-  useEffect(() => {
-    const storedVisited = sessionStorage.getItem('visitedRelationsPartFour');
-    if (storedVisited) {
-      setVisitedRelations(JSON.parse(storedVisited));
-    }
-
-    const finished = sessionStorage.getItem('chapterFinishedPartFour') === 'true';
-    if (finished) {
-      setChapterFinished(true);
-      setPosition("end");
-      if (!reviewMode) setShowExplanation(true);
-    }
-  }, [reviewMode]);
-
-  // בדיקה אם כל הפריטים נבחרו
-  useEffect(() => {
-    const allVisited = relationsData.every(rel => visitedRelations.includes(rel.id));
-    if (allVisited && !chapterFinished) {
-      timerRef.current = setTimeout(() => {
-        setPosition("end");
-        if (!reviewMode) {
-          setShowExplanation(true);
+    // לאחר טעינה – בדוק אם הפרק כבר הושלם
+    useEffect(() => {
+        const storedVisited = sessionStorage.getItem('visitedRelationsPartFour');
+        if (storedVisited) {
+            setVisitedRelations(JSON.parse(storedVisited));
         }
-        setChapterFinished(true);
-        sessionStorage.setItem('chapterFinishedPartFour', 'true');
-      }, 1200);
-    }
 
-    return () => {
-      if (timerRef.current) clearTimeout(timerRef.current);
-    };
-  }, [visitedRelations, chapterFinished, reviewMode]);
+        const finished = sessionStorage.getItem('chapterFinishedPartFour') === 'true';
+        if (finished) {
+            setChapterFinished(true);
+            setPosition("end");
+            if (!reviewMode) setShowExplanation(true);
+        }
+    }, [reviewMode]);
+
+    // בדיקה אם כל הפריטים נבחרו
+    useEffect(() => {
+        const allVisited = relationsData.every(rel => visitedRelations.includes(rel.id));
+        if (allVisited && !chapterFinished) {
+            timerRef.current = setTimeout(() => {
+                setPosition("end");
+                if (!reviewMode) {
+                    setShowExplanation(true);
+                }
+                setChapterFinished(true);
+                sessionStorage.setItem('chapterFinishedPartFour', 'true');
+            }, 1200);
+        }
+
+        return () => {
+            if (timerRef.current) clearTimeout(timerRef.current);
+        };
+    }, [visitedRelations, chapterFinished, reviewMode]);
+
+    // הסתרת נאבר כאשר הלוח פתוח
+    useEffect(() => {
+        if (!setHideNavBar) return;
+        if (selectedRelation !== null) {
+            setHideNavBar(true);
+        } else {
+            setHideNavBar(false);
+        }
+    }, [selectedRelation, setHideNavBar]);
+
 
     const handleCloseExplanation = () => {
         setShowExplanation(false);
@@ -103,13 +114,13 @@ const PartFour = () => {
     return (
         <div className="PartFour">
             {showExplanation && (
-        <Explanations
-          chapterName={chapterName}
-          position={position}
-          isChapterFinished={chapterFinished}
-          onClose={handleCloseExplanation}
-        />
-      )}
+                <Explanations
+                    chapterName={chapterName}
+                    position={position}
+                    isChapterFinished={chapterFinished}
+                    onClose={handleCloseExplanation}
+                />
+            )}
 
             <img
                 src={backgroundImage}

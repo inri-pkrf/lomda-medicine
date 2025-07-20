@@ -25,6 +25,7 @@ const SimulationWrapper = () => {
 function App() {
   const navigate = useNavigate();
   const location = useLocation();
+  const [hideNavBar, setHideNavBar] = React.useState(false);
 
   return (
     <div className="App">
@@ -52,15 +53,15 @@ function App() {
         </div>
       </div>
 
-      {location.pathname !== '/' && <NavBar />}
+      {!hideNavBar && location.pathname !== '/' && <NavBar />}
 
       <Routes>
         <Route path="/" element={<IntroLomda />} />
         <Route path="part-zero" element={<PartZero />} />
-        <Route path="part-one" element={<PartOne />} />
-        <Route path="part-two" element={<PartTwo />} />
-        <Route path="part-three" element={<PartThree />} />
-        <Route path="part-four" element={<PartFour />} />
+        <Route path="part-one" element={<PartOne setHideNavBar={setHideNavBar} />} />
+        <Route path="part-two" element={<PartTwo setHideNavBar={setHideNavBar} />} />
+        <Route path="part-three" element={<PartThree setHideNavBar={setHideNavBar} />} />
+        <Route path="part-four" element={<PartFour setHideNavBar={setHideNavBar} />} />
         <Route path="simulation" element={<SimulationWrapper />} />
         <Route path="/questions/:chapter" element={<Questions />} />
       </Routes>

@@ -50,7 +50,7 @@ const NavBar = () => {
   }
 
   return (
-    <div className="NavBar">
+<div className={`NavBar ${location.state?.hideNavBar ? 'hidden' : ''}`}>
       <div className="timeline">
         <div className="background-line"></div>
         {steps.map((step, index) => {
