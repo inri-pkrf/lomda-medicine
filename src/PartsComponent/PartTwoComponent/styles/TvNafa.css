@@ -17,6 +17,7 @@
   animation: fadeIn-nafa 1s ease-out forwards; /* במקום 1.7s */
 }
 
+
 @keyframes fadeIn-nafa {
   0% {
     opacity: 0;
@@ -24,11 +25,14 @@
   }
 
 
+
+
   100% {
     opacity: 1;
     transform: translateY(0);
   }
 }
+
 
 .Tv-img-nafa {
   position: absolute;
@@ -39,6 +43,7 @@
   transform: translate(50%, 0);
 z-index: 0;
 }
+
 
 .TvNafa .buttons-bar {
     display: flex;
@@ -54,18 +59,24 @@ z-index: 0;
     z-index: 1000;
 }
 
+
 .TvNafa .btn-text {
     display: block;
 }
+
+
 
 
 .TvNafa .text-label {
     color: rgb(255, 255, 255);
 }
 
+
 .TvNafa .btn-text-next .img-arrow {
   background-image: url('/public/Assets/Btns/arrowWhite.png'); /* למשל תמונה אחרת */
 }
+
+
 
 
 .TvNafa .btn-text-prev .img-arrow {
@@ -74,6 +85,7 @@ z-index: 0;
 .TvNafa .btn-text-end  .img-arrow {
   background-image: url('/public/Assets/Btns/arrowFullWhite.png'); /* תמונה אחרת */
 }
+
 
 .info-nafa{
     position: absolute;
@@ -88,6 +100,8 @@ z-index: 0;
       width:50vw
 
 
+
+
 }
 .info-nafa.with-image{
       width: 30vw;
@@ -95,6 +109,8 @@ z-index: 0;
 .info-nafa.no-image {
       width: 70vw;
 }
+
+
 
 
 .nafa-title{
@@ -109,6 +125,8 @@ z-index: 0;
       width: 40vw;
       height:40vh
 }
+
+
 
 
 .nafa-step-image{
@@ -131,6 +149,8 @@ z-index: 0;
 }
 
 
+
+
 .intro-buttons-group-nafa {
     position: relative;
     top: 46.5vh;
@@ -139,11 +159,15 @@ z-index: 0;
     direction: rtl;
 
 
-    display: flex;       
+
+
+    display: flex;      
     flex-direction: row;  
     align-items: center;  
-    gap: 3vw;               
+    gap: 3vw;              
 }
+
+
 
 
 .intro-button-nafa {
@@ -155,7 +179,7 @@ z-index: 0;
    
 }
 .completed-nafa-btn{
-   background-color: rgb(157 157 157 / 83%);
+   background-color: rgba(233, 233, 233, 0.74);
     border: none;
     width: 9vw;
     height: 6vh;
@@ -163,31 +187,42 @@ z-index: 0;
 }
 
 
-/* כפתורי מכלולים */
-#btn-2-nafa {
-    position: relative;
-    right: 11vw;
+.completed-nafa-btn:hover {
+  box-shadow: 0 0 15px 2px rgba(255, 255, 255, 1); /* glow מוגבר בהובר */
 }
 
+
+/* כפתורי מכלולים */
+#btn-2-nafa {
+    position: absolute;
+    right: 23vw;
+}
+
+
 #btn-3-nafa {
-    position: relative;
-    right: 10.4vw;
+    position: absolute;
+    right: 34.4vw;
 }
 #btn-4-nafa {
-    position: relative;
-    right: 10.4vw;
+    position: absolute;
+    right: 46.4vw;
 }
 #btn-5-nafa {
-    position: relative;
-    right: 9.5vw;
+   position: absolute;
+    right: 57.5vw;
 }
+
+
+
 
 
 
 #btn-6-nafa {
-    position: relative;
-    right: 8.5vw;
+    position: absolute;
+    right: 68.5vw;
 }
+
+
 
 
 /* כפתורי תאים בנפה */
@@ -199,6 +234,7 @@ z-index: 0;
     top: 20vh;
     right: 66vw;
 }
+
 
 .intro-buttons-group-nafa-3{
        position: relative;
@@ -213,6 +249,7 @@ z-index: 0;
     gap: 3vw;
 }
 
+
 .intro-button-nafa-3{
     background-color: rgba(223, 5, 5, 0);
     border: none;
@@ -221,50 +258,55 @@ z-index: 0;
     cursor: pointer;
 }
 .completed-nafa-btn-3{
-    background-color: rgb(157 157 157 / 83%);
+    background-color: rgb(241 241 241 / 70%);
     border: none;
-    width: 12vw;
+    width: 12.5vw;
     height: 10vh;
     cursor: pointer;
 }
 
+
 #btn-step3-1{
-      position: relative;
-    right: 6.5vw;
+        position: absolute;
+    right: 50.2vw;
 }
 #btn-step3-2{
-     position: relative;
-    top: -1.6vh;
-    right: -1vw;
+    position: absolute;
+    top: 14vh;
+    right: 43vw;
 }
 #btn-step3-3{
-    position: relative;
-    top: -16.7vh;
-    right: 13.8vw;
+  position: absolute;
+    top: 14vh;
+    right: 57.6vw;
 }
 #btn-step3-4{
-  position: relative;
-    top: -18.3vh;
-    right: -0.8vw;
+ position: absolute;
+    top: 28vh;
+    right: 43vw;
 }
+
 
 #btn-step3-5{
-   position: relative;
-    top: -33.8vh;
-    right: 13.9vw;
+    position: absolute;
+    top: 27.9vh;
+    right: 57.7vw;
 }
+
 
 #btn-step3-6{
-    position: relative;
-    top: -35vh;
-    right: -3.9vw;
+    position: absolute;
+    top: 41.9vh;
+    right: 40vw;
 }
 #btn-step3-7{
-    position: relative;
-    top: -50.5vh;
-    right: 10.8vw;
+   position: absolute;
+    top: 41.8vh;
+    right: 54.6vw;
+
 
 }
+
 
 .scrollable-container-nafa {
   height: 50vh;
@@ -279,6 +321,7 @@ position: relative;
    right:-15vw;
 }
 
+
 .text-nafa-scroll{
 font-family: "Assistant";
 font-size: 3vmin;
@@ -286,6 +329,14 @@ direction: rtl;
 padding-right: 2vw;
 color: white;
 }
+
+
+
+
+
+
+
+
 
 
 

@@ -29,6 +29,7 @@
     opacity: 0;
     pointer-events: none;
 }
+
 .timeline {
     display: flex;
     align-items: center;
@@ -60,23 +61,19 @@
 
 .step.locked .circle {
     background: #e0e0e0;
-    /* אפור בהיר */
     box-shadow:
         inset 0 0 8px rgba(120, 120, 120, 0.25),
         0 2px 4px rgba(120, 120, 120, 0.15);
-    /* צל עדין אפור */
     border-color: #b0b0b0;
     color: #888888;
     filter: grayscale(20%);
+    opacity: 0.45;
 }
 
 .step.locked {
     cursor: not-allowed;
-    opacity: 0.45;
-    /* קצת יותר בולט */
     pointer-events: none;
     filter: none;
-    /* אין גרייסקייל חזק */
     transform: none !important;
 }
 
@@ -88,12 +85,10 @@
     width: 28px;
     height: 28px;
     background: linear-gradient(145deg, #fafafa, #f0f0f0);
-    /* לבן-אפור רך */
     border-radius: 50%;
     font-weight: 600;
     font-size: 16px;
     color: #666;
-    /* אפור בינוני */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -134,12 +129,13 @@
     height: 18px;
     text-align: center;
     user-select: none;
-    color: #555;
+    color: #000000;
     font-weight: 500;
     font-family: "Assistant", sans-serif;
     letter-spacing: 0.02em;
     text-shadow: none;
 }
+
 
 .label.empty {
     visibility: hidden;

@@ -37,14 +37,13 @@ useEffect(() => {
     if (!reviewMode) {
       const timer = setTimeout(() => {
         setShowExplanation(true);
-      }, 1200); // דיליי של 1.2 שניות
+      }, 1000); 
 
       return () => clearTimeout(timer); 
     }
   }
 }, [mahozCompleted, nafaCompleted, reviewMode]);
 
-  // הוספה להסתרת הניווט כשהטלוויזיות פתוחות
   useEffect(() => {
     if (!setHideNavBar) return;
 

@@ -30,38 +30,43 @@ const PartFour = ({ setHideNavBar }) => { // הוספת setHideNavBar בפרופ
     const chapterName = "PartFour";
 
     // לאחר טעינה – בדוק אם הפרק כבר הושלם
-    useEffect(() => {
-        const storedVisited = sessionStorage.getItem('visitedRelationsPartFour');
-        if (storedVisited) {
-            setVisitedRelations(JSON.parse(storedVisited));
-        }
+  useEffect(() => {
+  const storedVisited = sessionStorage.getItem('visitedRelationsPartFour');
+  const visited = storedVisited ? JSON.parse(storedVisited) : [];
+  setVisitedRelations(visited);
 
-        const finished = sessionStorage.getItem('chapterFinishedPartFour') === 'true';
-        if (finished) {
-            setChapterFinished(true);
-            setPosition("end");
-            if (!reviewMode) setShowExplanation(true);
-        }
-    }, [reviewMode]);
+  const finished = sessionStorage.getItem('chapterFinishedPartFour') === 'true';
+  setChapterFinished(finished);
+
+  if (finished) {
+    setPosition("end");
+    setShowExplanation(false); // כבר סיים בעבר - לא מציג הסבר בכלל
+  } else if (visited.length === 0 && !reviewMode) {
+    setShowExplanation(true);  // כניסה ראשונה - הסבר פתיחה
+    setPosition("start");
+  } else {
+    // כבר ביקר לפחות בפריט אחד, אך לא סיים
+    setShowExplanation(false);
+    setPosition("middle");
+  }
+}, [reviewMode]);
 
     // בדיקה אם כל הפריטים נבחרו
-    useEffect(() => {
-        const allVisited = relationsData.every(rel => visitedRelations.includes(rel.id));
-        if (allVisited && !chapterFinished) {
-            timerRef.current = setTimeout(() => {
-                setPosition("end");
-                if (!reviewMode) {
-                    setShowExplanation(true);
-                }
-                setChapterFinished(true);
-                sessionStorage.setItem('chapterFinishedPartFour', 'true');
-            }, 1200);
-        }
+useEffect(() => {
+  const allVisited = relationsData.every(rel => visitedRelations.includes(rel.id));
+  if (allVisited && !chapterFinished) {
+    timerRef.current = setTimeout(() => {
+      setPosition("end");
+      if (!reviewMode) setShowExplanation(true); // הסבר סיום עם דיליי
+      setChapterFinished(true);
+      sessionStorage.setItem('chapterFinishedPartFour', 'true');
+    }, 1200);
+  }
 
-        return () => {
-            if (timerRef.current) clearTimeout(timerRef.current);
-        };
-    }, [visitedRelations, chapterFinished, reviewMode]);
+  return () => {
+    if (timerRef.current) clearTimeout(timerRef.current);
+  };
+}, [visitedRelations, chapterFinished, reviewMode]);
 
     // הסתרת נאבר כאשר הלוח פתוח
     useEffect(() => {

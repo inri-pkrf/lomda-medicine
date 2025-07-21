@@ -43,34 +43,50 @@ const PartThree = ({ setHideNavBar }) => { // הוספת setHideNavBar בפרו�
         setActiveCard(null);
     };
 
-    useEffect(() => {
-        const allCompleted = allItems.every(id => completedItems.includes(id));
-        if (allCompleted && !chapterFinished) {
-            timerRef.current = setTimeout(() => {
-                setPosition("end");
-                if (!reviewMode) { // ✅ רק אם לא במצב review
-                    setShowExplanation(true);
-                }
-                setChapterFinished(true);
-                sessionStorage.setItem('chapterFinishedPartThree', 'true');
-            }, 1200);
-        }
-    }, [completedItems, chapterFinished, reviewMode]);
-
-    useEffect(() => {
-        const storedCompleted = sessionStorage.getItem('completedItemsPartThree');
-        if (storedCompleted) {
-            setCompletedItems(JSON.parse(storedCompleted));
-        }
-        const finished = sessionStorage.getItem('chapterFinishedPartThree') === 'true';
-        if (finished) {
-            setChapterFinished(true);
+  useEffect(() => {
+    const allCompleted = allItems.every(id => completedItems.includes(id));
+    if (allCompleted && !chapterFinished) {
+        timerRef.current = setTimeout(() => {
             setPosition("end");
             if (!reviewMode) {
-                setShowExplanation(true); // ✅ הצג הסבר רק אם לא review
+                setShowExplanation(true); // סיום
             }
-        }
-    }, [reviewMode]);
+            setChapterFinished(true);
+            sessionStorage.setItem('chapterFinishedPartThree', 'true');
+        }, 1000);
+    }
+}, [completedItems, chapterFinished, reviewMode]);
+
+
+useEffect(() => {
+    const storedCompleted = sessionStorage.getItem('completedItemsPartThree');
+    const completed = storedCompleted ? JSON.parse(storedCompleted) : [];
+    const finished = sessionStorage.getItem('chapterFinishedPartThree') === 'true';
+
+    setCompletedItems(completed);
+    setChapterFinished(finished);
+
+    const allCompleted = allItems.every(id => completed.includes(id));
+
+    if (finished) {
+        setPosition("end");
+        setShowExplanation(false); // כבר סיים, אל תציג שום דבר
+    } else if (completed.length === 0 && !reviewMode) {
+        setShowExplanation(true); // הסבר פתיחה
+    } else if (allCompleted && !finished) {
+        // בדיוק השלים את כל הפריטים
+        timerRef.current = setTimeout(() => {
+            setPosition("end");
+            if (!reviewMode) {
+                setShowExplanation(true); // הסבר סיום
+            }
+            setChapterFinished(true);
+            sessionStorage.setItem('chapterFinishedPartThree', 'true');
+        }, 1000);
+    } else {
+        setShowExplanation(false);
+    }
+}, [reviewMode]);
 
     useEffect(() => {
         return () => {

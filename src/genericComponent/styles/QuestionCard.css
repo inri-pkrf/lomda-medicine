@@ -20,6 +20,8 @@
 }
 
 
+
+
 /* השאלה עצמה */
 .question-name {
   font-family: "Assistant", sans-serif;
@@ -29,6 +31,7 @@
   margin-bottom: 40px;
   direction: rtl;
     direction: rtl;
+
 
 }
 .question-counter{
@@ -40,7 +43,13 @@
       font-weight: 500;
   color: #454545;
 
+
 }
+
+
+
+
+
 
 
 
@@ -65,10 +74,14 @@
   direction: rtl;
 }
 
+
 .show-right-btn:hover {
   background-color: black;
   color: white;
 }
+
+
+
 
 
 
@@ -81,6 +94,7 @@
   padding: 5vw;
   direction: rtl;
 
+
 }
 .answers-grid {
   display: grid;
@@ -88,6 +102,7 @@
   gap: 12px;
   width: 100%; /* חשוב */
 }
+
 
 .answer-button {
   width: 100%; /* למלא את תא הגריד */
@@ -108,11 +123,12 @@
   justify-content: center;
 }
 
+
 /* אפקט בלחיצה */
 .answer-button:hover:not(:disabled) {
   border: #000000 solid 3px;
-  background-color: #ecececee;
 }
+
 
 /* צבע רקע לתשובה נכונה */
 .answer-button.correct {
@@ -122,6 +138,7 @@
   cursor: default;
 }
 
+
 /* צבע רקע לתשובה לא נכונה */
 .answer-button.incorrect {
   background-color: #ff9ea6; /* אדום בהיר */
@@ -129,7 +146,7 @@
   color: #70030e;
   cursor: default;
 }
-/* 
+/*
 .result-message{
     position: absolute;
       font-family: "Assistant";
@@ -142,12 +159,13 @@
     bottom: 2vh;
 } */
 
+
 .result-message {
   position: absolute;
   bottom: 2vh;
   left: 50%;
   transform: translateX(-50%);
-  
+ 
   font-family: 'Assistant', sans-serif;
   font-weight: 300;
   font-size: 3.5vmin;
@@ -162,3 +180,6 @@
   direction: rtl;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+
+

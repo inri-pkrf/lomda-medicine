@@ -29,6 +29,12 @@
     position: absolute;
     color: aliceblue;
 }
+.nafaTvBtn:hover{
+    transform: scale(1.2);
+}
+.mahozTvBtn:hover{
+    transform: scale(1.2);
+}
 .mahozTvBtn{
     margin-top: 34vh;
     cursor: pointer;
@@ -43,6 +49,8 @@
 }
 
 
+
+
 .completed-nafa{
      cursor: pointer;
     right: 29vw;
@@ -55,6 +63,7 @@
     color: rgb(102, 102, 102);
 }
 
+
 .completed-mahoz{
     margin-top: 34vh;
     cursor: pointer;
@@ -66,6 +75,12 @@
     position: absolute;
     color: rgb(102, 102, 102);
 }
+
+
+
+
+
+
 
 
 
