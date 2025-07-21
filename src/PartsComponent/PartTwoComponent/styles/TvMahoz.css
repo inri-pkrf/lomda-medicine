@@ -11,13 +11,16 @@
     overflow: hidden;
 
 
+
+
 }
 .screen-mahoz {
   position: relative;
   width: 100%;
   height: 100%;
-  animation: fadeIn-mahoz 1s ease-out forwards; /* במקום 1.7s */
 }
+
+
 
 
 @keyframes fadeIn-mahoz {
@@ -27,11 +30,14 @@
   }
 
 
+
+
   100% {
     opacity: 1;
     transform: translateY(0);
   }
 }
+
 
 .Tv-img-mahoz {
   position: absolute;
@@ -40,8 +46,24 @@
   top: 0vh;
   right: 50%;
   transform: translate(50%, 0);
-  z-index: 2;
+  z-index: -1;
+
+
 }
+.step-content-mahoz{
+    position: absolute;
+    top: 8vh;
+    width: 80vw;
+    right: 10%;
+    height: 82vh;
+    background-color: #22150000;
+    animation: fadeIn-mahoz 1s ease-out forwards;
+
+
+
+
+}
+
 
 .TvMahoz .buttons-bar {
     display: flex;
@@ -57,17 +79,22 @@
     z-index: 1000;
 }
 
+
 .TvMahoz .btn-text {
     display: block;
 }
+
 
 .TvMahoz .text-label {
     color: rgb(255, 255, 255);
 }
 
+
 .TvMahoz .btn-text-next .img-arrow {
   background-image: url('/public/Assets/Btns/arrowWhite.png'); /* למשל תמונה אחרת */
 }
+
+
 
 
 .TvMahoz .btn-text-prev .img-arrow {
@@ -78,25 +105,38 @@
 }
 
 
+
+
 .info-mahoz{
-    position: absolute;
-    margin-top: 20vh;
+ position: absolute;
+    margin-top: 16vh;
     z-index: 20000;
-    right:15vw;
+    right: 5vw;
     font-size: 3.5vmin;
     font-family: "Assistant";
     color: rgb(255, 255, 255);
     direction: rtl;
-      height:40vh;
-      width:50vw
+    height: 40vh;
 
 
 }
 .info-mahoz.with-image{
-      width: 40vw;
+          width: 40vw;
+    height: 10vh;
 }
 .info-mahoz.no-image {
       width: 70vw;
+}
+.info-mahoz.with-roles{
+ position: absolute;
+margin-top: 14vh;
+right: 5vw;
+    font-size: 3vmin;
+    font-family: "Assistant";
+    color: rgb(255, 255, 255);
+    direction: rtl;
+    height: 4vh;
+    width: 50vw;
 }
 
 
@@ -104,14 +144,16 @@
     position: absolute;
     margin-top: 10vh;
     z-index: 20000;
-    right:15vw;
+    right: 15vw;
     font-size: 7vmin;
     font-family: "Assistant";
     color: rgb(255, 255, 255);
     direction: rtl;
-      width: 40vw;
-      height:40vh
+    width: 40vw;
+    height: 12vh;
 }
+
+
 
 
 .mahoz-step-image{
@@ -122,13 +164,15 @@
     top: 14vh;
     right: 50%;
     transform: translate(50%, 0);
+
+
 }
 .mahoz-step-image.step-4{
-  position: absolute;
+    position: absolute;
     z-index: 10000;
     width: 60VW;
     height: auto;
-    top: 22vh;
+    top: 15vh;
     right: 50%;
     transform: translate(50%, 0);
 }
@@ -137,47 +181,100 @@ position: absolute;
     z-index: 10000;
     width: 35VW;
     height: auto;
-    top: 29vh;
-    left: -4%;
+    top: 25vh;
+    left: -18%;
  
 }
 .mahoz-step-image.step-6{
-  position: absolute;
+ position: absolute;
     z-index: 10000;
     width: 13VW;
     height: auto;
-    top: 24vh;
-    left: 10%;
+    top: 20vh;
+    left: -4%;
 }
 .mahoz-step-image.step-7{
-     position: absolute;
+position: absolute;
     z-index: 10000;
     width: 22VW;
     height: auto;
     top: 22vh;
-    left: 5%;
-}
-.scrollable-container-mahoz {
-     height: 50vh;
-    width: 65vw;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    background-color: rgba(255, 0, 0, 0);
-    border-radius: 10px;
-    z-index: 1000;
-    position: relative;
-    top: 25vh;
-    cursor: text;
-    right: -20vw;
+    left: -9%;
+
+
 }
 
-.text-mahoz-scroll{
-  font-family: "Assistant";
-  font-size: 3vmin;
-  direction: rtl;
-  color:white ;
-  padding-right: 3vw;
+
+
+
+
+
+
+
+.scrollable-container-mahoz {
+  height: 84vh;
+  overflow-y: auto;
+  position: absolute;
+     top: 20vh;
+    right: -7%;
+    width: 87vw;
+  overflow: hidden;
+  animation: fadeIn-mahoz 1s ease-out forwards; /* במקום 1.7s */
+
+
 }
+
+
+.mahoz-scroll-content {
+  font-family: 'Assistant';
+  font-size: 3.5vmin;
+  direction: ltr;
+  text-align: center;
+  height: 50vh;
+  margin-bottom: 1vh;
+  overflow: auto;
+  margin-left: 2vw;
+  width: 75vw;
+  padding-right: 1vw;
+}
+
+
+
+
+.text-mahoz-scroll {
+  color: white;
+  direction: rtl;
+  text-align: right;
+}
+
+
+.mahoz-scroll-content::-webkit-scrollbar {
+  width: 10px;
+  padding-left: 5vw;
+}
+
+
+.mahoz-scroll-content::-webkit-scrollbar-track {
+  background: #f0f0ef; /* רקע בהיר לסקרול */
+  border-radius: 10px;
+}
+
+
+.mahoz-scroll-content::-webkit-scrollbar-thumb {
+  background-color: #292929; /* צבע הסקרול עצמו */
+  border-radius: 10px;
+  border: 2px solid #221500; /* רווח סביב הסקרול */
+}
+
+
+.mahoz-scroll-content::-webkit-scrollbar-thumb:hover {
+  background-color: #a3784f;
+}
+
+
+
+
+
 
 .subroles-list-mahoz {
   list-style: disc;
@@ -190,25 +287,39 @@ position: absolute;
   z-index: 1000;
 position: relative;
  top: 25vh;
-   right:-38vw;
+   right:8vw;
 }
 .subroles-list-mahoz.step-5 {
 width: 35vw;
-    top: 28vh;
-    right: -49vw;
+    top: 24vh;
+    right: -39vw;
 }
 .subroles-list-mahoz.step-6 {
-width:50vw;
-   right:-33vw;
-       top: 28vh;
+width: 50vw;
+right: -23vw;
+top: 21vh;
+
 
 }
 .subroles-list-mahoz.step-7{
-width:35vw;
-   right:-48vw;
-       top: 28vh;
+    width: 35vw;
+    right: -39vw;
+    top: 23vh;
+
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

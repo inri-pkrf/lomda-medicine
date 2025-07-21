@@ -3,22 +3,22 @@ const questionsDataFour = [
     id: 1,
     // type: "sun_map",
     type: "open",
-    question: "מנה את יחסי הגומלין הרוחביים",
-    correct_answer: "בלה"
+    question: "מנה את יחסי הגומלין הרוחביים ללא חשיבות לסדר",
+    correct_answer:`מד"א , לשכ"ס, מכלול אוכלוסיה,מכלול תקשוב,מכלול מודיעין,מלכ"א,שולחן מרכזי,מכלול מבצעים`
   },
   {
     id: 2,
     // type: "column_completion",
     type: "open",
     question: "מנה את יחסי הגומלין האורכיים",
-    correct_answer: "בלה"
+    correct_answer: "פיקוד ,מחוז , נפה ,גדוד ,פלוגה"
   },
   {
     id: 3,
     // type: "column_completion",
     type: "open",
     question: "מנה את הקשר עם המרחב האזרחי ומול מי תיצור אותו",
-    correct_answer: null
+    correct_answer:`הקשר עם המרחב האזרחי יתבצע מול מד"א, בתי חולים, קופות חולים, רופאים אזרחיים, לשכת הבריאות המחוזית, ומתנדבים רפואיים.`
   },
   {
     id: 4,
@@ -141,11 +141,17 @@ const questionsDataFour = [
     id: 23,
     type: "multiple_choice",
     question: "ממי תקבל מידע על נפילות וכתובות אירועים?",
-    answers: ["רפואה מחוז", "מד\"א", "מד\"א"],
+    answers: ["רפואה מחוז","מד\"א"],
     correct_answer: "מד\"א"
   }
 
 
+
+
 ];
 export default questionsDataFour;
+
+
+
+
 

@@ -8,6 +8,28 @@
   width: 100vw;
   z-index: 400000;
 }
+@keyframes popupOpenScale {
+  0% {
+    opacity: 0;
+    transform: translateX(50%) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(50%) scale(1);
+  }
+}
+
+
+@keyframes popupCloseScale {
+  0% {
+    opacity: 1;
+    transform: translateX(50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(50%) scale(0.9);
+  }
+}
 
 
 .popup-content {
@@ -22,7 +44,19 @@
   transform: translateX(50%);
   width: 61vw;
   overflow: hidden;
+
+
+  animation: popupOpenScale 0.3s ease-out forwards;
 }
+
+
+.popup-content-hide {
+  animation: popupCloseScale 0.4s ease-in forwards;
+}
+
+
+
+
 
 
 .XBtn {
@@ -37,15 +71,10 @@
 
 
 .popup-close-button {
-  /* position: absolute;
-    top: 5vw;
-    left: 5vw;
-    background: none;
-    border: none;
-    font-size: 8vw;
-    cursor: pointer; */
   border: none;
 }
+
+
 
 
 .popup-title {
@@ -61,6 +90,8 @@
 }
 
 
+
+
 .popup-body {
   font-family: 'Assistant';
   font-size: 4vmin;
@@ -71,12 +102,42 @@
   overflow: auto;
   margin-left: 4vw;
   width: 50vw;
+  padding-right: 1vw;
+
+
 
 
 }
+
+
 
 
 .popup-body-text {
   direction: rtl;
   text-align: right;
 }
+
+
+.popup-body::-webkit-scrollbar {
+  width: 10px;
+  padding-left: 5vw;
+}
+
+
+.popup-body::-webkit-scrollbar-track {
+  background: #eece97; /* רקע בהיר לסקרול */
+  border-radius: 10px;
+}
+
+
+.popup-body::-webkit-scrollbar-thumb {
+  background-color: #b28e63; /* צבע הסקרול עצמו */
+  border-radius: 10px;
+  border: 2px solid #221500; /* רווח סביב הסקרול */
+}
+
+
+.popup-body::-webkit-scrollbar-thumb:hover {
+  background-color: #a3784f;
+}
+

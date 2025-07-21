@@ -5,66 +5,91 @@ import TvMahoz from '../PartTwoComponent/TvMahoz';
 import TvNafa from '../PartTwoComponent/TvNafa';
 import '../PartTwoComponent/styles/PartTwo.css';
 
-const PartTwo = ({ setHideNavBar }) => {  // מקבלים את setHideNavBar בפרופס
+const PartTwo = ({ setHideNavBar }) => {
   const location = useLocation();
-  const reviewMode = location.state?.reviewMode || false;
+  const reviewMode = location.state?.reviewMode || false; // מצב סקירה, אם קיים
 
-  // showExplanation בברירת מחדל: false אם reviewMode, אחרת true
-  const [showExplanation, setShowExplanation] = useState(!reviewMode);
-  const [position, setPosition] = useState("start");
+  const chapterName = "PartTwo";
+
+  // בדיקת מצב התחלת הפרק ושיוך להשלמתו מה-sessionStorage
+  const started = sessionStorage.getItem("partTwoStarted") === "true";
+  const finished = sessionStorage.getItem("partTwoFinished") === "true";
+  const endShown = sessionStorage.getItem("partTwoEndShown") === "true";
+
+  // מצב להצגת ההסברים (start, end, או null - לא להציג)
+  const [explanationStage, setExplanationStage] = useState(() => {
+    // אם סיימנו והסיום כבר הוצג - לא להציג שוב
+    if (finished && endShown) return null;
+
+    // אם לא התחלת את הפרק - להציג את הפתיחה
+    if (!started) return "start";
+
+    // אחרת לא להציג הסבר כרגע
+    return null;
+  });
+
+  // איזה רכיב פעיל: none, 'mahoz' או 'nafa'
   const [activeComponent, setActiveComponent] = useState("none");
+
+  // האם מחוז ו/או נפה הושלמו
   const [mahozCompleted, setMahozCompleted] = useState(() => {
     return sessionStorage.getItem("mahozCompleted") === "true";
   });
   const [nafaCompleted, setNafaCompleted] = useState(() => {
     return sessionStorage.getItem("nafaCompleted") === "true";
   });
-  const chapterName = "PartTwo";
 
-  // שמירת מצב ה-completed ל-sessionStorage בכל שינוי
+  // כשפותחים רכיב פעיל והפרק לא התחיל, מסמנים התחלה ומסתירים את הפתיחה
+  useEffect(() => {
+    if (activeComponent !== "none" && !started) {
+      sessionStorage.setItem("partTwoStarted", "true");
+      setExplanationStage(null);
+    }
+  }, [activeComponent, started]);
+
+  // סינכרון השלמת מחוז ונפה ל-sessionStorage
   useEffect(() => {
     sessionStorage.setItem("mahozCompleted", mahozCompleted);
-  }, [mahozCompleted]);
-
-  useEffect(() => {
     sessionStorage.setItem("nafaCompleted", nafaCompleted);
-  }, [nafaCompleted]);
+  }, [mahozCompleted, nafaCompleted]);
 
-useEffect(() => {
-  if (mahozCompleted && nafaCompleted) {
-    setPosition("end");
-
-    if (!reviewMode) {
+  // אם שני הרכיבים הושלמו והסיום לא הוצג עדיין, מראה הסבר סיום אחרי דיליי של שנייה
+  useEffect(() => {
+    if (mahozCompleted && nafaCompleted && !endShown) {
       const timer = setTimeout(() => {
-        setShowExplanation(true);
-      }, 1000); 
-
-      return () => clearTimeout(timer); 
+        sessionStorage.setItem("partTwoFinished", "true");
+        sessionStorage.setItem("partTwoEndShown", "true");
+        setExplanationStage("end");
+      }, 1000);
+      return () => clearTimeout(timer);
     }
-  }
-}, [mahozCompleted, nafaCompleted, reviewMode]);
+  }, [mahozCompleted, nafaCompleted, endShown]);
 
+  // אם התקבלה פונקציית setHideNavBar, מסתירים את ה-navbar כשעוברים למסך מחוז או נפה
   useEffect(() => {
     if (!setHideNavBar) return;
-
-    if (activeComponent === "mahoz" || activeComponent === "nafa") {
-      setHideNavBar(true);
-    } else {
-      setHideNavBar(false);
-    }
+    setHideNavBar(activeComponent === "mahoz" || activeComponent === "nafa");
   }, [activeComponent, setHideNavBar]);
+
+  // סגירת ההסבר
+  const closeExplanation = () => {
+    setExplanationStage(null);
+  };
 
   return (
     <div className="PartTwo">
-       {showExplanation && (
+
+      {/* הצגת הסברים פתיחה או סיום */}
+      {explanationStage && (
         <Explanations
           chapterName={chapterName}
-          position={position}
-          onClose={() => setShowExplanation(false)}
+          position={explanationStage} // "start" או "end"
+          onClose={closeExplanation}
         />
       )}
 
-      {!showExplanation && activeComponent === "none" && (
+      {/* אם אין הסבר פתוח והרכיב לא פעיל, להציג תמונת טומר חושב */}
+      {!explanationStage && activeComponent === "none" && (
         <img
           className="tomerThinkingPartTwo"
           src={`${process.env.PUBLIC_URL}/Assets/PartTwoImgs/TomerThinking.png`}
@@ -72,6 +97,7 @@ useEffect(() => {
         />
       )}
 
+      {/* כפתור נפה עם מחלקת CSS דינמית להשלמה */}
       <div
         className={`nafaTvBtn ${nafaCompleted ? 'completed-nafa' : ''}`}
         onClick={() => setActiveComponent("nafa")}
@@ -79,6 +105,7 @@ useEffect(() => {
         נפה
       </div>
 
+      {/* כפתור מחוז עם מחלקת CSS דינמית להשלמה */}
       <div
         className={`mahozTvBtn ${mahozCompleted ? 'completed-mahoz' : ''}`}
         onClick={() => setActiveComponent("mahoz")}
@@ -86,6 +113,7 @@ useEffect(() => {
         מחוז
       </div>
 
+      {/* הצגת רכיב נפה כשהוא פעיל */}
       {activeComponent === "nafa" && (
         <TvNafa
           onFinish={() => {
@@ -95,6 +123,7 @@ useEffect(() => {
         />
       )}
 
+      {/* הצגת רכיב מחוז כשהוא פעיל */}
       {activeComponent === "mahoz" && (
         <TvMahoz
           onFinish={() => {

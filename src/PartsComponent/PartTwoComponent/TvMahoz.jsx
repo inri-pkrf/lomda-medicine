@@ -4,6 +4,8 @@ import '../PartTwoComponent/styles/TvMahoz.css';
 import mahozData from '../../Data/TvData/MahozData';
 
 
+
+
 const TvMahoz = ({ onFinish }) => {
   const [step, setStep] = useState(1);
   const navigate = useNavigate();
@@ -16,14 +18,20 @@ const TvMahoz = ({ onFinish }) => {
   }
 
 
+
+
   // קריאה לפונקציית הסיום המקורית
   onFinish();
 };
 
 
+
+
 const stepKey = step;
   const currentStep = mahozData[stepKey];
   const totalSteps = Object.keys(mahozData).length;
+
+
 
 
   return (
@@ -37,15 +45,22 @@ const stepKey = step;
         <h2 className='mahoz-title'>מחוז</h2>
 
 
+
+
         {/* תוכן ה-Step */}
-        <div className="step-content">
+        <div key={step} className="step-content-mahoz">
           {currentStep && (
-       
-              <div
-                className={`info-mahoz ${currentStep?.srcImg ? 'with-image' : 'no-image'}`}
-              >
-                {currentStep.text}
-              </div>
+       <div
+            className={`info-mahoz
+              ${currentStep?.srcImg ? 'with-image' : ''}
+              ${currentStep?.roles ? 'with-roles' : ''}
+              ${!currentStep?.srcImg && !currentStep?.roles ? 'no-image' : ''}
+            `}
+          >
+              {currentStep.text}
+            </div>
+
+
           )}
           {currentStep?.srcImg && (
           <img
@@ -58,7 +73,9 @@ const stepKey = step;
  
           {currentStep?.roles && (
             <div className={`scrollable-container-mahoz`}>
+              <div  className="mahoz-scroll-content">
               <p className='text-mahoz-scroll'> {currentStep.roles}</p>
+            </div>
             </div>
           )}
     {currentStep.subroles && (
@@ -76,7 +93,17 @@ const stepKey = step;
 
 
 
+
+
+
+
+
+
+
+
         </div>
+
+
 
 
         {/* כפתורי ניווט עם חצים וטקסט */}
@@ -89,6 +116,8 @@ const stepKey = step;
             <div className="img-arrow" />
             <div className="text-label">הקודם</div>
           </div>
+
+
 
 
           {step < totalSteps ? (
@@ -112,7 +141,17 @@ const stepKey = step;
 };
 
 
+
+
 export default TvMahoz;
+
+
+
+
+
+
+
+
 
 
 

@@ -11,7 +11,7 @@
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
     border: 1px solid rgba(200, 200, 200, 0.3);
     position: absolute;
-    z-index: 4000;
+    z-index: 5000;
     top: 0;
     left: 50%;
     transform: translate(-50%, 0);
@@ -22,6 +22,7 @@
     transition: transform 0.4s ease, opacity 0.4s ease;
     opacity: 1;
     pointer-events: auto;
+    
 }
 
 .NavBar.hidden {

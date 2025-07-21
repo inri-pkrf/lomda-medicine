@@ -14,8 +14,12 @@
   position: relative;
   width: 100%;
   height: 100%;
-  animation: fadeIn-nafa 1s ease-out forwards; /* במקום 1.7s */
+      animation: fadeIn-nafa 1s ease-out forwards;
+
+
 }
+
+
 
 
 @keyframes fadeIn-nafa {
@@ -27,10 +31,28 @@
 
 
 
+
+
+
+
   100% {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+
+.step-content-nafa{
+    position: absolute;
+    top: 8vh;
+    width: 80vw;
+    right: 10%;
+    height: 82vh;
+    animation: fadeIn-nafa 1s ease-out forwards;
+
+
+
+
 }
 
 
@@ -42,7 +64,11 @@
   right: 50%;
   transform: translate(50%, 0);
 z-index: 0;
+
+
 }
+
+
 
 
 .TvNafa .buttons-bar {
@@ -60,9 +86,15 @@ z-index: 0;
 }
 
 
+
+
 .TvNafa .btn-text {
     display: block;
 }
+
+
+
+
 
 
 
@@ -72,9 +104,15 @@ z-index: 0;
 }
 
 
+
+
 .TvNafa .btn-text-next .img-arrow {
   background-image: url('/public/Assets/Btns/arrowWhite.png'); /* למשל תמונה אחרת */
 }
+
+
+
+
 
 
 
@@ -87,28 +125,60 @@ z-index: 0;
 }
 
 
+
+
 .info-nafa{
     position: absolute;
-    margin-top: 20vh;
+    margin-top: 16vh;
     z-index: 20000;
-    right:15vw;
+  right: 6vw;
     font-size: 3vmin;
     font-family: "Assistant";
     color: rgb(255, 255, 255);
     direction: rtl;
-      height:40vh;
-      width:50vw
+    height: 40vh;
+    width: 50vw;
+
+
+
+
 
 
 
 
 }
 .info-nafa.with-image{
-      width: 30vw;
+    width: 30vw;
+    position: absolute;
+    margin-top: 21vh;
+    z-index: 20000;
+    right: 15vw;
+    font-size: 3vmin;
+    font-family: "Assistant";
+    color: rgb(255, 255, 255);
+    direction: rtl;
+    height: 40vh;
+}
+.info-nafa.with-roles{
+position: absolute;
+    margin-top: 13vh;
+    right: 5vw;
+    font-size: 3vmin;
+    font-family: "Assistant";
+    color: rgb(255, 255, 255);
+    direction: rtl;
+    height: 4vh;
+    width: 50vw;
+
+
 }
 .info-nafa.no-image {
       width: 70vw;
 }
+
+
+
+
 
 
 
@@ -125,6 +195,10 @@ z-index: 0;
       width: 40vw;
       height:40vh
 }
+
+
+
+
 
 
 
@@ -151,6 +225,10 @@ z-index: 0;
 
 
 
+
+
+
+
 .intro-buttons-group-nafa {
     position: relative;
     top: 46.5vh;
@@ -161,11 +239,19 @@ z-index: 0;
 
 
 
+
+
+
+
     display: flex;      
     flex-direction: row;  
     align-items: center;  
     gap: 3vw;              
 }
+
+
+
+
 
 
 
@@ -187,9 +273,13 @@ z-index: 0;
 }
 
 
+
+
 .completed-nafa-btn:hover {
   box-shadow: 0 0 15px 2px rgba(255, 255, 255, 1); /* glow מוגבר בהובר */
 }
+
+
 
 
 /* כפתורי מכלולים */
@@ -197,6 +287,8 @@ z-index: 0;
     position: absolute;
     right: 23vw;
 }
+
+
 
 
 #btn-3-nafa {
@@ -213,10 +305,13 @@ z-index: 0;
 }
 
 
+
+
 #btn-6-nafa {
     position: absolute;
     right: 68.5vw;
 }
+
 
 /* כפתורי תאים בנפה */
 .nafa-step-image.step-3{
@@ -227,6 +322,8 @@ z-index: 0;
     top: 20vh;
     right: 66vw;
 }
+
+
 
 
 .intro-buttons-group-nafa-3{
@@ -243,6 +340,8 @@ z-index: 0;
 }
 
 
+
+
 .intro-button-nafa-3{
     background-color: rgba(223, 5, 5, 0);
     border: none;
@@ -257,6 +356,8 @@ z-index: 0;
     height: 10vh;
     cursor: pointer;
 }
+
+
 
 
 #btn-step3-1{
@@ -280,11 +381,15 @@ z-index: 0;
 }
 
 
+
+
 #btn-step3-5{
     position: absolute;
     top: 27.9vh;
     right: 57.7vw;
 }
+
+
 
 
 #btn-step3-6{
@@ -298,30 +403,83 @@ z-index: 0;
     right: 54.6vw;
 
 
+
+
 }
+
+
 
 
 .scrollable-container-nafa {
+    height: 84vh;
+    overflow-y: auto;
+    position: absolute;
+    top: 19vh;
+    right: -6%;
+    width: 87vw;
+    overflow: hidden;
+
+
+}
+
+
+.nafa-scroll-content {
+  font-family: 'Assistant';
+  font-size: 3.5vmin;
+  direction: ltr;
+  text-align: center;
   height: 50vh;
-  width: 70vw;
-  overflow-y: auto;
-  padding-right: 10px;
-  background-color: transparent; /* או צבע אם את רוצה */
+  margin-bottom: 1vh;
+  overflow: auto;
+  margin-left: 2vw;
+  width: 75vw;
+  padding-right: 1vw;
+}
+
+
+
+
+.text-nafa-scroll {
+  color: white;
+  direction: rtl;
+  text-align: right;
+}
+
+
+.nafa-scroll-content::-webkit-scrollbar {
+  width: 10px;
+  padding-left: 5vw;
+}
+
+
+.nafa-scroll-content::-webkit-scrollbar-track {
+  background: #f0f0ef; /* רקע בהיר לסקרול */
   border-radius: 10px;
-z-index: 1000;
-position: relative;
- top: 25vh;
-   right:-15vw;
 }
 
 
-.text-nafa-scroll{
-font-family: "Assistant";
-font-size: 3vmin;
-direction: rtl;
-padding-right: 2vw;
-color: white;
+.nafa-scroll-content::-webkit-scrollbar-thumb {
+  background-color: #292929; /* צבע הסקרול עצמו */
+  border-radius: 10px;
+  border: 2px solid #221500; /* רווח סביב הסקרול */
 }
+
+
+.nafa-scroll-content::-webkit-scrollbar-thumb:hover {
+  background-color: #a3784f;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

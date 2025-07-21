@@ -49,7 +49,7 @@
 
 /* מוסיף אינדיקציה קלילה לקלף שנצפה */
 .flip-card.viewed .flip-card-front {
-  background-color: #f0f0f0; /* אפור בהיר */
+  background-color: #e9e0f7; 
 }
 
 .flip-card:hover .flip-card-inner {

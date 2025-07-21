@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import './styles/PartThree.css';
 
@@ -7,180 +7,155 @@ import CardReport from './Cards/CardReport';
 import CardParlag from './Cards/CardParlag';
 import Explanations from '../../genericComponent/Explanations';
 
-const PartThree = ({ setHideNavBar }) => { // הוספת setHideNavBar בפרופס
-    const location = useLocation();
-    const reviewMode = location.state?.reviewMode || false;
+const PartThree = ({ setHideNavBar }) => {
+  const location = useLocation();
+  const reviewMode = location.state?.reviewMode || false;
 
-    const [showExplanation, setShowExplanation] = useState(!reviewMode);
+  const chapterName = "PartThree";
+  const allItems = ['case', 'phone', 'vest'];
 
-    const [hoveredItem, setHoveredItem] = useState(null);
-    const [activeCard, setActiveCard] = useState(null);
-    const [completedItems, setCompletedItems] = useState(() => {
-        const saved = sessionStorage.getItem('completedItemsPartThree');
-        return saved ? JSON.parse(saved) : [];
-    });
+  // קריאה מה-sessionStorage
+const [started, setStarted] = useState(() => sessionStorage.getItem("partThreeStarted") === "true");
+const [finished, setFinished] = useState(() => sessionStorage.getItem("partThreeFinished") === "true");
+const [endShown, setEndShown] = useState(() => sessionStorage.getItem("partThreeEndShown") === "true");
 
-    const [position, setPosition] = useState("start");
-    const [chapterFinished, setChapterFinished] = useState(() => {
-        return sessionStorage.getItem('chapterFinishedPartThree') === 'true';
-    });
+  const [explanationStage, setExplanationStage] = useState(() => {
+    if (finished && endShown) return null; // אל תציג שוב סיום
+    if (!started) return "start";          // הראה פתיחה אם לא התחלת
+    return null;
+  });
 
-    const timerRef = useRef(null);
-    const chapterName = "PartThree";
+  const [hoveredItem, setHoveredItem] = React.useState(null);
+  const [activeCard, setActiveCard] = React.useState(null);
+  const [completedItems, setCompletedItems] = React.useState(() => {
+    const saved = sessionStorage.getItem('completedItemsPartThree');
+    return saved ? JSON.parse(saved) : [];
+  });
 
-    const allItems = ['case', 'phone', 'vest'];
+  // סימון התחלת פרק
+ useEffect(() => {
+  if (activeCard !== null && !started) {
+    sessionStorage.setItem("partThreeStarted", "true");
+    setStarted(true); // ← חשוב!
+  }
+}, [activeCard, started]);
 
-    const backgroundSrc = hoveredItem
-        ? `${process.env.PUBLIC_URL}/Assets/PartThreeImgs/${hoveredItem}-site.png`
-        : `${process.env.PUBLIC_URL}/Assets/PartThreeImgs/destractionSite.png`;
+  // שמירת כרטיסים שהושלמו
+  useEffect(() => {
+    sessionStorage.setItem('completedItemsPartThree', JSON.stringify(completedItems));
+  }, [completedItems]);
 
-    const handleCloseCard = () => {
-        if (activeCard && !completedItems.includes(activeCard)) {
-            const updated = [...completedItems, activeCard];
-            setCompletedItems(updated);
-            sessionStorage.setItem('completedItemsPartThree', JSON.stringify(updated));
-        }
-        setActiveCard(null);
-    };
+// מנגנון סיום כמו בפרק 2 — דיליי 1 שניה, הצגה פעם אחת
+useEffect(() => {
+  const allCompleted = allItems.every(item => completedItems.includes(item));
+
+  if (allCompleted && !finished) {
+    sessionStorage.setItem("partThreeFinished", "true");
+
+    // אם כבר הוצג הסיום - אל תציג שוב
+    if (!endShown) {
+      const timer = setTimeout(() => {
+        setExplanationStage("end");
+        sessionStorage.setItem("partThreeEndShown", "true");
+        setEndShown(true);
+      }, 1000);
+
+      return () => clearTimeout(timer);
+    }
+  }
+}, [completedItems, finished, endShown]);
+
+  const closeExplanation = () => {
+    setExplanationStage(null);
+  };
+
+  const handleCloseCard = () => {
+    if (activeCard && !completedItems.includes(activeCard)) {
+      setCompletedItems(prev => [...prev, activeCard]);
+    }
+    setActiveCard(null);
+  };
 
   useEffect(() => {
-    const allCompleted = allItems.every(id => completedItems.includes(id));
-    if (allCompleted && !chapterFinished) {
-        timerRef.current = setTimeout(() => {
-            setPosition("end");
-            if (!reviewMode) {
-                setShowExplanation(true); // סיום
-            }
-            setChapterFinished(true);
-            sessionStorage.setItem('chapterFinishedPartThree', 'true');
-        }, 1000);
-    }
-}, [completedItems, chapterFinished, reviewMode]);
+    if (!setHideNavBar) return;
+    setHideNavBar(activeCard !== null);
+  }, [activeCard, setHideNavBar]);
 
+  const backgroundSrc = hoveredItem
+    ? `${process.env.PUBLIC_URL}/Assets/PartThreeImgs/${hoveredItem}-site.png`
+    : `${process.env.PUBLIC_URL}/Assets/PartThreeImgs/destractionSite.png`;
 
-useEffect(() => {
-    const storedCompleted = sessionStorage.getItem('completedItemsPartThree');
-    const completed = storedCompleted ? JSON.parse(storedCompleted) : [];
-    const finished = sessionStorage.getItem('chapterFinishedPartThree') === 'true';
+  return (
+    <div className="PartThree">
+      {explanationStage && (
+        <Explanations
+          chapterName={chapterName}
+          position={explanationStage}
+          isChapterFinished={explanationStage === "end"}
+          onClose={closeExplanation}
+        />
+      )}
 
-    setCompletedItems(completed);
-    setChapterFinished(finished);
+      <img src={backgroundSrc} alt="background" className="background-part3" />
 
-    const allCompleted = allItems.every(id => completed.includes(id));
+      {!explanationStage && (
+        <>
+          <img
+            src={`${process.env.PUBLIC_URL}/Assets/PartThreeImgs/ThomerShocked.png`}
+            alt="Tomer"
+            className="Tomer-three"
+          />
+          <div className="speechBubbleThree">
+            מצא את החפצים הקבורים בהריסות
+          </div>
+          <img
+            src={`${process.env.PUBLIC_URL}/Assets/PartThreeImgs/case.png`}
+            alt="case"
+            className={`items-three case ${completedItems.includes('case') ? 'item-complete' : ''}`}
+          />
+          <img
+            src={`${process.env.PUBLIC_URL}/Assets/PartThreeImgs/phone.png`}
+            alt="phone"
+            className={`items-three phone ${completedItems.includes('phone') ? 'item-complete' : ''}`}
+          />
+          <img
+            src={`${process.env.PUBLIC_URL}/Assets/PartThreeImgs/vest.png`}
+            alt="vest"
+            className={`items-three vest ${completedItems.includes('vest') ? 'item-complete' : ''}`}
+          />
+        </>
+      )}
 
-    if (finished) {
-        setPosition("end");
-        setShowExplanation(false); // כבר סיים, אל תציג שום דבר
-    } else if (completed.length === 0 && !reviewMode) {
-        setShowExplanation(true); // הסבר פתיחה
-    } else if (allCompleted && !finished) {
-        // בדיוק השלים את כל הפריטים
-        timerRef.current = setTimeout(() => {
-            setPosition("end");
-            if (!reviewMode) {
-                setShowExplanation(true); // הסבר סיום
-            }
-            setChapterFinished(true);
-            sessionStorage.setItem('chapterFinishedPartThree', 'true');
-        }, 1000);
-    } else {
-        setShowExplanation(false);
-    }
-}, [reviewMode]);
+      <div
+        className='case-area items-area'
+        onMouseEnter={() => setHoveredItem('case')}
+        onMouseLeave={() => setHoveredItem(null)}
+        onClick={() => setActiveCard('case')}
+      />
+      <div
+        className='phone-area items-area'
+        onMouseEnter={() => setHoveredItem('phone')}
+        onMouseLeave={() => setHoveredItem(null)}
+        onClick={() => setActiveCard('phone')}
+      />
+      <div
+        className='vest-area items-area'
+        onMouseEnter={() => setHoveredItem('vest')}
+        onMouseLeave={() => setHoveredItem(null)}
+        onClick={() => setActiveCard('vest')}
+      />
 
-    useEffect(() => {
-        return () => {
-            if (timerRef.current) clearTimeout(timerRef.current);
-        };
-    }, []);
-
-    // הוספת הסתרת נאבר כשהכרטיס פתוח, ללא שינוי בלוגיקה
-    useEffect(() => {
-        if (!setHideNavBar) return;
-        if (activeCard !== null) {
-            setHideNavBar(true);
-        } else {
-            setHideNavBar(false);
-        }
-    }, [activeCard, setHideNavBar]);
-
-    return (
-        <div className="PartThree">
-            {showExplanation && (
-                <Explanations
-                    chapterName={chapterName}
-                    position={position}
-                    isChapterFinished={chapterFinished}
-                    onClose={() => setShowExplanation(false)}
-                />
-            )}
-
-            <img
-                src={backgroundSrc}
-                alt="background"
-                className="background-part3"
-            />
-
-            {!showExplanation && (
-                <>
-                    <img
-                        src={`${process.env.PUBLIC_URL}/Assets/PartThreeImgs/ThomerShocked.png`}
-                        alt="Tomer"
-                        className="Tomer-three"
-                    />
-
-                    <div className="speechBubbleThree">
-                        מצא את החפצים הקבורים בהריסות
-                    </div>
-
-                    <img
-                        src={`${process.env.PUBLIC_URL}/Assets/PartThreeImgs/case.png`}
-                        alt="case"
-                        className={`items-three case ${completedItems.includes('case') ? 'item-complete' : ''}`}
-                    />
-                    <img
-                        src={`${process.env.PUBLIC_URL}/Assets/PartThreeImgs/phone.png`}
-                        alt="phone"
-                        className={`items-three phone ${completedItems.includes('phone') ? 'item-complete' : ''}`}
-                    />
-                    <img
-                        src={`${process.env.PUBLIC_URL}/Assets/PartThreeImgs/vest.png`}
-                        alt="vest"
-                        className={`items-three vest ${completedItems.includes('vest') ? 'item-complete' : ''}`}
-                    />
-                </>
-            )}
-
-            <div
-                className='case-area items-area'
-                onMouseEnter={() => setHoveredItem('case')}
-                onMouseLeave={() => setHoveredItem(null)}
-                onClick={() => setActiveCard('case')}
-            />
-            <div
-                className='phone-area items-area'
-                onMouseEnter={() => setHoveredItem('phone')}
-                onMouseLeave={() => setHoveredItem(null)}
-                onClick={() => setActiveCard('phone')}
-            />
-            <div
-                className='vest-area items-area'
-                onMouseEnter={() => setHoveredItem('vest')}
-                onMouseLeave={() => setHoveredItem(null)}
-                onClick={() => setActiveCard('vest')}
-            />
-
-            {activeCard && (
-                <div className="card-overlay">
-                    <div className={`card ${activeCard}-border`}>
-                        {activeCard === 'case' && <CardMedicine onCloseCard={handleCloseCard} />}
-                        {activeCard === 'phone' && <CardReport onCloseCard={handleCloseCard} />}
-                        {activeCard === 'vest' && <CardParlag onCloseCard={handleCloseCard} />}
-                    </div>
-                </div>
-            )}
+      {activeCard && (
+        <div className="card-overlay">
+          <div className={`card ${activeCard}-border`}>
+            {activeCard === 'case' && <CardMedicine onCloseCard={handleCloseCard} />}
+            {activeCard === 'phone' && <CardReport onCloseCard={handleCloseCard} />}
+            {activeCard === 'vest' && <CardParlag onCloseCard={handleCloseCard} />}
+          </div>
         </div>
-    );
+      )}
+    </div>
+  );
 };
 
 export default PartThree;
