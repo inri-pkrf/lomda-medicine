@@ -13,7 +13,7 @@ const getRandomItems = (arr, count) => {
   return shuffled.slice(0, count);
 };
 
-const pastelColors = ['#fce5cd', '#cce0d6', '#f4cccc', 'rgb(223 204 239)'];
+const pastelColors = ['rgb(205 216 252)', '#cce0d6', '#f4cccc', 'rgb(223 204 239)'];
 
 const Questions = () => {
   const navigate = useNavigate();

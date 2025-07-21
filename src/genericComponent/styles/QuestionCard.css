@@ -76,14 +76,9 @@
 
 
 .show-right-btn:hover {
-  background-color: black;
+  background-color: rgb(43, 43, 43);
   color: white;
 }
-
-
-
-
-
 
 .correct-answer {
   font-family: "Assistant";
