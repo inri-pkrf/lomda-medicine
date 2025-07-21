@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../PartZeroComponent/PartZero.css';
 
+
 const PartZero = () => {
     const [step, setStep] = useState(1);
     const [showTextDiv, setShowTextDiv] = useState(false);
@@ -11,12 +12,14 @@ const PartZero = () => {
     const [showPrevButton, setShowPrevButton] = useState(false);
     const navigate = useNavigate();
 
+
     useEffect(() => {
         const timer = setTimeout(() => {
             setShowTextDiv(true);
         }, 100);
         return () => clearTimeout(timer);
     }, []);
+
 
     useEffect(() => {
         if (step === 2) {
@@ -27,6 +30,7 @@ const PartZero = () => {
             }, 50);
         }
     }, [step]);
+
 
     const handleBack = () => {
         setShowPrevButton(false);
@@ -39,6 +43,7 @@ const PartZero = () => {
         }, 500);
     };
 
+
     return (
         <div id="PartZero">
             <img
@@ -47,19 +52,28 @@ const PartZero = () => {
                 className="ambulance-zero"
             />
 
+
             <div className={`divText-Ambulance ${showTextDiv ? 'fade-in-zero' : ''}`}>
                 {step === 1 && (
                     <div id="text-Ambulance1">
-                        <h2>ברוכים הבאים ללומדת מכלול רפואה!</h2>
-                        <p>בלומדה זו תעבור הסבר הסבר הסבר ...</p>
+                        <h2>ברוכים הבאים והבאות ללומדת מכלול רפואה!</h2>
+                    <p>
+בלומדה זו תלמדו על תפקידו המרכזי של מכלול הרפואה במערכת החירום, תכירו את מבנה הפיקוד, שיטות העבודה והדיווח, ותתחזקו את ההבנה שלכם לגבי יחסי הגומלין בין המכלולים השונים.  
+הלומדה תלווה אתכם לאורך כל הדרך ותסייע לכם לפעול בצורה מקצועית, אחראית ויעילה בעת אירוע חירום.
+</p>
                     </div>
                 )}
+
 
                 {step === 2 && (
                     <>
                         <div id="text-Ambulance2" className={fadeOut ? 'fade-out-zero' : 'fade-in-zero'}>
                             <h2>בלומדה ילווה אתכם תומר – קצין רפואה</h2>
-                            <p>הסבר הסבר הסבר ...</p>
+                            <p>
+                                ד"ר תומר הוא קצין רפואה אזורי המפקח על מכלולי הרפואה בזמן מצב חירום.
+                                במהלך הלומדה הוא ילווה אתכם, יחלוק את הניסיון המקצועי שלו, ויעזור לכם להבין את תהליכי העבודה, קבלת ההחלטות והדיווח הנדרשים בזמן אמת.
+                                דרך הסיפור שלו תבינו את חשיבות התפקיד, את הממשקים השונים במערכת החירום, ואת הדרך לנהל אירוע רפואי מורכב בצורה מקצועית ויעילה.
+                            </p>
                         </div>
                         {showTomer && (
                             <img
@@ -70,6 +84,7 @@ const PartZero = () => {
                         )}
                     </>
                 )}
+
 
                 <div className="buttons-bar">
                     <div className="btn-text btn-text-prev">
@@ -100,4 +115,8 @@ const PartZero = () => {
     );
 };
 
+
 export default PartZero;
+
+
+

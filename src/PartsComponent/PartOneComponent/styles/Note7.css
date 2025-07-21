@@ -5,12 +5,12 @@
 }
 
 .maaneMivzaim {
-    position: absolute;
+  position: absolute;
     height: auto;
     width: 40%;
     right: 50%;
     transform: translateX(50%);
-    top: 17vh;
+    top: 24vh;
     z-index: 20;
 }
 

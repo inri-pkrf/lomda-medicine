@@ -12,6 +12,8 @@
 }
 
 
+
+
 .ambulance-zero {
     position: absolute;
     bottom: 0;
@@ -20,6 +22,8 @@
     width: 90vw;
     height: auto;
 }
+
+
 
 
 .divText-Ambulance {
@@ -32,7 +36,7 @@
     text-align: center;
     font-family: 'Assistant', sans-serif;
     color: #454545;
-    padding: 3vh 5vh 0vh 5vh;
+    padding: 0vh 5vh 4vh 5vh;
     font-size: 2.5vmin;
     direction: rtl;
     opacity: 0;
@@ -40,19 +44,24 @@
 }
 
 
+
+
 .divText-Ambulance.fade-in-zero {
     opacity: 1;
 }
+
 
 @keyframes fadeInTomer {
     from {
         opacity: 0;
     }
 
+
     to {
         opacity: 1;
     }
 }
+
 
 .Tomer-zero {
     opacity: 0;
@@ -64,10 +73,12 @@
     transition: opacity 0.5s ease-in-out;
 }
 
+
 .fade-in-zero {
     opacity: 1;
     transition: opacity 0.5s ease-in-out;
 }
+
 
 .fade-out-zero {
     opacity: 0 !important;
@@ -75,18 +86,22 @@
 }
 
 
+
+
 .buttons-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 5px auto;
-    position: relative;
-    width: 43vw;
-    top: 6vh;
-    left: 2vw;
+    position: absolute;
+    width: 44vw;
+    top: 26vh;
+    left: 0vw;
     direction: rtl;
     gap: 33vw;
 }
+
+
 
 
 .btn-text {
@@ -94,14 +109,22 @@
 }
 
 
+
+
 .text-label {
     color: black;
 }
 
 
+
+
 .btn-text-next .img-arrow {
     background-image: url('/public/Assets/Btns/arrowBlack.png');
 }
+
+
+
+
 
 
 
@@ -113,6 +136,11 @@
 
 
 
+
+
+
+
 .btn-text-end .img-arrow {
     background-image: url('/public/Assets/Btns/arrowFullBlack.png');
 }
+

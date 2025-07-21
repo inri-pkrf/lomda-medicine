@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import '../genericComponent/styles/IntroLomda.css';
 
+
 const IntroLomda = () => {
     const [showInfo, setShowInfo] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
@@ -9,12 +10,18 @@ const IntroLomda = () => {
     const [showSkipButton, setShowSkipButton] = useState(false);
     const [fadeOutVideo, setFadeOutVideo] = useState(false);
     const [isExiting, setIsExiting] = useState(false);
+    const [isRestartMode, setIsRestartMode] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
     const cameFromSimulation = location.state?.fromSimulation === true;
-    const [showFullScreenPrompt, setShowFullScreenPrompt] = useState(!cameFromSimulation);
-    const [showIntro, setShowIntro] = useState(cameFromSimulation);
-    const [isRestartMode, setIsRestartMode] = useState(false);
+
+
+    const videoWasPlayed = sessionStorage.getItem('videoWasPlayed') === 'true';
+
+
+    const [showFullScreenPrompt, setShowFullScreenPrompt] = useState(!cameFromSimulation && !videoWasPlayed);
+    const [showIntro, setShowIntro] = useState(cameFromSimulation || videoWasPlayed);
+
 
     const closeInfo = () => {
         setIsClosing(true);
@@ -26,21 +33,30 @@ const IntroLomda = () => {
 
 
     useEffect(() => {
-        if (!showFullScreenPrompt) {
+        if (!videoWasPlayed && !showFullScreenPrompt) {
             const skipButtonTimeout = setTimeout(() => setShowSkipButton(true), 2000);
             const fadeOutTimeout = setTimeout(() => {
                 setFadeOutVideo(true);
-                setTimeout(() => setIsVideoEnded(true), 300);
+                setTimeout(() => {
+                    setIsVideoEnded(true);
+                    setShowIntro(true);
+                    sessionStorage.setItem('videoWasPlayed', 'true');
+                }, 300);
             }, 8400);
             const showIntroTimeout = setTimeout(() => setShowIntro(true), 8800);
+
 
             return () => {
                 clearTimeout(skipButtonTimeout);
                 clearTimeout(fadeOutTimeout);
                 clearTimeout(showIntroTimeout);
             };
+        } else if (videoWasPlayed) {
+            setIsVideoEnded(true);
+            setShowIntro(true);
         }
-    }, [showFullScreenPrompt]);
+    }, [showFullScreenPrompt, videoWasPlayed]);
+
 
     useEffect(() => {
         if (cameFromSimulation) {
@@ -51,12 +67,13 @@ const IntroLomda = () => {
         }
     }, [cameFromSimulation, navigate, location.pathname]);
 
+
     const handleRestart = () => {
-     sessionStorage.clear();
-    setIsRestartMode(false);
-    setShowIntro(false);
-    setShowFullScreenPrompt(false); 
-    navigate('/part-zero');
+        sessionStorage.clear(); // איפוס זיכרון
+        setIsRestartMode(false);
+        setShowIntro(false);
+        setShowFullScreenPrompt(false);
+        navigate('/part-zero');
     };
 
 
@@ -65,15 +82,18 @@ const IntroLomda = () => {
         setTimeout(() => {
             setIsVideoEnded(true);
             setShowIntro(true);
+            sessionStorage.setItem('videoWasPlayed', 'true');
         }, 300);
     };
+
 
     const handleStartBtn = () => {
         setIsExiting(true);
         setTimeout(() => {
             navigate('/part-zero');
-        }, 1000);
+        }, 1200);
     };
+
 
     const handleStartVideo = () => {
         setShowFullScreenPrompt(false);
@@ -83,6 +103,7 @@ const IntroLomda = () => {
         setFadeOutVideo(false);
     };
 
+
     return (
         <div id="IntroLomda">
             {/* שלב ראשון – הודעת F11 */}
@@ -91,12 +112,13 @@ const IntroLomda = () => {
                     <div className="fullscreen-prompt">
                         <div className="prompt-text">
                             <p>
-                                ברוכים הבאים והבאות ללומדת מכלול רפואה  !<br /><br />
+                                ברוכים הבאים והבאות ללומדת מכלול רפואה!<br /><br />
                                 להצגת הלומדה בצורה מיטבית לחצ/י על <strong>F11</strong>
                             </p>
                             <button className="btn-go" onClick={handleStartVideo}>צאו לדרך!</button>
                         </div>
                     </div>
+
 
                     <img
                         src={`${process.env.PUBLIC_URL}/Assets/logos/iLogo.png`}
@@ -104,6 +126,7 @@ const IntroLomda = () => {
                         className="i-logo"
                         onClick={() => setShowInfo(true)}
                     />
+
 
                     {showInfo && (
                         <div className='info-part'>
@@ -124,8 +147,7 @@ const IntroLomda = () => {
                                     אביטל גמבורג
                                     <br /><br />
                                     <u>מומחה תוכן:</u><br />
-                                    שליו אלפסי <br />
-                                    איריס
+                                    שליו אלפסי
                                     <br /><br />
                                     <u>מנהלת מחלקה:</u><br />
                                     תמר בוסתן
@@ -136,8 +158,9 @@ const IntroLomda = () => {
                 </>
             )}
 
+
             {/* שלב שני – סרטון פתיחה */}
-            {!showFullScreenPrompt && !isVideoEnded && !cameFromSimulation && !isRestartMode && (
+            {!showFullScreenPrompt && !isVideoEnded && !cameFromSimulation && !isRestartMode && !videoWasPlayed && (
                 <div className={`video-section ${fadeOutVideo ? 'fade-out' : ''}`}>
                     {showSkipButton && (
                         <button className="skip" onClick={skipVideo}>
@@ -154,20 +177,23 @@ const IntroLomda = () => {
                 </div>
             )}
 
-            {/* שלב שלישי – מסך התחלה עם כפתור */}
+
+            {/* שלב שלישי – מסך התחלה */}
             {showIntro && (
                 <div className={`intro-section ${isExiting ? 'exit' : ''}`}>
                     <img src={`${process.env.PUBLIC_URL}/Assets/PartZeroImgs/clouds.png`} alt="clouds" className="clouds" />
                     <img src={`${process.env.PUBLIC_URL}/Assets/PartZeroImgs/hospital.png`} alt="hospital" className="hospital" />
                     <img src={`${process.env.PUBLIC_URL}/Assets/PartZeroImgs/Ambulance.png`} alt="Ambulance" className="ambulance" />
 
+
                     <div className="intro-text-slide-in text-area">
                         <h1 className="lomda-title">לומדה למכלול רפואה</h1>
 
-                        {/* כפתור שונה לפי מצב */}
+
                         {!isRestartMode && (
                             <button className="btn-start" onClick={handleStartBtn}>התחלה</button>
                         )}
+
 
                         {isRestartMode && (
                             <button className="btn-start" onClick={handleRestart}>התחלה מחדש</button>
@@ -179,4 +205,8 @@ const IntroLomda = () => {
     );
 };
 
+
 export default IntroLomda;
+
+
+

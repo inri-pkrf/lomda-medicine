@@ -18,7 +18,7 @@ const Note2 = ({ onClose }) => {
         <div className="note2-item">
           <div className='note2-title'>מפקדת הפיקוד</div>
           <img
-            src={`${process.env.PUBLIC_URL}/Assets/PartOneImgs/Notes/note2/Hapak.jpg`}
+            src={`${process.env.PUBLIC_URL}/Assets/PartOneImgs/Notes/note2/Hapak.png`}
             alt="mifkadot"
             className="note2-img" 
           />
