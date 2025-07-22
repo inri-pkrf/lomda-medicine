@@ -169,13 +169,13 @@ position: absolute;
 
 
 .Tv-img-nafa-0 {
-  position: absolute;
-  z-index: 10000;
-  width: 78VW;
-  height: auto;
-  top: 30vh;
-  right: 50%;
-  transform: translate(50%, 0);
+     position: absolute;
+    z-index: 10000;
+    width: 78VW;
+    height: auto;
+    top: 35vh;
+    right: 50%;
+    transform: translate(50%, 0);
 }
 
 
@@ -216,33 +216,43 @@ position: absolute;
 
 
 /* כפתורי מכלולים */
+#btn-1-nafa {
+  position: absolute;
+  top:5vh;
+}
 #btn-2-nafa {
   position: absolute;
   right: 23vw;
+  top:5vh;
 }
 
 
 #btn-3-nafa {
   position: absolute;
   right: 34.4vw;
+    top:5vh;
+
 }
 
 
 #btn-4-nafa {
   position: absolute;
   right: 46.4vw;
+  top:5vh;
 }
 
 
 #btn-5-nafa {
   position: absolute;
   right: 57.5vw;
+  top:5vh;
 }
 
 
 #btn-6-nafa {
   position: absolute;
   right: 68.5vw;
+  top:5vh;
 }
 
 

@@ -114,7 +114,7 @@ const PartTwo = ({ setHideNavBar }) => {
       {activeComponent === "nafa" && (
         <TvNafa
           onFinish={() => {
-            setMahozCompleted(true);
+            setNafaCompleted(true);
             setActiveComponent("none");
           }}
           onClose={() => setActiveComponent("none")}
