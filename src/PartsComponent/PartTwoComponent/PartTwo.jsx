@@ -8,7 +8,6 @@ import '../PartTwoComponent/styles/PartTwo.css';
 const PartTwo = ({ setHideNavBar }) => {
   const location = useLocation();
   const reviewMode = location.state?.reviewMode || false; // מצב סקירה, אם קיים
-
   const chapterName = "PartTwo";
 
   // בדיקת מצב התחלת הפרק ושיוך להשלמתו מה-sessionStorage

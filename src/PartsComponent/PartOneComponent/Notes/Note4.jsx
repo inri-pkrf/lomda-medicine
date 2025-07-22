@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/Note4.css';
 
-const Note4 = ({onClose}) => {
+const Note4 = ({ onClose }) => {
   return (
     <div className="Note4">
       <img
@@ -27,7 +27,7 @@ const Note4 = ({onClose}) => {
         className='Mivzait'
       />
 
-       <div className="buttons-bar-note4">
+      <div className="buttons-bar-note4">
         <div className="btn-text btn-text-end" onClick={onClose}>
           <div className="img-arrow img-arrow-end" />
           <div className="text-label">סיום</div>

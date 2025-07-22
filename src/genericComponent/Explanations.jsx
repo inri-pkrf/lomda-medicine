@@ -7,9 +7,7 @@ const Explanations = ({ position, chapterName, onClose }) => {
   const content = explanationsData[chapterName]?.[position];
   const tomerImg = explanationsData[chapterName]?.TomerImg;
   const nextPart = explanationsData[chapterName]?.end?.nextPart;
-
   const navigate = useNavigate();
-
   const handleClose = () => {
     if (position === 'start') {
       onClose(); // רק סגירה
@@ -17,10 +15,9 @@ const Explanations = ({ position, chapterName, onClose }) => {
       onClose(); // סגירה
       if (nextPart) {
         if (chapterName === "PartOne") {
-          navigate(nextPart); 
+          navigate(nextPart);
         } else {
           navigate(`/questions/${nextPart}`);
-
         }
       }
     }

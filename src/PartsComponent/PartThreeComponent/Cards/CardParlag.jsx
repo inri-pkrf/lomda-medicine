@@ -14,7 +14,6 @@ const CardParlag = ({ onCloseCard }) => {
                 alt="vest"
                 className="img-card-vest"
             />
-
             <div className='title-card'>הפלר"ג:</div>
 
             <div className='content-palrag'>
@@ -74,7 +73,7 @@ const CardParlag = ({ onCloseCard }) => {
                         </div>
                     )}
                     {step === 2 && (
-                        <div  className="btn-text btn-text-end" onClick={onCloseCard}>
+                        <div className="btn-text btn-text-end" onClick={onCloseCard}>
                             <div className="img-arrow img-arrow-end" />
                             <div className="text-label">סיום</div>
                         </div>

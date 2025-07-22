@@ -11,9 +11,6 @@
     overflow: hidden;
 }
 
-
-
-
 .ambulance-zero {
     position: absolute;
     bottom: 0;
@@ -22,9 +19,6 @@
     width: 90vw;
     height: auto;
 }
-
-
-
 
 .divText-Ambulance {
     position: absolute;
@@ -43,25 +37,19 @@
     transition: opacity 0.2s ease;
 }
 
-
-
-
 .divText-Ambulance.fade-in-zero {
     opacity: 1;
 }
-
 
 @keyframes fadeInTomer {
     from {
         opacity: 0;
     }
 
-
     to {
         opacity: 1;
     }
 }
-
 
 .Tomer-zero {
     opacity: 0;
@@ -73,20 +61,15 @@
     transition: opacity 0.5s ease-in-out;
 }
 
-
 .fade-in-zero {
     opacity: 1;
     transition: opacity 0.5s ease-in-out;
 }
 
-
 .fade-out-zero {
     opacity: 0 !important;
     transition: opacity 0.5s ease-in-out;
 }
-
-
-
 
 .buttons-bar {
     display: flex;
@@ -101,46 +84,22 @@
     gap: 33vw;
 }
 
-
-
-
 .btn-text {
     display: block;
 }
-
-
-
 
 .text-label {
     color: black;
 }
 
-
-
-
 .btn-text-next .img-arrow {
     background-image: url('/public/Assets/Btns/arrowBlack.png');
 }
-
-
-
-
-
-
-
 
 .btn-text-prev .img-arrow {
     background-image: url('/public/Assets/Btns/arrowBlack.png');
 }
 
-
-
-
-
-
-
-
 .btn-text-end .img-arrow {
     background-image: url('/public/Assets/Btns/arrowFullBlack.png');
 }
-

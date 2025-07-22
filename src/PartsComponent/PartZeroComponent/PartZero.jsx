@@ -12,7 +12,6 @@ const PartZero = () => {
     const [showPrevButton, setShowPrevButton] = useState(false);
     const navigate = useNavigate();
 
-
     useEffect(() => {
         const timer = setTimeout(() => {
             setShowTextDiv(true);
@@ -43,7 +42,6 @@ const PartZero = () => {
         }, 500);
     };
 
-
     return (
         <div id="PartZero">
             <img
@@ -52,18 +50,16 @@ const PartZero = () => {
                 className="ambulance-zero"
             />
 
-
             <div className={`divText-Ambulance ${showTextDiv ? 'fade-in-zero' : ''}`}>
                 {step === 1 && (
                     <div id="text-Ambulance1">
                         <h2>ברוכים הבאים והבאות ללומדת מכלול רפואה!</h2>
-                    <p>
-בלומדה זו תלמדו על תפקידו המרכזי של מכלול הרפואה במערכת החירום, תכירו את מבנה הפיקוד, שיטות העבודה והדיווח, ותתחזקו את ההבנה שלכם לגבי יחסי הגומלין בין המכלולים השונים.  
-הלומדה תלווה אתכם לאורך כל הדרך ותסייע לכם לפעול בצורה מקצועית, אחראית ויעילה בעת אירוע חירום.
-</p>
+                        <p>
+                            בלומדה זו תלמדו על תפקידו המרכזי של מכלול הרפואה במערכת החירום, תכירו את מבנה הפיקוד, שיטות העבודה והדיווח, ותתחזקו את ההבנה שלכם לגבי יחסי הגומלין בין המכלולים השונים.
+                            הלומדה תלווה אתכם לאורך כל הדרך ותסייע לכם לפעול בצורה מקצועית, אחראית ויעילה בעת אירוע חירום.
+                        </p>
                     </div>
                 )}
-
 
                 {step === 2 && (
                     <>
@@ -84,7 +80,6 @@ const PartZero = () => {
                         )}
                     </>
                 )}
-
 
                 <div className="buttons-bar">
                     <div className="btn-text btn-text-prev">

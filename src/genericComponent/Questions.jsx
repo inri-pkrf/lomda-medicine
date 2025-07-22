@@ -14,17 +14,14 @@ const getRandomItems = (arr, count) => {
 };
 
 const pastelColors = ['rgb(205 216 252)', '#cce0d6', '#f4cccc', 'rgb(223 204 239)'];
-
 const Questions = () => {
   const navigate = useNavigate();
   const { chapter } = useParams();
-
   const [selectedQuestions, setSelectedQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answersCorrectMap, setAnswersCorrectMap] = useState({});
   const [answersMap, setAnswersMap] = useState({});
   const [showCorrectAnswerMap, setShowCorrectAnswerMap] = useState({});
-
   // מאחסן את כל הנתונים לכל הפרקים - object שבו כל key הוא פרק
   const [allChaptersData, setAllChaptersData] = useState({});
 

@@ -16,9 +16,7 @@ const steps = [
 const NavBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
-
   const currentStepIndex = steps.findIndex(step => step.path === location.pathname);
-
   const [completedSteps, setCompletedSteps] = useState(() => {
     try {
       const saved = sessionStorage.getItem('completedSteps');

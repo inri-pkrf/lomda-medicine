@@ -5,7 +5,7 @@ const CardMedicine = ({ onCloseCard }) => {
     return (
         <div className="CardMedicine">
 
-             <img
+            <img
                 src={`${process.env.PUBLIC_URL}/Assets/PartThreeImgs/case.png`}
                 alt="case"
                 className="img-card-case"

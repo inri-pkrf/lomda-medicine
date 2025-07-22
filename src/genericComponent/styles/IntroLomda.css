@@ -4,7 +4,6 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    /* background-color: #fff6f6; */
     background-color: #cc675063;
     display: flex;
     align-items: center;
@@ -13,7 +12,6 @@
     font-family: 'Assistant', sans-serif;
     text-align: center;
 }
-
 
 .i-logo {
     position: absolute;
@@ -24,13 +22,9 @@
     cursor: pointer;
 }
 
-
 .i-logo:hover {
     transform: scale(1.05);
 }
-
-
-
 
 .info-overlay {
     position: fixed;
@@ -43,7 +37,6 @@
     justify-content: center;
 }
 
-
 .xbtn {
     z-index: 3000;
     width: 2vw;
@@ -52,9 +45,6 @@
     right: 69vw;
     cursor: pointer;
 }
-
-
-
 
 .info-text {
     width: 40vw;
@@ -76,54 +66,33 @@
     transition: all 0.3s ease;
 }
 
-
-
-
 @keyframes fadeIn {
     0% {
         opacity: 0;
     }
 
-
-
-
     100% {
         opacity: 1;
     }
 }
-
-
-
 
 @keyframes fadeOut {
     0% {
         opacity: 1;
     }
 
-
-
-
     100% {
         opacity: 0;
     }
 }
 
-
-
-
 .fade-in {
     animation: fadeIn 0.4s ease-out forwards;
 }
 
-
-
-
 .fade-out {
     animation: fadeOut 0.4s ease-in forwards;
 }
-
-
-
 
 @keyframes popIn {
     0% {
@@ -131,17 +100,11 @@
         transform: scale(0.85) translateX(50%);
     }
 
-
-
-
     100% {
         opacity: 1;
         transform: scale(1) translateX(50%);
     }
 }
-
-
-
 
 @keyframes popOut {
     0% {
@@ -149,31 +112,19 @@
         transform: scale(1) translateX(50%);
     }
 
-
-
-
     100% {
         opacity: 0;
         transform: scale(0.85) translateX(50%);
     }
 }
 
-
-
-
 .pop-in {
     animation: popIn 0.4s ease-out forwards;
 }
 
-
-
-
 .pop-out {
     animation: popOut 0.4s ease-in forwards;
 }
-
-
-
 
 .prompt-text {
     direction: rtl;
@@ -184,7 +135,6 @@
     font-size: 5.5vmin;
     color: #333;
 }
-
 
 .btn-go {
     margin-top: 3vh;
@@ -201,13 +151,9 @@
     cursor: pointer;
 }
 
-
 .btn-go:hover {
     background-color: #aa4d39;
 }
-
-
-
 
 /* ------------------------------------------------------------------------- */
 
@@ -216,7 +162,6 @@
     height: 100%;
     width: 100%;
 }
-
 
 .video-section {
     position: absolute;
@@ -230,12 +175,10 @@
     z-index: 20000;
 }
 
-
 .video-section.fade-out {
     opacity: 0;
     pointer-events: none;
 }
-
 
 .skip {
     position: absolute;
@@ -251,9 +194,7 @@
     cursor: pointer;
 }
 
-
 /* ----------------------------------------------------------------- */
-
 
 .intro-section {
     position: fixed;
@@ -270,7 +211,6 @@
     opacity: 0;
 }
 
-
 .clouds {
     position: absolute;
     bottom: 6rem;
@@ -279,18 +219,15 @@
     animation: moveClouds 5s ease-in-out infinite alternate;
 }
 
-
 @keyframes moveClouds {
     0% {
         transform: translateX(60px);
     }
 
-
     100% {
         transform: translateX(-10px);
     }
 }
-
 
 .hospital {
     position: absolute;
@@ -301,7 +238,6 @@
     z-index: 2;
 }
 
-
 .ambulance {
     position: absolute;
     bottom: 0;
@@ -309,7 +245,6 @@
     z-index: 3;
     animation: driveAmbulance 2.5s ease-out forwards;
 }
-
 
 @keyframes driveAmbulance {
     0% {
@@ -322,7 +257,6 @@
     }
 }
 
-
 .text-area {
     position: absolute;
     top: 8%;
@@ -332,14 +266,12 @@
     z-index: 4;
 }
 
-
 .lomda-title {
     font-size: 10vmin;
     color: #454545;
     margin-bottom: 3vh;
     font-family: 'Karantina', cursive;
 }
-
 
 .btn-start {
     font-size: 5vmin;
@@ -353,17 +285,14 @@
     transition: transform 0.2s ease;
 }
 
-
 .btn-start:hover {
     transform: scale(1.05);
 }
-
 
 @keyframes fade-in-intro {
     0% {
         opacity: 0;
     }
-
 
     100% {
         opacity: 1;
@@ -381,23 +310,19 @@
     transition: opacity 0.5s ease;
 }
 
-
 @keyframes scaleAmbulance {
-  0% {
-    left: 3%;
-    width: 25%;
-    transform: none;
-  }
+    0% {
+        left: 3%;
+        width: 25%;
+        transform: none;
+    }
 
-
-  100% {
-    left: 5%;
-    width: 90vw;
-  }
+    100% {
+        left: 5%;
+        width: 90vw;
+    }
 }
-
 
 .intro-section.exit .ambulance {
-  animation: scaleAmbulance 1s ease-in-out forwards;
+    animation: scaleAmbulance 1s ease-in-out forwards;
 }
-

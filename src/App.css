@@ -10,6 +10,7 @@
   z-index: 2000;
   cursor: pointer;
 }
+
 .main-logo:hover {
   transform: scale(1.05);
 }
@@ -28,11 +29,9 @@
   text-align: center;
 }
 
-
 .btn-text:hover {
   transform: scale(1.05);
 }
-
 
 .img-arrow {
   width: 5vmin;
@@ -44,21 +43,17 @@
   width: 5vw;
 }
 
-
 .btn-text-next .img-arrow {
   transform: rotate(90deg);
 }
-
 
 .btn-text-prev .img-arrow {
   transform: rotate(270deg);
 }
 
-
 .btn-text-end .img-arrow {
   transform: rotate(90deg);
 }
-
 
 .text-label {
   font-size: 2.2vmin;

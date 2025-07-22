@@ -1,6 +1,5 @@
-
-.tape-div6{
-      position: absolute;
+.tape-div6 {
+    position: absolute;
     top: 9vh;
     left: 13vw;
     width: 74vw;
@@ -15,7 +14,7 @@
     width: 65%;
     right: 50%;
     transform: translateX(50%);
-    top: 19vh;
+    top: 25vh;
     z-index: 20;
 }
 
@@ -26,4 +25,3 @@
     top: 83vh;
     left: 15vw;
 }
-

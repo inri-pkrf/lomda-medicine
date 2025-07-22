@@ -10,14 +10,13 @@ import Explanations from '../../genericComponent/Explanations';
 const PartThree = ({ setHideNavBar }) => {
   const location = useLocation();
   const reviewMode = location.state?.reviewMode || false;
-
   const chapterName = "PartThree";
   const allItems = ['case', 'phone', 'vest'];
 
   // קריאה מה-sessionStorage
-const [started, setStarted] = useState(() => sessionStorage.getItem("partThreeStarted") === "true");
-const [finished, setFinished] = useState(() => sessionStorage.getItem("partThreeFinished") === "true");
-const [endShown, setEndShown] = useState(() => sessionStorage.getItem("partThreeEndShown") === "true");
+  const [started, setStarted] = useState(() => sessionStorage.getItem("partThreeStarted") === "true");
+  const [finished, setFinished] = useState(() => sessionStorage.getItem("partThreeFinished") === "true");
+  const [endShown, setEndShown] = useState(() => sessionStorage.getItem("partThreeEndShown") === "true");
 
   const [explanationStage, setExplanationStage] = useState(() => {
     if (finished && endShown) return null; // אל תציג שוב סיום
@@ -33,37 +32,37 @@ const [endShown, setEndShown] = useState(() => sessionStorage.getItem("partThree
   });
 
   // סימון התחלת פרק
- useEffect(() => {
-  if (activeCard !== null && !started) {
-    sessionStorage.setItem("partThreeStarted", "true");
-    setStarted(true); // ← חשוב!
-  }
-}, [activeCard, started]);
+  useEffect(() => {
+    if (activeCard !== null && !started) {
+      sessionStorage.setItem("partThreeStarted", "true");
+      setStarted(true); // ← חשוב!
+    }
+  }, [activeCard, started]);
 
   // שמירת כרטיסים שהושלמו
   useEffect(() => {
     sessionStorage.setItem('completedItemsPartThree', JSON.stringify(completedItems));
   }, [completedItems]);
 
-// מנגנון סיום כמו בפרק 2 — דיליי 1 שניה, הצגה פעם אחת
-useEffect(() => {
-  const allCompleted = allItems.every(item => completedItems.includes(item));
+  // מנגנון סיום כמו בפרק 2 — דיליי 1 שניה, הצגה פעם אחת
+  useEffect(() => {
+    const allCompleted = allItems.every(item => completedItems.includes(item));
 
-  if (allCompleted && !finished) {
-    sessionStorage.setItem("partThreeFinished", "true");
+    if (allCompleted && !finished) {
+      sessionStorage.setItem("partThreeFinished", "true");
 
-    // אם כבר הוצג הסיום - אל תציג שוב
-    if (!endShown) {
-      const timer = setTimeout(() => {
-        setExplanationStage("end");
-        sessionStorage.setItem("partThreeEndShown", "true");
-        setEndShown(true);
-      }, 1000);
+      // אם כבר הוצג הסיום - אל תציג שוב
+      if (!endShown) {
+        const timer = setTimeout(() => {
+          setExplanationStage("end");
+          sessionStorage.setItem("partThreeEndShown", "true");
+          setEndShown(true);
+        }, 1000);
 
-      return () => clearTimeout(timer);
+        return () => clearTimeout(timer);
+      }
     }
-  }
-}, [completedItems, finished, endShown]);
+  }, [completedItems, finished, endShown]);
 
   const closeExplanation = () => {
     setExplanationStage(null);
@@ -95,7 +94,6 @@ useEffect(() => {
           onClose={closeExplanation}
         />
       )}
-
       <img src={backgroundSrc} alt="background" className="background-part3" />
 
       {!explanationStage && (
@@ -106,7 +104,7 @@ useEffect(() => {
             className="Tomer-three"
           />
           <div className="speechBubbleThree">
-            מצא את החפצים הקבורים בהריסות
+            יש למצוא את החפצים הקבורים בהריסות
           </div>
           <img
             src={`${process.env.PUBLIC_URL}/Assets/PartThreeImgs/case.png`}

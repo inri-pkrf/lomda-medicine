@@ -20,7 +20,7 @@ const Note2 = ({ onClose }) => {
           <img
             src={`${process.env.PUBLIC_URL}/Assets/PartOneImgs/Notes/note2/Hapak.png`}
             alt="mifkadot"
-            className="note2-img" 
+            className="note2-img"
           />
         </div>
 
@@ -68,9 +68,7 @@ const Note2 = ({ onClose }) => {
             className="note2-img"
           />
         </div>
-
       </div>
-
 
       <div className="buttons-bar-note2">
         <div className="btn-text btn-text-end" onClick={onClose}>

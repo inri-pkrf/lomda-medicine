@@ -12,17 +12,14 @@ const PartFour = ({ setHideNavBar }) => {
   const location = useLocation();
   const reviewMode = location.state?.reviewMode || false;
   const chapterName = "PartFour";
-
   const [started, setStarted] = useState(() => sessionStorage.getItem("partFourStarted") === "true");
   const [finished, setFinished] = useState(() => sessionStorage.getItem("partFourFinished") === "true");
   const [endShown, setEndShown] = useState(() => sessionStorage.getItem("partFourEndShown") === "true");
-
   const [explanationStage, setExplanationStage] = useState(() => {
     if (finished && endShown) return null;
     if (!started) return "start";
     return null;
   });
-
   const [backgroundImage, setBackgroundImage] = useState(`${process.env.PUBLIC_URL}/Assets/PartFourImgs/meetingRoomNew.png`);
   const [selectedRelation, setSelectedRelation] = useState(null);
   const [hoveredRelationId, setHoveredRelationId] = useState(null);
@@ -131,6 +128,9 @@ const PartFour = ({ setHideNavBar }) => {
               transition: '0.3s ease',
               transform: isHovered ? 'scale(1.05)' : 'scale(0.95)',
             }}
+            onClick={() => handleClick(relation.id)}
+            onMouseEnter={() => handleHover(relation.id)}
+            onMouseLeave={resetBackground}
           >
             {relation.name}
           </div>

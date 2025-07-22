@@ -43,7 +43,7 @@ const QuestionCard = ({
 
   return (
     <div
-      className={`question-card ${isActive ? 'active' : ''}`}
+  className={`question-card ${isActive ? 'active' : ''} ${isLocked ? 'locked' : ''}`}
       style={{ backgroundColor, zIndex }}
     >
       <div className="question-counter">

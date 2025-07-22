@@ -6,7 +6,6 @@ const PopUp = ({ isVisible, onClose, title, content, color }) => {
   const [shouldRender, setShouldRender] = useState(isVisible);
   const [closing, setClosing] = useState(false);
 
-
   useEffect(() => {
     if (isVisible) {
       setShouldRender(true);
@@ -20,7 +19,6 @@ const PopUp = ({ isVisible, onClose, title, content, color }) => {
       return () => clearTimeout(timeout);
     }
   }, [isVisible, shouldRender]);
-
 
   if (!shouldRender) return null;
 

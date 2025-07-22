@@ -32,78 +32,61 @@
     font-weight: bold;
     background-color: transparent;
     font-size: 2vmin;
-    /* z-index: 10; */
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     box-sizing: border-box;
     font-family: 'Assistant', sans-serif;
-    cursor: default;
+    cursor: pointer;
 }
 
 /* דוגמה למיקומים לפי הדיבים בתמונה */
 .relations1-label {
     top: 44%;
-    /* 45% - 1% */
     left: 52.5%;
-    /* 52% + 0.5% */
     transform: translate(-50%, -50%);
 }
 
 .relations2-label {
     top: 16.5%;
-    /* 17.5% - 1% */
     left: 53.5%;
-    /* 52% + 0.5% */
     transform: translate(-50%, -50%);
 }
 
 .relations3-label {
     top: 16.5%;
-    /* 17.5% - 1% */
     left: 34.5%;
-    /* 34% + 0.5% */
     transform: translate(-50%, -50%);
 }
 
 .relations4-label {
     top: 44%;
-    /* 45% - 1% */
     left: 34.5%;
-    /* 34% + 0.5% */
     transform: translate(-50%, -50%);
 }
 
 .relations5-label {
     top: 26%;
-    /* 27% - 1% */
     left: 29.5%;
-    /* 29% + 0.5% */
     transform: translate(-50%, -50%);
 }
 
 .relations6-label {
     top: 37%;
-    /* 38% - 1% */
     left: 28.5%;
-    /* 27% + 0.5% */
     transform: translate(-50%, -50%);
 }
 
 .relations7-label {
     top: 26%;
-    /* 27% - 1% */
     left: 59.3%;
-    /* 58.8% + 0.5% */
     transform: translate(-50%, -50%);
 }
 
 .relations8-label {
     top: 36.5%;
-    /* 37.5% - 1% */
     left: 60.5%;
-    /* 60% + 0.5% */
     transform: translate(-50%, -50%);
 }
 

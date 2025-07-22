@@ -58,15 +58,15 @@ const Note5 = ({ onClose }) => {
     sessionStorage.setItem('viewedMahozes', JSON.stringify(viewedMahozes));
   }, [viewedMahozes]);
 
-  const handleHoverMahoz = (id) => {
-    setHoveredMahoz(id);
-    if (!viewedMahozes.includes(id)) {
-      setViewedMahozes([...viewedMahozes, id]);
+  const handleClickMahoz = (id) => {
+    if (hoveredMahoz === id) {
+      setHoveredMahoz(null);
+    } else {
+      setHoveredMahoz(id);
+      if (!viewedMahozes.includes(id)) {
+        setViewedMahozes([...viewedMahozes, id]);
+      }
     }
-  };
-
-  const handleLeaveMahoz = () => {
-    setHoveredMahoz(null);
   };
 
   return (
@@ -86,9 +86,9 @@ const Note5 = ({ onClose }) => {
 
       <div className='title-notes'>מחוזות פקע"ר</div>
 
-      <div className='subText-notes'>
+      <div className='subText-notes-note5'>
         מצורפת מפת ארץ ישראל עם החלוקה למחוזות פיקוד העורף. <br />
-        על מנת ללמוד על כל מחוז יש לעבור על אזור המחוז במפה עם העכבר
+        על מנת ללמוד על כל מחוז יש ללחוץ על אזור המחוז במפה עם הכבר, ולסגור בקליק חוזר.
       </div>
 
       <img
@@ -98,13 +98,13 @@ const Note5 = ({ onClose }) => {
       />
 
       {/* אינטראקטיביים על המפה */}
-      <div className='divMap-mahozot' id='mahoz-north1' onMouseEnter={() => handleHoverMahoz('north')} onMouseLeave={handleLeaveMahoz} />
-      <div className='divMap-mahozot' id='mahoz-north2' onMouseEnter={() => handleHoverMahoz('north')} onMouseLeave={handleLeaveMahoz} />
-      <div className='divMap-mahozot' id='mahoz-hifa' onMouseEnter={() => handleHoverMahoz('hifa')} onMouseLeave={handleLeaveMahoz} />
-      <div className='divMap-mahozot' id='mahoz-dan' onMouseEnter={() => handleHoverMahoz('dan')} onMouseLeave={handleLeaveMahoz} />
-      <div className='divMap-mahozot' id='mahoz-merkaz1' onMouseEnter={() => handleHoverMahoz('merkaz')} onMouseLeave={handleLeaveMahoz} />
-      <div className='divMap-mahozot' id='mahoz-merkaz2' onMouseEnter={() => handleHoverMahoz('merkaz')} onMouseLeave={handleLeaveMahoz} />
-      <div className='divMap-mahozot' id='mahoz-south' onMouseEnter={() => handleHoverMahoz('south')} onMouseLeave={handleLeaveMahoz} />
+      <div className='divMap-mahozot' id='mahoz-north1' onClick={() => handleClickMahoz('north')} />
+      <div className='divMap-mahozot' id='mahoz-north2' onClick={() => handleClickMahoz('north')} />
+      <div className='divMap-mahozot' id='mahoz-hifa' onClick={() => handleClickMahoz('hifa')} />
+      <div className='divMap-mahozot' id='mahoz-dan' onClick={() => handleClickMahoz('dan')} />
+      <div className='divMap-mahozot' id='mahoz-merkaz1' onClick={() => handleClickMahoz('merkaz')} />
+      <div className='divMap-mahozot' id='mahoz-merkaz2' onClick={() => handleClickMahoz('merkaz')} />
+      <div className='divMap-mahozot' id='mahoz-south' onClick={() => handleClickMahoz('south')} />
 
       {/* <img
         src={`${process.env.PUBLIC_URL}/Assets/PartOneImgs/Notes/note5/מחוז דן.png`}

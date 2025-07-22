@@ -14,15 +14,9 @@ const IntroLomda = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const cameFromSimulation = location.state?.fromSimulation === true;
-
-
     const videoWasPlayed = sessionStorage.getItem('videoWasPlayed') === 'true';
-
-
     const [showFullScreenPrompt, setShowFullScreenPrompt] = useState(!cameFromSimulation && !videoWasPlayed);
     const [showIntro, setShowIntro] = useState(cameFromSimulation || videoWasPlayed);
-
-
     const closeInfo = () => {
         setIsClosing(true);
         setTimeout(() => {
@@ -69,7 +63,7 @@ const IntroLomda = () => {
 
 
     const handleRestart = () => {
-        sessionStorage.clear(); // איפוס זיכרון
+        sessionStorage.clear();
         setIsRestartMode(false);
         setShowIntro(false);
         setShowFullScreenPrompt(false);
@@ -147,7 +141,7 @@ const IntroLomda = () => {
                                     אביטל גמבורג
                                     <br /><br />
                                     <u>מומחה תוכן:</u><br />
-                                    שליו אלפסי
+                                    שלו אלפסי
                                     <br /><br />
                                     <u>מנהלת מחלקה:</u><br />
                                     תמר בוסתן
@@ -188,13 +182,9 @@ const IntroLomda = () => {
 
                     <div className="intro-text-slide-in text-area">
                         <h1 className="lomda-title">לומדה למכלול רפואה</h1>
-
-
                         {!isRestartMode && (
                             <button className="btn-start" onClick={handleStartBtn}>התחלה</button>
                         )}
-
-
                         {isRestartMode && (
                             <button className="btn-start" onClick={handleRestart}>התחלה מחדש</button>
                         )}

@@ -1,5 +1,5 @@
-const questionsDataThree =[
-    {
+const questionsDataThree = [
+  {
     id: 1,
     type: "open",
     question: 'מנה את סד"כ הפלר"ג בתצורה מלאה ולא מפוצלת',
@@ -37,10 +37,10 @@ const questionsDataThree =[
   {
     id: 7,
     // type: "structure",
-     type: "open",
+    type: "open",
 
     question: "בשיטת ההפעלה כיצד מחולק הצוות הרפואי",
-   correct_answer: [
+    correct_answer: [
       "מטפל בכיר",
       "6 חובשים",
       "נהג אמבולנס"

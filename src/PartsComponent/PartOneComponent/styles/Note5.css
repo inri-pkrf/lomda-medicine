@@ -4,7 +4,6 @@
     width: 11.8vw;
 }
 
-
 #tape5-two {
     right: 78vw;
     top: 4.6vh;
@@ -12,6 +11,17 @@
     transform: rotate(117deg);
 }
 
+.subText-notes-note5 {
+    position: absolute;
+    top: 25vh;
+    right: 17vw;
+    width: 32vw;
+    font-family: 'Assistant', sans-serif;
+    font-size: 2.5vmin;
+    color: #595959;
+    z-index: 20;
+    direction: rtl;
+}
 
 .map-mahozot {
     position: absolute;
@@ -21,10 +31,7 @@
     left: 19vw;
     top: 14vh;
     z-index: 20;
-
-
 }
-
 
 .divMap-mahozot {
     position: absolute;
@@ -32,7 +39,6 @@
     cursor: pointer;
     z-index: 30;
 }
-
 
 #mahoz-north1 {
     width: 5vw;
@@ -42,7 +48,6 @@
     background-color: transparent;
 }
 
-
 #mahoz-north2 {
     width: 9vw;
     height: 5vh;
@@ -50,7 +55,6 @@
     left: 33.6vw;
     background-color: transparent;
 }
-
 
 #mahoz-hifa {
     width: 5vw;
@@ -60,7 +64,6 @@
     background-color: transparent;
 }
 
-
 #mahoz-dan {
     width: 2vw;
     height: 6vh;
@@ -68,7 +71,6 @@
     left: 30.6vw;
     background-color: transparent;
 }
-
 
 #mahoz-merkaz1 {
     width: 6vw;
@@ -79,7 +81,6 @@
     z-index: 5000;
 }
 
-
 #mahoz-merkaz2 {
     width: 3vw;
     height: 9vh;
@@ -88,7 +89,6 @@
     z-index: 5001;
     background-color: transparent;
 }
-
 
 #mahoz-south {
     width: 7vw;
@@ -99,24 +99,18 @@
     background-color: transparent;
 }
 
-
 .iconMahoz-container {
     position: absolute;
-    top: 36vh;
+    top: 37vh;
     right: 15vw;
     z-index: 30;
-
-
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-
-
     gap: 24px;
     width: 40vw;
     direction: rtl;
 }
-
 
 .iconMahoz-box {
     width: 15vw;
@@ -124,8 +118,6 @@
     padding: 14px;
     border-radius: 12px;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-
-
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -133,13 +125,11 @@
     text-align: right;
 }
 
-
 .iconMahoz-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-
 
 .iconMahoz-title {
     font-size: 2.5vmin;
@@ -150,7 +140,6 @@
     bottom: -3vh;
 }
 
-
 .iconMahoz-img {
     width: 60px;
     height: auto;
@@ -159,7 +148,6 @@
     bottom: -1vh;
 }
 
-
 .iconMahoz-text {
     font-size: 2.3vmin;
     font-family: 'Assistant', sans-serif;
@@ -167,7 +155,6 @@
     right: 4vw;
     bottom: 4vh;
 }
-
 
 /* הקלף שמופיע זמנית ליד המפה בזמן hover */
 .hoveredMahoz-card {
@@ -188,7 +175,6 @@
     transition: all 0.2s ease;
 }
 
-
 .iconMahoz-title-hover {
     font-size: 5vmin;
     font-weight: bold;
@@ -198,7 +184,6 @@
     bottom: -6vh;
 }
 
-
 .iconMahoz-img-hover {
     width: 18vh;
     height: auto;
@@ -206,7 +191,6 @@
     right: 4vw;
     bottom: -1vh;
 }
-
 
 .iconMahoz-text-hover {
     font-size: 4vmin;
@@ -216,7 +200,6 @@
     bottom: 14vh;
 }
 
-
 /* כפתור סיום */
 .buttons-bar-note5 {
     z-index: 20;
@@ -224,4 +207,3 @@
     top: 83vh;
     left: 13.5vw;
 }
-
