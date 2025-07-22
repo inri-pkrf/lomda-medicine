@@ -9,25 +9,29 @@
   z-index: 4000;
 }
 
+
 .tomer-img {
   width: 40vw;
   height: auto;
   position: absolute;
 }
 
+
 .close-btn-bubble {
-  margin-top: 1vh;
-  z-index: 3000;
-  width: 1.5vw;
-  height: auto;
-  position: absolute;
-  left: 4vw;
-  cursor: pointer;
+   top: 2vh;
+    z-index: 3000;
+    width: 1.5vw;
+    height: auto;
+    position: fixed;
+    left: 2vw;
+    cursor: pointer;
 }
+
 
 .close-btn-bubble:hover {
   transform: scale(1.05);
 }
+
 
 .speech-bubble {
   position: relative;
@@ -37,12 +41,15 @@
   color: #000000;
   border: 5px solid #000000;
   border-radius: 40px;
-  padding: 2rem 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-bottom: 1rem;
   font-size: 2.5vmin;
   line-height: 1.4;
   box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
   direction: rtl;
 }
+
 
 /* זנב בועת דיבור מימין */
 .speech-bubble::before {
@@ -59,6 +66,7 @@
   z-index: 1;
 }
 
+
 .speech-bubble::after {
   content: "";
   position: absolute;
@@ -73,6 +81,7 @@
   z-index: 0;
 }
 
+
 /* קובץ CSS שלך (למשל Explanations.css) */
 @keyframes fadeInExplanations {
   from {
@@ -80,20 +89,40 @@
     transform: scale(0.98);
   }
 
+
   to {
     opacity: 1;
     transform: scale(1);
   }
 }
 
+
 .fade-inExplanations {
-  animation: fadeInExplanations 0.2s ease-in-out forwards;
+  animation: fadeInExplanations 0.3s ease-in-out forwards;
+}
+
+
+@keyframes fadeOutExplanations {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+}
+
+
+.fade-outExplanations {
+  animation: fadeOutExplanations 0.3s ease-in-out forwards;
 }
 
 
 /*partOne ----------------------------------------------------------*/
 
-.speech-bubblePartOne {
+
+.speech-bubble-PartOne-start {
   position: relative;
   margin-top: 21vh;
   max-width: 32vw;
@@ -101,11 +130,13 @@
   right: -26vw;
 }
 
-.tomerPartOne {
+
+.tomer-PartOne-start {
   position: absolute;
   right: 5vw;
   margin-top: 38vh;
 }
+
 
 .tomer-PartOne-end {
   position: absolute;
@@ -114,8 +145,10 @@
   width: 45vw;
 }
 
+
 .speech-bubble-PartOne-end {
   position: relative;
+  padding: 2rem;
   margin-top: 21vh;
   max-width: 22vw;
   height: 21vh;
@@ -123,55 +156,277 @@
   padding: 6vh 11vh 0vw 6vw;
 }
 
+
 /*partTwo ----------------------------------------------------------*/
 
-.speech-bubblePartTwo {
-  position: relative;
-  margin-top: 25vh;
-  max-width: 28vw;
-  height: 25vh;
-  right: -26vw;
+
+.speech-bubble-PartTwo-start {
+position: relative;
+    margin-top: 14vh;
+    max-width: 21vw;
+    height: 26vh;
+    right: -51vw;
+}
+
+
+
+
+.tomer-PartTwo-start {
+    position: absolute;
+    right: -5vw;
+    margin-top: 35vh;
+}
+.speech-bubble-PartTwo-end {
+    position: relative;
+    margin-top: 14vh;
+    max-width: 21vw;
+    height: 19vh;
+    padding-top: 1rem;
+    right: -23vw;
+
 
 }
 
-.tomerPartTwo {
-  position: absolute;
-  right: 8vw;
-  margin-top: 35vh;
+
+
+
+.tomer-PartTwo-end {
+position: absolute;
+    right: 24vw;
+    margin-top: 35vh;
+
+
 }
+
 
 /*partThree----------------------------------------------------------*/
 
-.speech-bubblePartThree {
-  position: relative;
-  margin-top: 25vh;
-  max-width: 28vw;
-  height: 35vh;
-  right: -10vw;
 
+.speech-bubble-PartThree-start {
+       position: relative;
+    margin-top: 11vh;
+    max-width: 29vw;
+    height: 33vh;
+    right: -32vw;
+    position: relative;
+    text-align: center;
+    font-family: "Assistant";
+    background: #ffffff;
+    color: #000000;
+    border: 5px solid #000000;
+    border-radius: 40px;
+    padding-top: 1vh;
+    font-size: 2.5vmin;
+    line-height: 1.4;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+    direction: rtl;
+    text-align: right;
+}
+.speech-bubble-PartThree-start::before {
+    content: "";
+    position: absolute;
+    right: 588px;
+    bottom: -30px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 40px 0 40px 80px;
+    border-color: transparent transparent transparent #ffffff;
+    transform: rotate(145deg);
+    z-index: 1;
 }
 
-.tomerPartThree {
-  position: absolute;
-  right: 3vw;
-  margin-top: 32vh;
-  width: 68vw;
+
+.speech-bubble-PartThree-start::after {
+    content: "";
+    position: absolute;
+    right: 597px;
+    bottom: -36px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 40px 0 40px 80px;
+    transform: rotate(145deg);
+    border-color: transparent transparent transparent #000000;
+    z-index: 0;
 }
+
+
+
+
+
+
+.tomer-PartThree-start {
+    position: absolute;
+    right: 42vw;
+    margin-top: 33vh;
+    width: 68vw;
+}
+.speech-bubble-PartThree-end {
+    margin-top: 18vh;
+    max-width: 29vw;
+    height: 17vh;
+    right: -32vw;
+    position: relative;
+    text-align: center;
+    font-family: "Assistant";
+    background: #ffffff;
+    color: #000000;
+    border: 5px solid #000000;
+    border-radius: 40px;
+    padding: 2rem 2rem;
+    font-size: 2.5vmin;
+    line-height: 1.4;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+    direction: rtl;
+}
+.speech-bubble-PartThree-end::before {
+    content: "";
+    position: absolute;
+    right: 588px;
+    bottom: -30px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 40px 0 40px 80px;
+    border-color: transparent transparent transparent #ffffff;
+    transform: rotate(145deg);
+    z-index: 1;
+}
+
+
+.speech-bubble-PartThree-end::after {
+    content: "";
+    position: absolute;
+    right: 597px;
+    bottom: -36px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 40px 0 40px 80px;
+    transform: rotate(145deg);
+    border-color: transparent transparent transparent #000000;
+    z-index: 0;
+}
+
+
+
+
+
+
+.tomer-PartThree-end {
+    position: absolute;
+    right: 42vw;
+    margin-top: 33vh;
+    width: 68vw;
+}
+
 
 /*partFour ----------------------------------------------------------*/
 
-.speech-bubblePartFour {
-  position: relative;
-  margin-top: 25vh;
-  max-width: 28vw;
-  height: 30vh;
-  right: -28vw;
 
+.speech-bubble-PartFour-start {
+    position: relative;
+    margin-top: 11vh;
+    max-width: 29vw;
+    height: 26vh;
+    right: -48vw;
+    position: relative;
+    text-align: center;
+    font-family: "Assistant";
+    background: #ffffff;
+    color: #000000;
+    border: 5px solid #000000;
+    border-radius: 40px;
+    /* padding: 2rem 2rem; */
+    font-size: 2.5vmin;
+    line-height: 1.4;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+    direction: rtl;
 }
+.speech-bubble-PartFour-start::before {
+    content: "";
+    position: absolute;
+    right: 588px;
+    bottom: -30px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 40px 0 40px 80px;
+    border-color: transparent transparent transparent #ffffff;
+    transform: rotate(145deg);
+    z-index: 1;
+}
+
+
+.speech-bubble-PartFour-start::after {
+    content: "";
+    position: absolute;
+    right: 597px;
+    bottom: -36px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 40px 0 40px 80px;
+    transform: rotate(145deg);
+    border-color: transparent transparent transparent #000000;
+    z-index: 0;
+}
+.speech-bubble-PartFour-end {
+ position: relative;
+    margin-top: 11vh;
+    max-width: 23vw;
+    height: 19vh;
+    right: -48vw;
+    position: relative;
+    padding-top: 1rem;
+    text-align: center;
+    font-family: "Assistant";
+    background: #ffffff;
+    color: #000000;
+    border: 5px solid #000000;
+    border-radius: 40px;
+    font-size: 2.5vmin;
+    line-height: 1.4;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+    direction: rtl;
+}
+.speech-bubble-PartFour-end::before {
+    content: "";
+    position: absolute;
+    right: 475px;
+    bottom: -31px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 40px 0 40px 80px;
+    border-color: transparent transparent transparent #ffffff;
+    transform: rotate(145deg);
+    z-index: 1;
+}
+
+
+.speech-bubble-PartFour-end::after {
+    content: "";
+    position: absolute;
+    right: 479px;
+    bottom: -39px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 40px 0 40px 80px;
+    transform: rotate(145deg);
+    border-color: transparent transparent transparent #000000;
+    z-index: 0;
+}
+
+
+
 
 .tomerPartFour {
-  position: absolute;
-  right: 10vw;
-  width: 25vw;
-  margin-top: 35vh;
+position: absolute;
+    right: 47vw;
+    width: 25vw;
+    margin-top: 35vh;
 }
+

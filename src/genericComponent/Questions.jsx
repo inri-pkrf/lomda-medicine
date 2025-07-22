@@ -6,12 +6,15 @@ import questionsDataFour from '../Data/QuestionsData/QuestionsDataFour';
 import QuestionCard from './QuestionCard';
 import '../genericComponent/styles/Questions.css';
 
+
 const STORAGE_KEY = 'questionsAppData';
+
 
 const getRandomItems = (arr, count) => {
   const shuffled = [...arr].sort(() => 0.5 - Math.random());
   return shuffled.slice(0, count);
 };
+
 
 const pastelColors = ['rgb(205 216 252)', '#cce0d6', '#f4cccc', 'rgb(223 204 239)'];
 const Questions = () => {
@@ -25,6 +28,7 @@ const Questions = () => {
   // מאחסן את כל הנתונים לכל הפרקים - object שבו כל key הוא פרק
   const [allChaptersData, setAllChaptersData] = useState({});
 
+
   useEffect(() => {
     // טוען את כל המידע מה-sessionStorage
     const savedDataJSON = sessionStorage.getItem(STORAGE_KEY);
@@ -32,6 +36,7 @@ const Questions = () => {
       try {
         const savedDataAll = JSON.parse(savedDataJSON);
         setAllChaptersData(savedDataAll);
+
 
         // אם יש נתונים לשלב הנוכחי
         if (savedDataAll[chapter]) {
@@ -47,6 +52,7 @@ const Questions = () => {
         console.error('Error parsing sessionStorage data', e);
       }
     }
+
 
     // אם אין נתונים לפרק הנוכחי - טען שאלות חדשות
     let data = [];
@@ -67,9 +73,11 @@ const Questions = () => {
     setShowCorrectAnswerMap({});
   }, [chapter]);
 
+
   // שמירת כל הנתונים לכל הפרקים
   useEffect(() => {
     if (selectedQuestions.length === 0) return;
+
 
     const updatedAllData = {
       ...allChaptersData,
@@ -82,24 +90,29 @@ const Questions = () => {
       },
     };
 
+
     setAllChaptersData(updatedAllData);
     sessionStorage.setItem(STORAGE_KEY, JSON.stringify(updatedAllData));
   }, [chapter, selectedQuestions, currentIndex, answersCorrectMap, answersMap, showCorrectAnswerMap]);
+
 
   // המשך פונקציות handle כמו שהיו
   const handleNext = () => {
     setCurrentIndex((prev) => (prev < selectedQuestions.length - 1 ? prev + 1 : prev));
   };
 
+
   const handleBack = () => {
     setCurrentIndex((prev) => (prev > 0 ? prev - 1 : prev));
   };
+
 
   const handleAnswerSelect = (answer) => {
     setAnswersMap((prev) => ({
       ...prev,
       [currentIndex]: answer,
     }));
+
 
     // בדיקה חכמה - אם התשובה נכונה, גם עבור מערכים (רשימות)
     const correctAnswer = selectedQuestions[currentIndex].correct_answer;
@@ -114,11 +127,13 @@ const Questions = () => {
       isCorrect = answer === correctAnswer;
     }
 
+
     setAnswersCorrectMap((prev) => ({
       ...prev,
       [currentIndex]: isCorrect,
     }));
   };
+
 
   const handleShowCorrectAnswer = () => {
     setShowCorrectAnswerMap((prev) => ({
@@ -126,6 +141,7 @@ const Questions = () => {
       [currentIndex]: true,
     }));
   };
+
 
   const getNextPath = () => {
     switch (chapter?.toUpperCase()) {
@@ -139,6 +155,7 @@ const Questions = () => {
         return '/';
     }
   };
+
 
   return (
     <div className="Questions">
@@ -156,6 +173,7 @@ const Questions = () => {
             const translateX = getTranslateX(offset, 40);
             const scale = offset === 0 ? 1 : 1;
             const zIndex = 100 - offset;
+
 
             return (
               <div
@@ -193,6 +211,7 @@ const Questions = () => {
         </div>
       </div>
 
+
       <div className="btn-text btn-text-prev">
         {selectedQuestions.length > 0 && currentIndex > 0 && (
           <div onClick={handleBack} style={{ cursor: 'pointer' }}>
@@ -201,6 +220,7 @@ const Questions = () => {
           </div>
         )}
       </div>
+
 
       <div className="btn-text btn-text-next">
         {selectedQuestions.length > 0 &&
@@ -213,11 +233,19 @@ const Questions = () => {
           )}
       </div>
 
+
       <div className="btn-text btn-text-end">
         {selectedQuestions.length > 0 &&
           currentIndex === selectedQuestions.length - 1 &&
           answersCorrectMap[currentIndex] && (
-            <div onClick={() => navigate(getNextPath())} style={{ cursor: 'pointer' }}>
+            <div
+              onClick={() => {
+                setTimeout(() => {
+                  navigate(getNextPath());
+                }, 300);
+              }}
+              style={{ cursor: 'pointer' }}
+            >
               <div className="img-arrow img-arrow-next" />
               <div className="text-label">לפרק סיום</div>
             </div>
@@ -227,4 +255,8 @@ const Questions = () => {
   );
 };
 
+
 export default Questions;
+
+
+

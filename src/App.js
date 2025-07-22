@@ -53,7 +53,7 @@ function App() {
         </div>
       </div>
 
-      {!hideNavBar && location.pathname !== '/' && <NavBar />}
+      {location.pathname !== '/' && <NavBar hideNavBar={hideNavBar} />}
 
       <Routes>
         <Route path="/" element={<IntroLomda />} />

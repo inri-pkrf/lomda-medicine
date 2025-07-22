@@ -13,7 +13,7 @@ const steps = [
   { id: 8, title: 'סימולציה', path: '/simulation', isQuestion: false },
 ];
 
-const NavBar = () => {
+const NavBar = ({ hideNavBar }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const currentStepIndex = steps.findIndex(step => step.path === location.pathname);
@@ -48,7 +48,7 @@ const NavBar = () => {
   }
 
   return (
-<div className={`NavBar ${location.state?.hideNavBar ? 'hidden' : ''}`}>
+    <div className={`NavBar ${hideNavBar ? 'hidden' : ''}`}>
       <div className="timeline">
         <div className="background-line"></div>
         {steps.map((step, index) => {

@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './styles/Board.css';
 
 const Board = ({ relation, onClose }) => {
+  const [isExiting, setIsExiting] = useState(false);
   if (!relation) return null;
 
   const titleColor = relation.colorRelation || "rgb(80, 80, 80)";
 
-  return (
-    <div className="board">
+  const handleClose = () => {
+    setIsExiting(true);
+    setTimeout(() => {
+      onClose();
+    }, 400); // תואם לאורך האנימציה
+  };
 
+  return (
+    <div className={`board ${isExiting ? 'board-exit' : ''}`}>
       <img
         src={`${process.env.PUBLIC_URL}/Assets/PartFourImgs/board.png`}
         alt="board"
@@ -45,7 +52,7 @@ const Board = ({ relation, onClose }) => {
       </div>
 
       <div className="buttons-bar-board">
-        <div className="btn-text btn-text-end" onClick={onClose}>
+        <div className="btn-text btn-text-end" onClick={handleClose}>
           <div className="img-arrow img-arrow-end" />
           <div className="text-label">סיום</div>
         </div>

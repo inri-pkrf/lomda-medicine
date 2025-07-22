@@ -109,17 +109,17 @@ const PartOne = ({ setHideNavBar }) => {
     });
   };
 
-useEffect(() => {
-  if (!setHideNavBar) return;
+  useEffect(() => {
+    if (!setHideNavBar) return;
 
-  if (activeNoteId !== null) {
-    setHideNavBar(true);  // בתוך פתקים - הסתיר נאבר
-  } else {
-    setHideNavBar(false); // מחוץ לפתקים - הראה נאבר
-  }
-}, [activeNoteId, setHideNavBar]);
+    if (activeNoteId !== null) {
+      setHideNavBar(true);  // בתוך פתקים - הסתיר נאבר
+    } else {
+      setHideNavBar(false); // מחוץ לפתקים - הראה נאבר
+    }
+  }, [activeNoteId, setHideNavBar]);
 
-   useEffect(() => {
+  useEffect(() => {
     // טען viewedNoteIds וchapterFinished מ-sessionStorage בהתחלה
     const storedNotes = sessionStorage.getItem('viewedNoteIds');
     if (storedNotes) {
@@ -158,7 +158,7 @@ useEffect(() => {
 
   return (
     <div className="PartOne">
-       {showExplanation && (
+      {showExplanation && (
         <Explanations
           chapterName={"PartOne"}
           position={position}
@@ -166,6 +166,8 @@ useEffect(() => {
           onClose={() => setShowExplanation(false)}
         />
       )}
+
+      {isZoomedCorkboard && <div className="blur-overlay active" />}
 
       <>
         {activeNoteId === null && !showExplanation && (

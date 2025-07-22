@@ -159,11 +159,11 @@
 /* הקלף שמופיע זמנית ליד המפה בזמן hover */
 .hoveredMahoz-card {
     position: absolute;
-    top: 34vh;
+    top: 37vh;
     right: 15vw;
     z-index: 40;
     width: 38.5vw;
-    height: 50vh;
+    height: 49vh;
     padding: 16px;
     border-radius: 14px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);

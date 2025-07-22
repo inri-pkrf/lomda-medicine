@@ -35,16 +35,18 @@ const explanationsData = {
     TomerImg: `${process.env.PUBLIC_URL}/Assets/PartThreeImgs/ThomerShockedHalf.png`,
 
 
+
+
     start: {
       text: <>
         <b>"את מי אני מלחץ ? למי אני מדווח?"</b><br />
         קיבלתי מידע חשוב מהשטח – עכשיו צריך להעביר אותו בשרשרת הפיקוד. <br />
         בלומדה הזו נכיר את שיטת הרפואה, שיטת הדיווח והפלר"ג.
-        בתרגיל הבא נאתר פריטים מתוך ההריסות:
-        1. מכשיר קשר – מייצג את שיטת הדיווח
-        2. ווסט חילוץ – מייצג את הפלר"ג
+        בתרגיל הבא נאתר פריטים מתוך ההריסות:<br/>
+        1. מכשיר קשר – מייצג את שיטת הדיווח<br/>
+        2. ווסט חילוץ – מייצג את הפלר"ג<br/>
         3. ערכת עזרה ראשונה – מייצגת את שיטת הרפואה
-        בואו נתחיל.
+        בואו נתחיל.<br/>
       </>
     },
     end: {
@@ -57,6 +59,8 @@ const explanationsData = {
   },
   PartFour: {
     TomerImg: `${process.env.PUBLIC_URL}/Assets/PartFourImgs/ThomerPhoneHalf.png`,
+
+
 
 
     start: {
@@ -79,7 +83,15 @@ const explanationsData = {
 };
 
 
+
+
 export default explanationsData;
+
+
+
+
+
+
 
 
 

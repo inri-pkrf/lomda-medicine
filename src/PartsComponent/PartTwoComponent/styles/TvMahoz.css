@@ -302,8 +302,8 @@
 
 position: fixed;
     width: 2vw;
-    top: 10vh;
-    left: 12vw;
+    top: 12vh;
+    left: 13vw;
     cursor: pointer;
     z-index: 10000;
 }
