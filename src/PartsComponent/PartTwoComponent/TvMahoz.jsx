@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import '../PartTwoComponent/styles/TvMahoz.css';
 import mahozData from '../../Data/TvData/MahozData';
 
-const TvMahoz = ({ onFinish }) => {
+
+const TvMahoz = ({ onFinish, onClose }) => {
   const [step, setStep] = useState(1);
   const navigate = useNavigate();
   const handleFinish = () => {
@@ -17,12 +18,20 @@ const TvMahoz = ({ onFinish }) => {
     onFinish();
   };
 
+
   const stepKey = step;
   const currentStep = mahozData[stepKey];
   const totalSteps = Object.keys(mahozData).length;
 
+
   return (
     <div className="TvMahoz">
+      <img
+          className="closeBtn-mahoz"
+          src={`${process.env.PUBLIC_URL}/Assets/Btns/closeWhite.png`}
+          alt="corkboard"
+          onClick={onClose}
+        />
       <div className="screen-mahoz">
         <img
           className="Tv-img-mahoz"
@@ -52,6 +61,8 @@ const TvMahoz = ({ onFinish }) => {
           )}
 
 
+
+
           {currentStep?.roles && (
             <div className={`scrollable-container-mahoz`}>
               <div className="mahoz-scroll-content">
@@ -67,6 +78,7 @@ const TvMahoz = ({ onFinish }) => {
             </ul>
           )}
         </div>
+
 
         {/* כפתורי ניווט עם חצים וטקסט */}
         <div className="buttons-bar">
@@ -98,7 +110,24 @@ const TvMahoz = ({ onFinish }) => {
   );
 };
 
+
 export default TvMahoz;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

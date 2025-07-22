@@ -134,6 +134,36 @@
     top: 2vh;
 }
 
+.fade-in-part-three {
+  animation: fadeInPartThree 0.5s ease-in-out both;
+}
+
+.fade-out-part-three {
+  animation: fadeOutPartThree 0.5s ease-in-out both;
+}
+
+@keyframes fadeInPartThree {
+  0% {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeOutPartThree {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+}
+
 /* גבולות שונים לפי סוג */
 .case-border {
     border: 4px solid #c94343;

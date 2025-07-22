@@ -68,11 +68,19 @@ const PartThree = ({ setHideNavBar }) => {
     setExplanationStage(null);
   };
 
+  const [isClosing, setIsClosing] = useState(false);
+
   const handleCloseCard = () => {
     if (activeCard && !completedItems.includes(activeCard)) {
       setCompletedItems(prev => [...prev, activeCard]);
     }
-    setActiveCard(null);
+
+    setIsClosing(true); // הפעל אנימציית יציאה
+
+    setTimeout(() => {
+      setActiveCard(null);
+      setIsClosing(false);
+    }, 500); // תיאום עם משך האנימציה ב־CSS
   };
 
   useEffect(() => {
@@ -144,7 +152,7 @@ const PartThree = ({ setHideNavBar }) => {
       />
 
       {activeCard && (
-        <div className="card-overlay">
+        <div className={`card-overlay ${isClosing ? 'fade-out-part-three' : 'fade-in-part-three'}`}>
           <div className={`card ${activeCard}-border`}>
             {activeCard === 'case' && <CardMedicine onCloseCard={handleCloseCard} />}
             {activeCard === 'phone' && <CardReport onCloseCard={handleCloseCard} />}

@@ -36,15 +36,9 @@ const questionsDataThree = [
   },
   {
     id: 7,
-    // type: "structure",
     type: "open",
-
     question: "בשיטת ההפעלה כיצד מחולק הצוות הרפואי",
-    correct_answer: [
-      "מטפל בכיר",
-      "6 חובשים",
-      "נהג אמבולנס"
-    ]
+    correct_answer: <>מטפל בכיר,6 חובשים,נהג אמבולנס</>
   },
   {
     id: 8,
@@ -58,8 +52,11 @@ const questionsDataThree = [
   //   question: "מה שיטת הרפואה של פלוגת חילוץ במודל המפוצל",
   //   correct_answer: "הפלר\"ג יתחלק למחלקות הגדוד ויהיה תחת פיקוד מ\"מ החילוץ ובאחריותו כל רפואה החילוץ. צוות הרפואה במחלקה יהיה כפוף מקצועית אל מ\"פ הפלר\"ג"
   // }
-
-
 ];
+
 export default questionsDataThree;
+
+
+
+
 

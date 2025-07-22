@@ -18,7 +18,7 @@ const CardParlag = ({ onCloseCard }) => {
 
             <div className='content-palrag'>
                 {step === 1 && (
-                    <div className='part1-palrag'>
+                    <div className='part1-palrag fade-palrag-text'>
                         <ul>
                             <li>פלר"ג - פלוגת רפואה הפועלת במסגרת גדוד החילוץ</li>
                             <li>
@@ -45,7 +45,7 @@ const CardParlag = ({ onCloseCard }) => {
                 )}
 
                 {step === 2 && (
-                    <div className='part2-palrag'>
+                    <div className='part2-palrag fade-palrag-image'>
                         <img
                             src={`${process.env.PUBLIC_URL}/Assets/PartThreeImgs/mivneParlag.png`}
                             alt="mivneParlag"

@@ -95,17 +95,32 @@
 
 .speech-bubblePartOne {
   position: relative;
-  margin-top: 25vh;
-  max-width: 28vw;
-  height: 25vh;
+  margin-top: 21vh;
+  max-width: 32vw;
+  height: 29vh;
   right: -26vw;
-
 }
 
 .tomerPartOne {
   position: absolute;
-  right: 8vw;
-  margin-top: 35vh;
+  right: 5vw;
+  margin-top: 38vh;
+}
+
+.tomer-PartOne-end {
+  position: absolute;
+  right: 6vw;
+  margin-top: 27vh;
+  width: 45vw;
+}
+
+.speech-bubble-PartOne-end {
+  position: relative;
+  margin-top: 21vh;
+  max-width: 22vw;
+  height: 21vh;
+  right: -23vw;
+  padding: 6vh 11vh 0vw 6vw;
 }
 
 /*partTwo ----------------------------------------------------------*/
