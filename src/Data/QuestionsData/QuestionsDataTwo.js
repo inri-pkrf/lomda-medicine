@@ -90,7 +90,6 @@ const questionsDataTwo = [
       id: 2,
       question: "מול מי מתקשר מכלול מבצעים בנושא שאלות לגבי אירועים בבית החולים המדווח?",
       type: "open",
-      answers: [],
       correct_answer: "מול נציג הגר\"פ במרכז הרפואה"
     },
     {

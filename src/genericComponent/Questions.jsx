@@ -5,40 +5,36 @@ import questionsDataThree from '../Data/QuestionsData/QuestionsDataThree';
 import questionsDataFour from '../Data/QuestionsData/QuestionsDataFour';
 import QuestionCard from './QuestionCard';
 import '../genericComponent/styles/Questions.css';
-
+import NavigationButtons from './NavigationButtons';
 
 const STORAGE_KEY = 'questionsAppData';
-
 
 const getRandomItems = (arr, count) => {
   const shuffled = [...arr].sort(() => 0.5 - Math.random());
   return shuffled.slice(0, count);
 };
 
-
 const pastelColors = ['rgb(205 216 252)', '#cce0d6', '#f4cccc', 'rgb(223 204 239)'];
+
 const Questions = () => {
   const navigate = useNavigate();
   const { chapter } = useParams();
+
   const [selectedQuestions, setSelectedQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answersCorrectMap, setAnswersCorrectMap] = useState({});
   const [answersMap, setAnswersMap] = useState({});
   const [showCorrectAnswerMap, setShowCorrectAnswerMap] = useState({});
-  // מאחסן את כל הנתונים לכל הפרקים - object שבו כל key הוא פרק
   const [allChaptersData, setAllChaptersData] = useState({});
 
-
+  // טען נתונים מ-sessionStorage או בחר שאלות חדשות
   useEffect(() => {
-    // טוען את כל המידע מה-sessionStorage
     const savedDataJSON = sessionStorage.getItem(STORAGE_KEY);
     if (savedDataJSON) {
       try {
         const savedDataAll = JSON.parse(savedDataJSON);
         setAllChaptersData(savedDataAll);
 
-
-        // אם יש נתונים לשלב הנוכחי
         if (savedDataAll[chapter]) {
           const savedData = savedDataAll[chapter];
           setSelectedQuestions(savedData.selectedQuestions || []);
@@ -53,8 +49,7 @@ const Questions = () => {
       }
     }
 
-
-    // אם אין נתונים לפרק הנוכחי - טען שאלות חדשות
+    // טעינת שאלות חדשות בהתאם לפרק
     let data = [];
     if (chapter?.toUpperCase() === 'TWO') {
       questionsDataTwo.forEach((category) => {
@@ -73,11 +68,9 @@ const Questions = () => {
     setShowCorrectAnswerMap({});
   }, [chapter]);
 
-
-  // שמירת כל הנתונים לכל הפרקים
+  // שמירת כל הנתונים לכל הפרקים ב-sessionStorage
   useEffect(() => {
     if (selectedQuestions.length === 0) return;
-
 
     const updatedAllData = {
       ...allChaptersData,
@@ -90,35 +83,43 @@ const Questions = () => {
       },
     };
 
-
     setAllChaptersData(updatedAllData);
     sessionStorage.setItem(STORAGE_KEY, JSON.stringify(updatedAllData));
   }, [chapter, selectedQuestions, currentIndex, answersCorrectMap, answersMap, showCorrectAnswerMap]);
 
+  // עדכון מפתח endShown ב-sessionStorage כאשר השאלה האחרונה נענתה נכונה
+  useEffect(() => {
+    const endShownKey = `questions${chapter}EndShown`;
+    if (
+      selectedQuestions.length > 0 &&
+      currentIndex === selectedQuestions.length - 1 &&
+      answersCorrectMap[currentIndex]
+    ) {
+      sessionStorage.setItem(endShownKey, "true");
+    } else {
+      sessionStorage.setItem(endShownKey, "false");
+    }
+  }, [currentIndex, answersCorrectMap, selectedQuestions, chapter]);
 
-  // המשך פונקציות handle כמו שהיו
+  // פונקציות ניווט בין השאלות
   const handleNext = () => {
     setCurrentIndex((prev) => (prev < selectedQuestions.length - 1 ? prev + 1 : prev));
   };
-
 
   const handleBack = () => {
     setCurrentIndex((prev) => (prev > 0 ? prev - 1 : prev));
   };
 
-
+  // טיפול בבחירת תשובה
   const handleAnswerSelect = (answer) => {
     setAnswersMap((prev) => ({
       ...prev,
       [currentIndex]: answer,
     }));
 
-
-    // בדיקה חכמה - אם התשובה נכונה, גם עבור מערכים (רשימות)
     const correctAnswer = selectedQuestions[currentIndex].correct_answer;
     let isCorrect = false;
     if (Array.isArray(correctAnswer)) {
-      // השווה מערכים - כאן בדיקה פשוטה של התאמה מלאה (אפשר לשפר לפי צורך)
       isCorrect =
         Array.isArray(answer) &&
         answer.length === correctAnswer.length &&
@@ -127,14 +128,13 @@ const Questions = () => {
       isCorrect = answer === correctAnswer;
     }
 
-
     setAnswersCorrectMap((prev) => ({
       ...prev,
       [currentIndex]: isCorrect,
     }));
   };
 
-
+  // הצגת תשובה נכונה
   const handleShowCorrectAnswer = () => {
     setShowCorrectAnswerMap((prev) => ({
       ...prev,
@@ -142,7 +142,7 @@ const Questions = () => {
     }));
   };
 
-
+  // ניווט לפרק הבא
   const getNextPath = () => {
     switch (chapter?.toUpperCase()) {
       case 'TWO':
@@ -155,7 +155,6 @@ const Questions = () => {
         return '/';
     }
   };
-
 
   return (
     <div className="Questions">
@@ -173,7 +172,6 @@ const Questions = () => {
             const translateX = getTranslateX(offset, 40);
             const scale = offset === 0 ? 1 : 1;
             const zIndex = 100 - offset;
-
 
             return (
               <div
@@ -211,7 +209,7 @@ const Questions = () => {
         </div>
       </div>
 
-
+      {/* כפתורי ניווט פנימיים לשאלות */}
       <div className="btn-text btn-text-prev">
         {selectedQuestions.length > 0 && currentIndex > 0 && (
           <div onClick={handleBack} style={{ cursor: 'pointer' }}>
@@ -220,7 +218,6 @@ const Questions = () => {
           </div>
         )}
       </div>
-
 
       <div className="btn-text btn-text-next">
         {selectedQuestions.length > 0 &&
@@ -232,7 +229,6 @@ const Questions = () => {
             </div>
           )}
       </div>
-
 
       <div className="btn-text btn-text-end">
         {selectedQuestions.length > 0 &&
@@ -251,12 +247,11 @@ const Questions = () => {
             </div>
           )}
       </div>
+
+      {/* NavigationButtons עם תצוגת כפתור 'הקודם' תמיד ו'הבא' רק לפי endShown */}
+      <NavigationButtons endShownKey={`questions${chapter}EndShown`} />
     </div>
   );
 };
 
-
 export default Questions;
-
-
-

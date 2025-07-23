@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import './styles/PartThree.css';
+import NavigationButtons from '../../genericComponent/NavigationButtons';
 
 import CardMedicine from './Cards/CardMedicine';
 import CardReport from './Cards/CardReport';
@@ -160,6 +161,10 @@ const PartThree = ({ setHideNavBar }) => {
           </div>
         </div>
       )}
+
+       <NavigationButtons endShownKey="partThreeEndShown" />
+
+
     </div>
   );
 };

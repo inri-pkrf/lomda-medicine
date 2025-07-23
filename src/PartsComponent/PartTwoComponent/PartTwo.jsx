@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import TvMahoz from '../PartTwoComponent/TvMahoz';
 import TvNafa from '../PartTwoComponent/TvNafa';
 import '../PartTwoComponent/styles/PartTwo.css';
+import NavigationButtons from '../../genericComponent/NavigationButtons';
 
 
 const PartTwo = ({ setHideNavBar }) => {
@@ -131,6 +132,8 @@ const PartTwo = ({ setHideNavBar }) => {
           onClose={() => setActiveComponent("none")}
         />
       )}
+
+      <NavigationButtons endShownKey="partTwoEndShown" />
 
 
     </div>

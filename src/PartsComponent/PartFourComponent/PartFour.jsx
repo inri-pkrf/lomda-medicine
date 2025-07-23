@@ -5,6 +5,7 @@ import Explanations from '../../genericComponent/Explanations';
 import Board from './Board';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import NavigationButtons from '../../genericComponent/NavigationButtons';
 
 const PartFour = ({ setHideNavBar }) => {
   const navigate = useNavigate();
@@ -155,6 +156,9 @@ const PartFour = ({ setHideNavBar }) => {
       {selectedRelation && (
         <Board relation={selectedRelation} onClose={closeBoard} />
       )}
+
+          <NavigationButtons endShownKey="partFourEndShown" />
+
     </div>
   );
 };

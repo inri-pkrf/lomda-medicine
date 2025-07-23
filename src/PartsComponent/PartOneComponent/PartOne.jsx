@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import Explanations from '../../genericComponent/Explanations';
 import { useLocation } from 'react-router-dom';
 import './styles/PartOne.css';
+import NavigationButtons from '../../genericComponent/NavigationButtons';
+
 
 import Note1 from './Notes/Note1';
 import Note2 from './Notes/Note2';
@@ -15,10 +17,19 @@ const PartOne = ({ setHideNavBar }) => {
   const location = useLocation();
   const reviewMode = location.state?.reviewMode || false;
 
-  // showExplanation בברירת מחדל: false אם reviewMode, אחרת true
-  const [showExplanation, setShowExplanation] = useState(!reviewMode);
+  const timerRef = useRef(null);
+  const chapterName = "PartOne";
 
-  const [position, setPosition] = useState("start");
+  const started = sessionStorage.getItem("partOneStarted") === "true";
+  const finished = sessionStorage.getItem("partOneFinished") === "true";
+  const endShown = sessionStorage.getItem("partOneEndShown") === "true";
+
+  const [explanationStage, setExplanationStage] = useState(() => {
+    if (finished && endShown) return null;
+    if (!started) return "start";
+    return null;
+  });
+
   const [activeNoteId, setActiveNoteId] = useState(null);
   const [viewedNoteIds, setViewedNoteIds] = useState(() => {
     const saved = sessionStorage.getItem('viewedNoteIds');
@@ -29,13 +40,6 @@ const PartOne = ({ setHideNavBar }) => {
   const [showAboveBox, setShowAboveBox] = useState(false);
   const [notesFadeIn, setNotesFadeIn] = useState(false);
   const [showNoteContent, setShowNoteContent] = useState(false);
-  const [chapterFinished, setChapterFinished] = useState(() => {
-    return sessionStorage.getItem('chapterFinished') === 'true';
-  });
-
-  const timerRef = useRef(null);
-
-  const chapterName = "PartOne";
 
   const notes = [
     { id: 1, text: 'ייעוד פקע"ר' },
@@ -59,17 +63,13 @@ const PartOne = ({ setHideNavBar }) => {
       setShowNotes(true);
     }, 600);
 
-    // בדיקה אם סגרנו את כל הפתקים
     const allViewed = allNoteIds.every(id => viewedNoteIds.includes(id));
 
-    // אם סיימנו ולא סימנו סיום קודם
-    if (allViewed && !chapterFinished) {
-      // המתנה של שנייה ואז הצגת הסבר סיום
+    if (allViewed && !finished && !endShown) {
       timerRef.current = setTimeout(() => {
-        setPosition("end");
-        setShowExplanation(true);
-        setChapterFinished(true);
-        sessionStorage.setItem('chapterFinished', 'true');
+        sessionStorage.setItem("partOneFinished", "true");
+        sessionStorage.setItem("partOneEndShown", "true");
+        setExplanationStage("end");
       }, 1000);
     }
   };
@@ -99,6 +99,11 @@ const PartOne = ({ setHideNavBar }) => {
       setShowNoteContent(true);
     }, 1000);
 
+    if (!started) {
+      sessionStorage.setItem("partOneStarted", "true");
+      setExplanationStage(null);
+    }
+
     setViewedNoteIds((prev) => {
       if (!prev.includes(id)) {
         const updated = [...prev, id];
@@ -113,31 +118,12 @@ const PartOne = ({ setHideNavBar }) => {
     if (!setHideNavBar) return;
 
     if (activeNoteId !== null) {
-      setHideNavBar(true);  // בתוך פתקים - הסתיר נאבר
+      setHideNavBar(true);  // בתוך פתקים - הסתר נאב בר
     } else {
-      setHideNavBar(false); // מחוץ לפתקים - הראה נאבר
+      setHideNavBar(false); // מחוץ לפתקים - החזר נאב בר
     }
   }, [activeNoteId, setHideNavBar]);
 
-  useEffect(() => {
-    // טען viewedNoteIds וchapterFinished מ-sessionStorage בהתחלה
-    const storedNotes = sessionStorage.getItem('viewedNoteIds');
-    if (storedNotes) {
-      setViewedNoteIds(JSON.parse(storedNotes));
-    }
-    const finished = sessionStorage.getItem('chapterFinished') === 'true';
-    if (finished) {
-      setChapterFinished(true);
-      setPosition("end");
-
-      // אם אנחנו לא במצב review - נראה הסבר סיום
-      if (!reviewMode) {
-        setShowExplanation(true);
-      }
-    }
-  }, []);
-
-  // נקה טיימר אם הקומפוננטה מתפרקת לפני דיליי
   useEffect(() => {
     return () => {
       if (timerRef.current) clearTimeout(timerRef.current);
@@ -158,19 +144,18 @@ const PartOne = ({ setHideNavBar }) => {
 
   return (
     <div className="PartOne">
-      {showExplanation && (
+      {explanationStage && (
         <Explanations
-          chapterName={"PartOne"}
-          position={position}
-          isChapterFinished={chapterFinished}
-          onClose={() => setShowExplanation(false)}
+          chapterName={chapterName}
+          position={explanationStage}
+          onClose={() => setExplanationStage(null)}
         />
       )}
 
       {isZoomedCorkboard && <div className="blur-overlay active" />}
 
       <>
-        {activeNoteId === null && !showExplanation && (
+        {activeNoteId === null && !explanationStage && (
           <img
             src={`${process.env.PUBLIC_URL}/Assets/PartOneImgs/ThomerPointing.png`}
             alt="Tomer"
@@ -210,6 +195,9 @@ const PartOne = ({ setHideNavBar }) => {
             {noteComponents[activeNoteId]}
           </div>
         )}
+
+        <NavigationButtons endShownKey="partOneEndShown" />
+
       </>
     </div>
   );
