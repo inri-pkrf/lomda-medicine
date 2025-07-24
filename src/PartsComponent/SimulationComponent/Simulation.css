@@ -102,7 +102,7 @@
     color: #333;
     padding: 8px 16px;
     z-index: 10;
-    font-size: 5vmin;
+    font-size: 6vmin;
     font-family: "Karantina";
 }
 
@@ -161,7 +161,7 @@
     line-height: 1.5;
     direction: rtl;
     font-family: 'Assistant', sans-serif;
-    font-size: 2.2vmin;
+    font-size: 2.7vmin;
 }
 
 .chat-message.left .chat-bubble {
@@ -172,7 +172,7 @@
     width: 48%;
     padding: 1.2rem 1.5rem;
     font-size: 3vmin;
-    font-size: 1.2rem;
+    font-size: 3vmin;
     font-family: 'Assistant', sans-serif;
     font-weight: 600;
     background: linear-gradient(135deg, #6b7280, #4b5563);
