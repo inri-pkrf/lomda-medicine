@@ -1,3 +1,90 @@
+.intro-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100vh;
+    width: 100vw;
+    background-image: url("/public/Assets/Simulation/backgound-sim.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.simulation-intro-text h2 {
+    font-size: 6vmin;
+    margin-bottom: 1rem;
+    font-family: 'Assistant', sans-serif;
+    direction: rtl;
+}
+
+.simulation-intro-text p {
+    font-size: 4vmin;
+    line-height: 1.6;
+    margin-bottom: 4rem;
+    font-family: 'Assistant', sans-serif;
+    direction: rtl;
+    width: 51vw;
+}
+
+.start-simulation-button {
+    font-family: 'Assistant', sans-serif;
+    background-color: #e25161;
+    color: white;
+    font-size: 2rem;
+    padding: 0.9rem 2rem;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(226, 81, 97, 0.4);
+    letter-spacing: 1px;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.start-simulation-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 150%;
+    height: 100%;
+    background: linear-gradient(120deg,
+            rgba(255, 255, 255, 0.2),
+            rgba(255, 255, 255, 0));
+    transform: skewX(-20deg);
+    transition: left 0.5s;
+    z-index: -1;
+}
+
+.start-simulation-button:hover::before {
+    left: 125%;
+}
+
+.start-simulation-button:hover {
+    background-color: #d33d4e;
+    box-shadow: 0 0 25px rgba(226, 81, 97, 0.6);
+    transform: translateY(-2px);
+}
+
+.start-simulation-button:active {
+    transform: scale(0.98);
+    box-shadow: 0 0 10px rgba(226, 81, 97, 0.4);
+}
+
+.TomerPhone-sim {
+    position: absolute;
+    bottom: 0vh;
+    width: 29vw;
+    height: auto;
+    left: 0vw;
+}
+
 .simulation-fullscreen {
     display: flex;
     flex-direction: column;
@@ -74,7 +161,7 @@
     line-height: 1.5;
     direction: rtl;
     font-family: 'Assistant', sans-serif;
-    font-size: 2.7vmin;
+    font-size: 2.2vmin;
 }
 
 .chat-message.left .chat-bubble {
