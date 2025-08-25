@@ -25,7 +25,7 @@ const Note2 = ({ onClose }) => {
         </div>
 
         <div className="note2-item">
-          <div className='note2-title'>5 מחוזות</div>
+          <div className='note2-title'> מחוזות</div>
           <img
             src={`${process.env.PUBLIC_URL}/Assets/PartOneImgs/Notes/note2/Mahozot.png`}
             alt="mifkadot"
@@ -34,7 +34,7 @@ const Note2 = ({ onClose }) => {
         </div>
 
         <div className="note2-item">
-          <div className='note2-title'>20 נפות</div>
+          <div className='note2-title'>נפות</div>
           <img
             src={`${process.env.PUBLIC_URL}/Assets/PartOneImgs/Notes/note2/Nafot.png`}
             alt="mifkadot"
@@ -52,7 +52,7 @@ const Note2 = ({ onClose }) => {
         </div>
 
         <div className="note2-item">
-          <div className='note2-title'>3 מפקדות משימתיות</div>
+          <div className='note2-title'>מפקדות משימתיות</div>
           <img
             src={`${process.env.PUBLIC_URL}/Assets/PartOneImgs/Notes/note2/mifkadot.png`}
             alt="mifkadot"
@@ -61,7 +61,7 @@ const Note2 = ({ onClose }) => {
         </div>
 
         <div className="note2-item">
-          <div className='note2-title'>258 יקל"רים</div>
+          <div className='note2-title'> יקל"רים</div>
           <img
             src={`${process.env.PUBLIC_URL}/Assets/PartOneImgs/Notes/note2/Yaklar.png`}
             alt="mifkadot"

@@ -11,7 +11,6 @@ import Note3 from './Notes/Note3';
 import Note4 from './Notes/Note4';
 import Note5 from './Notes/Note5';
 import Note6 from './Notes/Note6';
-import Note7 from './Notes/Note7';
 
 const PartOne = ({ setHideNavBar }) => {
   const location = useLocation();
@@ -48,7 +47,6 @@ const PartOne = ({ setHideNavBar }) => {
     { id: 4, text: "התפיסה המבצעית" },
     { id: 5, text: 'מחוזות פקע"ר' },
     { id: 6, text: "מבנה הפיקוד" },
-    { id: 7, text: "המענה המבצעי" },
   ];
 
   const allNoteIds = notes.map(note => note.id);
@@ -81,7 +79,6 @@ const PartOne = ({ setHideNavBar }) => {
     4: <Note4 onClose={closeNoteAndReturn} />,
     5: <Note5 onClose={closeNoteAndReturn} />,
     6: <Note6 onClose={closeNoteAndReturn} />,
-    7: <Note7 onClose={closeNoteAndReturn} />,
   };
 
   const handleNoteClick = (id) => {

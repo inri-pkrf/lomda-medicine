@@ -11,7 +11,7 @@ const Note7 = ({ onClose }) => {
       />
 
       <div className='title-notes'>
-        המענה המבצעי
+        התפיסה המבצעית
       </div>
 
       <img

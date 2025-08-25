@@ -6,7 +6,7 @@ const steps = [
   { id: 1, title: 'מבוא', path: '/part-one', isQuestion: false },
   { id: 2, title: 'מבנה מפקדות', path: '/part-two', isQuestion: false },
   { id: 3, title: 'שאלה', path: '/questions/TWO', isQuestion: true },
-  { id: 4, title: 'פלרג', path: '/part-three', isQuestion: false },
+  { id: 4, title: 'פלר"ג', path: '/part-three', isQuestion: false },
   { id: 5, title: 'שאלה', path: '/questions/THREE', isQuestion: true },
   { id: 6, title: 'יחסי גומלין', path: '/part-four', isQuestion: false },
   { id: 7, title: 'שאלה', path: '/questions/FOUR', isQuestion: true },

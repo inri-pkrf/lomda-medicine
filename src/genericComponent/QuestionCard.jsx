@@ -84,7 +84,7 @@ const QuestionCard = ({
           </button>)}
           {showCorrectAnswer && (
             <div className="correct-answer">
-              <span className="correct-text">התשובה הנכונה היא: {question.correct_answer}</span>
+              <span className="correct-text">{question.correct_answer}</span>
             </div>
           )}
         </>

@@ -33,7 +33,7 @@ function App() {
         src={`${process.env.PUBLIC_URL}/Assets/logos/logo.png`}
         alt="main-logo"
         className="main-logo"
-        onClick={() => navigate('/')}
+        onClick={() => navigate('/part-zero')}
       />
 
       <div style={{ display: "none" }}>

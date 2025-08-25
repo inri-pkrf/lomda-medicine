@@ -1,33 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import '../genericComponent/styles/IntroLomda.css';
-
+import Info from './Info.jsx'; // <-- כאן
 
 const IntroLomda = () => {
-    const [showInfo, setShowInfo] = useState(false);
-    const [isClosing, setIsClosing] = useState(false);
-    const [isVideoEnded, setIsVideoEnded] = useState(false);
-    const [showSkipButton, setShowSkipButton] = useState(false);
+    const [showFullScreenPrompt, setShowFullScreenPrompt] = useState(true);
+    const [showIntro, setShowIntro] = useState(false);
     const [fadeOutVideo, setFadeOutVideo] = useState(false);
+    const [showSkipButton, setShowSkipButton] = useState(false);
+    const [isVideoEnded, setIsVideoEnded] = useState(false);
     const [isExiting, setIsExiting] = useState(false);
     const [isRestartMode, setIsRestartMode] = useState(false);
+
     const navigate = useNavigate();
     const location = useLocation();
     const cameFromSimulation = location.state?.fromSimulation === true;
     const videoWasPlayed = sessionStorage.getItem('videoWasPlayed') === 'true';
-    const [showFullScreenPrompt, setShowFullScreenPrompt] = useState(!cameFromSimulation && !videoWasPlayed);
-    const [showIntro, setShowIntro] = useState(cameFromSimulation || videoWasPlayed);
-    const closeInfo = () => {
-        setIsClosing(true);
-        setTimeout(() => {
-            setShowInfo(false);
-            setIsClosing(false);
-        }, 400);
-    };
-
 
     useEffect(() => {
-        if (!videoWasPlayed && !showFullScreenPrompt) {
+        if (!videoWasPlayed && !cameFromSimulation) {
             const skipButtonTimeout = setTimeout(() => setShowSkipButton(true), 2000);
             const fadeOutTimeout = setTimeout(() => {
                 setFadeOutVideo(true);
@@ -39,7 +30,6 @@ const IntroLomda = () => {
             }, 8400);
             const showIntroTimeout = setTimeout(() => setShowIntro(true), 8800);
 
-
             return () => {
                 clearTimeout(skipButtonTimeout);
                 clearTimeout(fadeOutTimeout);
@@ -49,8 +39,7 @@ const IntroLomda = () => {
             setIsVideoEnded(true);
             setShowIntro(true);
         }
-    }, [showFullScreenPrompt, videoWasPlayed]);
-
+    }, [cameFromSimulation, videoWasPlayed]);
 
     useEffect(() => {
         if (cameFromSimulation) {
@@ -61,16 +50,6 @@ const IntroLomda = () => {
         }
     }, [cameFromSimulation, navigate, location.pathname]);
 
-
-    const handleRestart = () => {
-        sessionStorage.clear();
-        setIsRestartMode(false);
-        setShowIntro(false);
-        setShowFullScreenPrompt(false);
-        navigate('/part-zero');
-    };
-
-
     const skipVideo = () => {
         setFadeOutVideo(true);
         setTimeout(() => {
@@ -80,14 +59,18 @@ const IntroLomda = () => {
         }, 300);
     };
 
-
     const handleStartBtn = () => {
         setIsExiting(true);
-        setTimeout(() => {
-            navigate('/part-zero');
-        }, 1200);
+        setTimeout(() => navigate('/part-zero'), 1200);
     };
 
+    const handleRestart = () => {
+        sessionStorage.clear();
+        setIsRestartMode(false);
+        setShowIntro(false);
+        setShowFullScreenPrompt(false);
+        navigate('/part-zero');
+    };
 
     const handleStartVideo = () => {
         setShowFullScreenPrompt(false);
@@ -96,7 +79,6 @@ const IntroLomda = () => {
         setShowSkipButton(false);
         setFadeOutVideo(false);
     };
-
 
     return (
         <div id="IntroLomda">
@@ -113,53 +95,15 @@ const IntroLomda = () => {
                         </div>
                     </div>
 
-
-                    <img
-                        src={`${process.env.PUBLIC_URL}/Assets/logos/iLogo.png`}
-                        alt="iLogo"
-                        className="i-logo"
-                        onClick={() => setShowInfo(true)}
-                    />
-
-
-                    {showInfo && (
-                        <div className='info-part'>
-                            <div className={`info-overlay ${isClosing ? 'fade-out' : 'fade-in'}`}>
-                                <img
-                                    src={`${process.env.PUBLIC_URL}/Assets/Btns/closeBlack.png`}
-                                    alt="xbtn"
-                                    className="xbtn"
-                                    onClick={closeInfo}
-                                />
-                                <div className={`info-text ${isClosing ? 'pop-out' : 'pop-in'}`}>
-                                    <u>מפתחות:</u><br />
-                                    עלמה יובל  <br />
-                                    אביטל גמבורג
-                                    <br /><br />
-                                    <u>גרפיקאיות:</u><br />
-                                    עלמה יובל <br />
-                                    אביטל גמבורג
-                                    <br /><br />
-                                    <u>מומחה תוכן:</u><br />
-                                    שלו אלפסי
-                                    <br /><br />
-                                    <u>מנהלת מחלקה:</u><br />
-                                    תמר בוסתן
-                                </div>
-                            </div>
-                        </div>
-                    )}
+                    <Info />
                 </>
             )}
-
 
             {/* שלב שני – סרטון פתיחה */}
             {!showFullScreenPrompt && !isVideoEnded && !cameFromSimulation && !isRestartMode && !videoWasPlayed && (
                 <div className={`video-section ${fadeOutVideo ? 'fade-out' : ''}`}>
                     {showSkipButton && (
-                        <button className="skip" onClick={skipVideo}>
-                            &lt;&lt; דלג/י
-                        </button>
+                        <button className="skip" onClick={skipVideo}>&lt;&lt; דלג/י</button>
                     )}
                     <video className="video-intro" autoPlay muted playsInline>
                         <source
@@ -171,14 +115,12 @@ const IntroLomda = () => {
                 </div>
             )}
 
-
             {/* שלב שלישי – מסך התחלה */}
             {showIntro && (
                 <div className={`intro-section ${isExiting ? 'exit' : ''}`}>
                     <img src={`${process.env.PUBLIC_URL}/Assets/PartZeroImgs/clouds.png`} alt="clouds" className="clouds" />
                     <img src={`${process.env.PUBLIC_URL}/Assets/PartZeroImgs/hospital.png`} alt="hospital" className="hospital" />
                     <img src={`${process.env.PUBLIC_URL}/Assets/PartZeroImgs/Ambulance.png`} alt="Ambulance" className="ambulance" />
-
 
                     <div className="intro-text-slide-in text-area">
                         <h1 className="lomda-title">לומדה למכלול רפואה</h1>
@@ -188,15 +130,15 @@ const IntroLomda = () => {
                         {isRestartMode && (
                             <button className="btn-start" onClick={handleRestart}>התחלה מחדש</button>
                         )}
+                       
                     </div>
+                     {isRestartMode && (
+                             <Info/>
+                        )}
                 </div>
             )}
         </div>
     );
 };
 
-
 export default IntroLomda;
-
-
-
