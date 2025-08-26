@@ -13,15 +13,23 @@ const Simulation = ({ onFinishSimulation }) => {
   });
 
   // האם להציג את מסך הפתיחה
-  const [showIntroScreen, setShowIntroScreen] = useState(() => {
-    return !simulationStarted;
-  });
+  const [showIntroScreen, setShowIntroScreen] = useState(() => !simulationStarted);
 
   // התקדמות בהודעות
   const [currentIndex, setCurrentIndex] = useState(() => {
     const saved = sessionStorage.getItem('simulationIndex');
     return saved ? parseInt(saved, 10) : 0;
   });
+
+  // הודעה מוגדלת (מודאל)
+  const [expandedMessage, setExpandedMessage] = useState(null);
+
+  // האם ההודעה הראשונה כבר נפתחה פעם אחת
+  const [firstMessageShown, setFirstMessageShown] = useState(false);
+
+  const filteredMessages = simulationData.messages.filter(msg => msg.type !== "התחלה");
+  const messagesToShow = filteredMessages.slice(0, currentIndex + 1);
+  const nextMessage = filteredMessages[currentIndex + 1];
 
   const getNextButtonText = () => {
     if (!nextMessage) return "סיום";
@@ -39,27 +47,31 @@ const Simulation = ({ onFinishSimulation }) => {
     }
   };
 
-  const filteredMessages = simulationData.messages.filter(msg => msg.type !== "התחלה");
-  const messagesToShow = filteredMessages.slice(0, currentIndex + 1);
-  const nextMessage = filteredMessages[currentIndex + 1];
-
+  // גלילה לסוף הצ'אט
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [currentIndex]);
 
+  // שמירת התקדמות
   useEffect(() => {
     if (simulationStarted) {
       sessionStorage.setItem('simulationIndex', currentIndex.toString());
     }
   }, [currentIndex, simulationStarted]);
 
+  // פתיחת ההודעה הראשונה כמודאל פעם אחת בלבד
+  useEffect(() => {
+    if (!firstMessageShown && filteredMessages.length > 0 && currentIndex === 0) {
+      setExpandedMessage(filteredMessages[0]);
+      setFirstMessageShown(true);
+    }
+  }, [currentIndex, filteredMessages, firstMessageShown]);
+
   const handleStartScreenContinue = () => {
-    // רק מסתיר את מסך הפתיחה – לא שומר התחלה
     setShowIntroScreen(false);
   };
 
   const handleNext = () => {
-    // כאן קובעים שהסימולציה באמת התחילה
     if (!simulationStarted) {
       sessionStorage.setItem('simulationStarted', 'true');
       setSimulationStarted(true);
@@ -72,10 +84,18 @@ const Simulation = ({ onFinishSimulation }) => {
       return;
     }
 
-    setCurrentIndex(prev => prev + 1);
+    setCurrentIndex(prev => {
+      const newIndex = prev + 1;
+      setExpandedMessage(filteredMessages[newIndex]); // פתיחת ההודעה החדשה כמודאל
+      return newIndex;
+    });
   };
 
-  // 🟡 שלב הפתיחה (אם לא התחיל עדיין)
+  const closeExpanded = () => {
+    setExpandedMessage(null);
+  };
+
+  // מסך פתיחה
   if (showIntroScreen) {
     return (
       <div className="simulation-fullscreen intro-screen">
@@ -99,7 +119,7 @@ const Simulation = ({ onFinishSimulation }) => {
     );
   }
 
-  // 🟢 הסימולציה עצמה
+  // סימולציה
   return (
     <div className="simulation-fullscreen">
       <div className="simulation-title">{simulationData.name}</div>
@@ -129,6 +149,16 @@ const Simulation = ({ onFinishSimulation }) => {
           </button>
         )}
       </div>
+
+      {/* מודאל להגדלת הודעה */}
+      {expandedMessage && (
+        <div className="expanded-overlay">
+          <div className="expanded-box">
+            <button className="close-btn" onClick={closeExpanded}>✖</button>
+            <div className="expanded-text">{expandedMessage.content}</div>
+          </div>
+        </div>
+      )}
 
       <NavigationButtons showNext={false} />
     </div>

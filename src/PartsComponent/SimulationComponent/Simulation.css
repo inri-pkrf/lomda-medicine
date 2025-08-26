@@ -215,3 +215,65 @@
         transform: translateY(0);
     }
 }
+
+
+/* ----------------הודעה מוגדלת----------------------- */
+
+.expanded-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    animation: fadeIn 0.3s ease;
+    backdrop-filter: blur(3px);
+}
+
+.expanded-box {
+    background: white;
+    border-radius: 16px;
+    padding: 12rem;
+    max-width: 70vw;
+    max-height: 70vh;
+    overflow-y: auto;
+    text-align: center;
+    position: relative;
+    font-family: 'Assistant', sans-serif;
+    font-size: 3.5vmin;
+    line-height: 1.6;
+    animation: zoomIn 0.3s ease;
+    direction: rtl;
+}
+
+.close-btn {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: transparent;
+    border: none;
+    font-size: 4rem;
+    cursor: pointer;
+    color: #333;
+    transition: transform 0.2s;
+}
+
+.close-btn:hover {
+    transform: scale(1.2);
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.7);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
