@@ -43,13 +43,13 @@ const mahozData = {
     population: '1,272,302',
     map: 'דרום.png',
   },
-  pakmaz: {
+ pakmaz: {
     name: 'פקמ"ז',
     icon: 'pkmaz-icon.png',
-    backgroundColor: '#96d2f5ff',
+    backgroundColor: 'rgb(240 188 255)',
     rasuyot: 21,
     population: '386,075',
-    map: 'דרום.png',
+    map: 'map new_פקמז.png',
   },
   padam: {
     name: 'פד"ם',
@@ -57,7 +57,7 @@ const mahozData = {
     backgroundColor: '#faaaaaff',
     rasuyot: 4,
     population: '61,075',
-    map: 'דרום.png',
+    map: 'map new_פדם.png',
   },
 };
 
@@ -118,7 +118,7 @@ const Note5 = ({ onClose }) => {
 
 
       <img
-        src={`${process.env.PUBLIC_URL}/Assets/PartOneImgs/Notes/note5/${hoveredMahoz ? mahozData[hoveredMahoz].map : 'מפה לא חשוך.png'}`}
+        src={`${process.env.PUBLIC_URL}/Assets/PartOneImgs/Notes/note5/${hoveredMahoz ? mahozData[hoveredMahoz].map : 'map new.png'}`}
         alt="map-mahozot"
         className='map-mahozot'
       />
