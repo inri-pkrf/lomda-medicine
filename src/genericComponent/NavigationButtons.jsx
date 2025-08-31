@@ -20,6 +20,7 @@ const NavigationButtons = ({ showNext = true, allowNext = true, endShownKey = nu
     const currentIndex = steps.findIndex(step => step.path === location.pathname);
     const prevStep = currentIndex > 0 ? steps[currentIndex - 1] : null;
     const nextStep = currentIndex < steps.length - 1 ? steps[currentIndex + 1] : null;
+    const isSimulationStart = location.pathname === '/simulation';
 
     const defaultPrevPath = '/part-zero';
 
@@ -27,20 +28,36 @@ const NavigationButtons = ({ showNext = true, allowNext = true, endShownKey = nu
     const canShowNext = endShownKey ? sessionStorage.getItem(endShownKey) === "true" : true;
 
     return (
-        <div className="navigation-buttons">
-            <button
-                className="btn-nav prev"
-                onClick={() => navigate(prevStep ? prevStep.path : defaultPrevPath)}
-            >
-                → הקודם
-            </button>
+          <div className="navigation-buttons">
+    {(prevStep || isSimulationStart) && (
+        <button
+            className="btn-nav prev"
+            onClick={() => {
+                if (prevStep) navigate(prevStep.path);
+                else navigate(steps[6].path); // השלב הקודם לפני הסימולציה
+            }}
+        >
+            → הקודם
+        </button>
+    )}
 
-            {showNext && nextStep && allowNext && canShowNext && (
-                <button className="btn-nav next" onClick={() => navigate(nextStep.path)}>
-                    המשך ←
-                </button>
-            )}
-        </div>
+    {showNext && nextStep && allowNext && canShowNext && (
+        <button
+            className="btn-nav next"
+            onClick={() => {
+                if (nextStep.path === '/simulation') {
+                    // פותח את אינטרו הסימולציה במקום ניווט ישיר
+                    navigate('/simulation', { state: { fromQuestions: true } });
+                } else {
+                    navigate(nextStep.path);
+                }
+            }}
+        >
+            המשך ←
+        </button>
+    )}
+</div>
+
     );
 };
 
