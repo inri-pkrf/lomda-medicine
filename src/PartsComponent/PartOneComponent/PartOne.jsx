@@ -10,7 +10,6 @@ import Note2 from './Notes/Note2';
 import Note3 from './Notes/Note3';
 import Note4 from './Notes/Note4';
 import Note5 from './Notes/Note5';
-import Note6 from './Notes/Note6';
 
 const PartOne = ({ setHideNavBar }) => {
   const location = useLocation();
@@ -41,12 +40,11 @@ const PartOne = ({ setHideNavBar }) => {
   const [showNoteContent, setShowNoteContent] = useState(false);
 
   const notes = [
-    { id: 1, text: 'ייעוד פקע"ר' },
+      { id: 1, text: 'ייעוד פקע"ר' },
     { id: 2, text: 'סד"כ פקע"ר' },
     { id: 3, text: 'סד"כ פקע"ר רפואה' },
     { id: 4, text: "התפיסה המבצעית" },
-    { id: 5, text: 'מחוזות פקע"ר' },
-    { id: 6, text: "מבנה הפיקוד" },
+    { id: 5, text: 'מחוזות פקע"ר' }
   ];
 
   const allNoteIds = notes.map(note => note.id);
@@ -73,12 +71,11 @@ const PartOne = ({ setHideNavBar }) => {
   };
 
   const noteComponents = {
-    1: <Note1 onClose={closeNoteAndReturn} />,
+ 1: <Note1 onClose={closeNoteAndReturn} />,
     2: <Note2 onClose={closeNoteAndReturn} />,
     3: <Note3 onClose={closeNoteAndReturn} />,
     4: <Note4 onClose={closeNoteAndReturn} />,
     5: <Note5 onClose={closeNoteAndReturn} />,
-    6: <Note6 onClose={closeNoteAndReturn} />,
   };
 
   const handleNoteClick = (id) => {

@@ -24,42 +24,46 @@ const NavigationButtons = ({ showNext = true, allowNext = true, endShownKey = nu
 
     const defaultPrevPath = '/part-zero';
 
-    // אם הועבר key, בודקים ב-sessionStorage אם ההסבר הסופי הוצג
+    // האם מותר להציג את הבא
     const canShowNext = endShownKey ? sessionStorage.getItem(endShownKey) === "true" : true;
 
     return (
-          <div className="navigation-buttons">
-    {(prevStep || isSimulationStart) && (
-        <button
-            className="btn-nav prev"
-            onClick={() => {
-                if (prevStep) navigate(prevStep.path);
-                else navigate(steps[6].path); // השלב הקודם לפני הסימולציה
-            }}
-        >
-            → הקודם
-        </button>
-    )}
+        <div className="navigation-buttons">
+            {/* כפתור קודם */}
+            {(prevStep || location.pathname === '/part-one' || isSimulationStart) && (
+                <button
+                    className="btn-nav prev"
+                    onClick={() => {
+                        if (location.pathname === '/part-one') {
+                            navigate(defaultPrevPath); // חזרה ל-PartZero
+                        } else if (prevStep) {
+                            navigate(prevStep.path);
+                        } else {
+                            navigate(steps[6].path); // ברירת מחדל לסימולציה
+                        }
+                    }}
+                >
+                    → הקודם
+                </button>
+            )}
 
-    {showNext && nextStep && allowNext && canShowNext && (
-        <button
-            className="btn-nav next"
-            onClick={() => {
-                if (nextStep.path === '/simulation') {
-                    // פותח את אינטרו הסימולציה במקום ניווט ישיר
-                    navigate('/simulation', { state: { fromQuestions: true } });
-                } else {
-                    navigate(nextStep.path);
-                }
-            }}
-        >
-            המשך ←
-        </button>
-    )}
-</div>
-
+            {/* כפתור הבא */}
+            {showNext && nextStep && allowNext && canShowNext && (
+                <button
+                    className="btn-nav next"
+                    onClick={() => {
+                        if (nextStep.path === '/simulation') {
+                            navigate('/simulation', { state: { fromQuestions: true } });
+                        } else {
+                            navigate(nextStep.path);
+                        }
+                    }}
+                >
+                    המשך ←
+                </button>
+            )}
+        </div>
     );
 };
-
 
 export default NavigationButtons;
