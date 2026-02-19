@@ -227,32 +227,32 @@
 }
 
 .speech-bubble-PartThree-start::before {
-  content: "";
-  position: absolute;
-  right: 588px;
-  bottom: -30px;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 40px 0 40px 80px;
-  border-color: transparent transparent transparent #ffffff;
-  transform: rotate(145deg);
-  z-index: 1;
+     border-color: #0000 #0000 #0000 #fff;
+    border-style: solid;
+    border-width: 40px 0 40px 80px;
+    bottom: -30px;
+    content: "";
+    height: 0;
+    position: absolute;
+    right: 301px;
+    transform: rotate(145deg);
+    width: 0;
+    z-index: 1;
 }
 
 
 .speech-bubble-PartThree-start::after {
-  content: "";
-  position: absolute;
-  right: 597px;
-  bottom: -36px;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 40px 0 40px 80px;
-  transform: rotate(145deg);
-  border-color: transparent transparent transparent #000000;
-  z-index: 0;
+    border-color: #0000 #0000 #0000 #000;
+    border-style: solid;
+    border-width: 40px 0 40px 80px;
+    bottom: -36px;
+    content: "";
+    height: 0;
+    position: absolute;
+    right: 302px;
+    transform: rotate(145deg);
+    width: 0;
+    z-index: 0;
 }
 
 

@@ -14,18 +14,19 @@
 }
 
 .simulation-intro-text h2 {
-    font-size: 6vmin;
+     font-size: 6vmin;
     margin-bottom: 1rem;
     font-family: 'Assistant', sans-serif;
     direction: rtl;
     position: absolute;
     top: 8vh;
+    width: 100vw;
     right: 50%;
     transform: translateX(50%);
 }
 
 .simulation-intro-text p {
-    font-size: 4vmin;
+    font-size: 3vmin;
     line-height: 1.6;
     margin-bottom: 4rem;
     font-family: 'Assistant', sans-serif;
@@ -60,20 +61,20 @@
 
 /* כרטיס סימולציה */
 .simulation-card {
-    background-color: #f7f7f7;
-    padding: 1.2rem;
+     background-color: #b9fcf4;
+    padding: 1rem;
     border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-     height: 120px;
-    width: 230px;
+    height: 71px;
+    width: 195px;
     cursor: pointer;
     transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
     text-align: center;
     font-weight: 600;
     font-family: 'Assistant', sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     color: #333;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
