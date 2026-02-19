@@ -1,0 +1,146 @@
+/* ------------------ מסך מלא ------------------ */
+.Test-fullscreen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    height: 100vh;
+    width: 100vw;
+    margin-top: 10vh;
+    padding: 2rem;
+    background-color: #f5f5f5;
+    font-family: 'Assistant', sans-serif;
+    overflow-y: auto;
+}
+
+/* ------------------ טקסטי שאלות ------------------ */
+.Test-intro-text h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.Test-intro-text p {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    color: #555;
+}
+
+/* ------------------ רשת של כרטיסי אפשרויות ------------------ */
+.Test-selection-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* ------------------ כרטיס אפשרות ------------------ */
+.Test-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    min-width: 180px;
+    max-width: 250px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    font-size: 1.6rem;
+    color: #333;
+    font-weight: 500;
+    text-align: center;
+}
+
+.Test-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    background-color: #f0f0f0;
+}
+
+.Test-card.selected {
+    border: 2px solid #4caf50;
+    background-color: #e8f5e9;
+    box-shadow: 0 6px 12px rgba(76, 175, 80, 0.3);
+}
+
+/* ------------------ כפתור המשך / סיים ------------------ */
+.start-Test-button {
+    font-family: 'Assistant', sans-serif;
+    background-color: #2196f3;
+    color: white;
+    font-size: 1.8rem;
+    padding: 0.9rem 2rem;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(33, 150, 243, 0.4);
+    margin-top: 1rem;
+}
+
+.start-Test-button:hover {
+    background-color: #1976d2;
+    box-shadow: 0 0 15px rgba(25, 118, 210, 0.5);
+    transform: translateY(-2px);
+}
+
+.start-Test-button:disabled {
+    background-color: #90caf9;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* ------------------ תצוגת ציון ------------------ */
+.Test-fullscreen p {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 2rem;
+}
+
+/* ------------------ ניווט (שומר על הקיים) ------------------ */
+.NavigationButtons {
+    margin-top: 2rem;
+}
+
+/* ------------------ רספונסיביות ------------------ */
+@media (max-width: 1024px) {
+    .Test-card {
+        min-width: 140px;
+        font-size: 1.4rem;
+    }
+
+    .Test-intro-text h2 {
+        font-size: 2.4rem;
+    }
+
+    .Test-intro-text p {
+        font-size: 1.5rem;
+    }
+
+    .start-Test-button {
+        font-size: 1.5rem;
+        padding: 0.8rem 1.5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .Test-card {
+        min-width: 120px;
+        font-size: 1.2rem;
+        padding: 0.8rem 1rem;
+    }
+
+    .Test-intro-text h2 {
+        font-size: 2rem;
+    }
+
+    .Test-intro-text p {
+        font-size: 1.2rem;
+    }
+
+    .start-Test-button {
+        font-size: 1.2rem;
+        padding: 0.6rem 1.2rem;
+    }
+}

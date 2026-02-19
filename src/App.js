@@ -11,6 +11,7 @@ import PartTwo from './PartsComponent/PartTwoComponent/PartTwo';
 import PartThree from './PartsComponent/PartThreeComponent/PartThree';
 import PartFour from './PartsComponent/PartFourComponent/PartFour';
 import Simulation from './PartsComponent/SimulationComponent/Simulation';
+// import Test from './PartsComponent/GenericTest/Test';
 import EndPage from './genericComponent/EndPage';
 
 const SimulationWrapper = () => {
@@ -22,6 +23,15 @@ const SimulationWrapper = () => {
 
   return <Simulation onFinishSimulation={handleFinishSimulation} />;
 };
+// const TestWrapper = () => {
+//   const navigate = useNavigate();
+
+//   const handleFinishTest= () => {
+//     navigate('/endPage');
+//   };
+
+//   return <Test onFinishTest={handleFinishTest} />;
+// };
 
 function App() {
   const navigate = useNavigate();
@@ -64,6 +74,7 @@ function App() {
         <Route path="part-three" element={<PartThree setHideNavBar={setHideNavBar} />} />
         <Route path="part-four" element={<PartFour setHideNavBar={setHideNavBar} />} />
         <Route path="simulation" element={<SimulationWrapper />} />
+        {/* <Route path="test" element={<TestWrapper />} /> */}
         <Route path="endPage" element={<EndPage />} />
         <Route path="/questions/:chapter" element={<Questions />} />
       </Routes>
